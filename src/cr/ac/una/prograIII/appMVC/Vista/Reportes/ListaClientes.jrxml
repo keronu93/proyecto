@@ -80,7 +80,7 @@ FROM
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="34" splitType="Stretch">
+		<band height="25" splitType="Stretch">
 			<textField>
 				<reportElement x="0" y="0" width="70" height="20" uuid="ccaadd4f-6a5e-4970-831d-8d718be21514"/>
 				<textFieldExpression><![CDATA[$F{cliente_PK_idCliente}]]></textFieldExpression>
