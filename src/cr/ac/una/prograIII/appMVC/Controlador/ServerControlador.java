@@ -273,6 +273,31 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private String hoFin = "";
         private Calendar calendario = Calendar.getInstance();
         private Integer hora, minutos, segundos;
+        private Integer horafin, minutosfin, segundosfin;
+
+        public Integer getHorafin() {
+            return horafin=calendario.get(Calendar.HOUR);
+        }
+
+        public void setHorafin(Integer horafin) {
+            this.horafin = horafin;
+        }
+
+        public Integer getMinutosfin() {
+            return minutosfin= calendario.get(Calendar.MINUTE);
+        }
+
+        public void setMinutosfin(Integer minutosfin) {
+            this.minutosfin = minutosfin;
+        }
+
+        public Integer getSegundosfin() {
+            return segundosfin= calendario.get(Calendar.SECOND);
+        }
+
+        public void setSegundosfin(Integer segundosfin) {
+            this.segundosfin = segundosfin;
+        }
         
         
         public Integer getHora() {
@@ -375,7 +400,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
            return getHora() + ":" + getMinutos() + ":" + getSegundos();
         }
         public String HoraFin(){
-             return getHora() + ":" + getMinutos() + ":" + getSegundos();
+             return getHorafin()+ ":" + getMinutosfin()+ ":" + getSegundosfin();
         }
         public String getHoFin() {
             return hoFin;
