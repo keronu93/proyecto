@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="915f4af5-7017-4cd5-9d87-b3db49c12fb7">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="6"/>
+	<property name="ireport.y" value="0"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
      usuarios.`PK_IdUsuario` AS usuarios_PK_IdUsuario,
@@ -26,22 +26,57 @@ FROM
 	<title>
 		<band height="79" splitType="Stretch">
 			<textField>
-				<reportElement x="181" y="24" width="230" height="37" uuid="0a7dc465-7970-45cf-b8cb-bdb6839a7187"/>
+				<reportElement x="135" y="18" width="330" height="61" uuid="0a7dc465-7970-45cf-b8cb-bdb6839a7187"/>
 				<textElement textAlignment="Justified">
-					<font size="24"/>
+					<font fontName="Arial" size="38"/>
 				</textElement>
 				<textFieldExpression><![CDATA[Reportes Usuarios]]></textFieldExpression>
 			</textField>
+			<image>
+				<reportElement x="15" y="0" width="95" height="79" uuid="f8562180-133b-4b01-961a-63e93f80025b"/>
+				<imageExpression><![CDATA["C:\\Users\\Estudiante\\Desktop\\repositorio local\\CafeInternet\\build\\classes\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Images\\Usuarios.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="35" splitType="Stretch"/>
+		<band height="35" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="411" y="15" width="100" height="20" uuid="14a9e8c2-6521-4555-870f-b0f09cc059b1"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch"/>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement x="10" y="16" width="100" height="20" uuid="6a3157a1-cf32-49f0-8184-2ab6e3258374"/>
+				<text><![CDATA[Numero ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="135" y="16" width="100" height="20" uuid="45444ed6-3980-4b51-ade7-59e732517afe"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="270" y="16" width="100" height="20" uuid="c4e594aa-6d93-40fe-8c01-b1a5fdfb4916"/>
+				<text><![CDATA[Usuario]]></text>
+			</staticText>
+		</band>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="125" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="21" width="100" height="20" uuid="aaef1459-0bc1-43d9-b1a4-d45c9c098b09"/>
+				<textFieldExpression><![CDATA[$F{usuarios_PK_IdUsuario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="135" y="21" width="100" height="20" uuid="612f8979-87fa-4917-bf61-48ff277fb148"/>
+				<textFieldExpression><![CDATA[$F{usuarios_Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="270" y="21" width="100" height="20" uuid="64c64b0b-a40a-4a52-8935-ad92633ddbf6"/>
+				<textFieldExpression><![CDATA[$F{usuarios_Usuario}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
