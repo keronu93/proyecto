@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="15230a8f-701c-404b-806f-a220838f0057">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="49"/>
+	<property name="ireport.y" value="32"/>
 	<queryString language="SQL">
 		<![CDATA[SELECT
      cliente.`PK_idCliente` AS cliente_PK_idCliente,
@@ -49,7 +49,7 @@ FROM
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="48" splitType="Stretch">
+		<band height="31" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="70" height="20" uuid="cc5b3a54-c41c-4943-80fb-a6042063a304"/>
 				<text><![CDATA[Numero de ID]]></text>
@@ -75,7 +75,7 @@ FROM
 				<text><![CDATA[Observaciones]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="37" width="555" height="1" uuid="cafa4b68-0b36-44b1-a135-7f46fd9697ee"/>
+				<reportElement x="0" y="22" width="555" height="1" uuid="cafa4b68-0b36-44b1-a135-7f46fd9697ee"/>
 			</line>
 		</band>
 	</columnHeader>
