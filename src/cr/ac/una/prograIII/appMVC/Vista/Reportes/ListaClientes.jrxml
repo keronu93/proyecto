@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="15230a8f-701c-404b-806f-a220838f0057">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     cliente.`PK_idCliente` AS cliente_PK_idCliente,
+     cliente.`Nombre` AS cliente_Nombre,
+     cliente.`Apellidos` AS cliente_Apellidos,
+     cliente.`Direccion` AS cliente_Direccion,
+     cliente.`FechaNacimiento` AS cliente_FechaNacimiento,
+     cliente.`Observaciones` AS cliente_Observaciones,
+     cliente.`ultUsuario` AS cliente_ultUsuario,
+     cliente.`ultFecha` AS cliente_ultFecha
+FROM
+     `cliente` cliente]]>
+	</queryString>
+	<field name="cliente_PK_idCliente" class="java.lang.Integer"/>
+	<field name="cliente_Nombre" class="java.lang.String"/>
+	<field name="cliente_Apellidos" class="java.lang.String"/>
+	<field name="cliente_Direccion" class="java.lang.String"/>
+	<field name="cliente_FechaNacimiento" class="java.sql.Date"/>
+	<field name="cliente_Observaciones" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="108" splitType="Stretch">
+			<staticText>
+				<reportElement x="131" y="0" width="324" height="61" uuid="5d45861e-cf17-4bfd-a78f-ed47b6c575bf"/>
+				<textElement>
+					<font fontName="Arial" size="38"/>
+				</textElement>
+				<text><![CDATA[Listado de Clientes]]></text>
+			</staticText>
+			<image>
+				<reportElement x="0" y="0" width="117" height="98" uuid="9190bbbb-5a15-42be-998f-066409b8b059"/>
+				<imageExpression><![CDATA["C:\\Users\\Gustavo\\Desktop\\repositorio\\CafeInternet\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Images\\Cliente.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="34" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="455" y="0" width="100" height="20" uuid="95bc3765-5fb4-45d8-8fcd-8f530f7832bf"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="48" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="70" height="20" uuid="cc5b3a54-c41c-4943-80fb-a6042063a304"/>
+				<text><![CDATA[Numero de ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="165" y="2" width="54" height="20" uuid="50f19248-f65e-4a03-8045-b60a0ef875b4"/>
+				<text><![CDATA[Apellidos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="249" y="2" width="53" height="20" uuid="07683e6f-d723-48e0-a6a2-90d726400369"/>
+				<text><![CDATA[Direccion]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="94" y="0" width="51" height="20" uuid="bcd24f88-2c5e-417e-b727-6cc96c533033"/>
+				<text><![CDATA[Nombre]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="329" y="2" width="92" height="20" uuid="d19033cb-7cf1-473b-bd55-f51ce7088383"/>
+				<text><![CDATA[FechaNacimiento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="2" width="77" height="20" uuid="619d32dd-217b-4999-9d50-4bb0e96a7811"/>
+				<text><![CDATA[Observaciones]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="37" width="555" height="1" uuid="cafa4b68-0b36-44b1-a135-7f46fd9697ee"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="34" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="70" height="20" uuid="ccaadd4f-6a5e-4970-831d-8d718be21514"/>
+				<textFieldExpression><![CDATA[$F{cliente_PK_idCliente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="165" y="0" width="54" height="20" uuid="08d6141d-faf6-4d31-a24e-3b2e42b4e6ec"/>
+				<textFieldExpression><![CDATA[$F{cliente_Apellidos}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="249" y="0" width="53" height="20" uuid="16e36179-7152-4122-a590-bb11f27fa823"/>
+				<textFieldExpression><![CDATA[$F{cliente_Direccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="94" y="0" width="51" height="20" uuid="5fb04824-8c02-4e47-8195-1f0264bc9644"/>
+				<textFieldExpression><![CDATA[$F{cliente_Nombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="0" width="77" height="20" uuid="c0b79f27-da29-4a5c-a8db-32b5e64ac5a0"/>
+				<textFieldExpression><![CDATA[$F{cliente_Observaciones}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="329" y="0" width="92" height="20" uuid="8aa8d760-9d81-44e5-9dd4-a037d5a564a7"/>
+				<textFieldExpression><![CDATA[$F{cliente_FechaNacimiento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
