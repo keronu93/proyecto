@@ -36,7 +36,6 @@ public class ManteTelefono extends javax.swing.JFrame {
         txtNumero = new javax.swing.JTextField();
         jLNumeroTelefono = new javax.swing.JLabel();
         TipoTelefono = new javax.swing.JLabel();
-        jCTelefono = new javax.swing.JComboBox();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -48,6 +47,9 @@ public class ManteTelefono extends javax.swing.JFrame {
         btBuscar = new javax.swing.JButton();
         IDTelefono = new javax.swing.JLabel();
         txtidTelefono = new javax.swing.JTextField();
+        chckCasa = new javax.swing.JCheckBox();
+        chckOficina = new javax.swing.JCheckBox();
+        chckCelular = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Agregar Telefonos");
@@ -78,8 +80,6 @@ public class ManteTelefono extends javax.swing.JFrame {
         jLNumeroTelefono.setText("Numero de Telefono:");
 
         TipoTelefono.setText("Tipo de telefono:");
-
-        jCTelefono.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione una opcion", "Casa", "Oficina", "Celular", " " }));
 
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/elimiar.png"))); // NOI18N
         btEliminar.setText("Eliminar");
@@ -126,6 +126,12 @@ public class ManteTelefono extends javax.swing.JFrame {
 
         IDTelefono.setText("id Telefono:");
 
+        chckCasa.setText("Casa");
+
+        chckOficina.setText("Oficina");
+
+        chckCelular.setText("Celular");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,13 +154,18 @@ public class ManteTelefono extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(btBuscarCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(btBuscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(TipoTelefono)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(chckCasa)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jCTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(chckOficina)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(chckCelular)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jLabel1)
                 .addGap(38, 38, 38))
             .addGroup(layout.createSequentialGroup()
@@ -195,8 +206,10 @@ public class ManteTelefono extends javax.swing.JFrame {
                                     .addComponent(jLIdCliente))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(TipoTelefono))
+                            .addComponent(TipoTelefono)
+                            .addComponent(chckCasa)
+                            .addComponent(chckOficina)
+                            .addComponent(chckCelular))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -290,7 +303,9 @@ public class ManteTelefono extends javax.swing.JFrame {
     public javax.swing.JButton btEliminar;
     public javax.swing.JButton btInsertar;
     public javax.swing.JButton btModificar;
-    public javax.swing.JComboBox jCTelefono;
+    public javax.swing.JCheckBox chckCasa;
+    public javax.swing.JCheckBox chckCelular;
+    public javax.swing.JCheckBox chckOficina;
     private javax.swing.JLabel jLIdCliente;
     private javax.swing.JLabel jLNumeroTelefono;
     private javax.swing.JLabel jLabel1;
