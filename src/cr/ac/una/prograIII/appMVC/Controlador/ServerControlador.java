@@ -249,11 +249,12 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 fila[1] = cliente.getSock().getInetAddress().toString();
                 fila[2] = cliente.getEstadoActivo().toString();
                 fila[3] = cliente.HoraInicio();
-                if(cliente.estadoActivo==false){
+                if(cliente.estadoActivo==true){
+                fila[4] = "sin definir";
+                }else{
                 fila[4] = cliente.HoraFin();
-                }else
-                //fila[4] = cliente.HoraFin();
-                modeloTabla.addRow(fila);
+                }
+                modeloTabla.addRow(fila);   
 
             }
         } catch (Exception ex) {
