@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -231,7 +232,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         serverView.jTPC.setModel(modeloTabla);
         String fila[] = new String[5];
-
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("IP");
         modeloTabla.addColumn("Estado");
@@ -255,12 +255,15 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 fila[3] = cliente.HoraInicio();
                 if(cliente.estadoActivo==true){
                 fila[4] = "sin definir";
-                }else{
+                }else
                 fila[4] = cliente.HoraFin();
-                }
-                modeloTabla.addRow(fila);   
-
+                
+                modeloTabla.addRow(fila); 
+                
+                
             }
+            serverView.jTPC.setModel(modeloTabla);
+            
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
         }
