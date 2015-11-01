@@ -115,6 +115,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 int fila = serverView.jTPC.getSelectedRow();
                 String ipSeleccionada = serverView.jTPC.getValueAt(fila, 1).toString();
                 String nombrePCSeleccionado = serverView.jTPC.getValueAt(fila, 0).toString();
+               
             //*****************************************************
                 //se recorre la lista de clientes y se verifica a cual
                 //sokect se le quiere enviar el mensaja (el seleccionado 
@@ -179,6 +180,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     
                     //se llena la tabla con los clientes conectados
                     llenarTabla();
+                    
                     serverView.Chat_Servidor.append("tienes una conexion \n" + clientSock.getInetAddress());
                 }
             } catch (Exception ex) {
@@ -214,17 +216,17 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        llenarTabla();
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        llenarTabla();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        llenarTabla();
     }
 
     public void llenarTabla() {
@@ -261,8 +263,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 modeloTabla.addRow(fila); 
                 
                 
+                
             }
-            serverView.jTPC.setModel(modeloTabla);
+            
             
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
@@ -362,6 +365,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         this.nombrePC = mensajeEnPartes[1];
                         llenarTabla();// se llena la tabla de clientes
                     }
+                    
                 }
             } catch (Exception ex) {
                 serverView.Chat_Servidor.append("conexion perdida. \n");
