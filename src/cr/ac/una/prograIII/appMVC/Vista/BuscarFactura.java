@@ -9,12 +9,12 @@ package cr.ac.una.prograIII.appMVC.Vista;
  *
  * @author Gustavo
  */
-public class JFrameBuscarFactura extends javax.swing.JFrame {
+public class BuscarFactura extends javax.swing.JFrame {
 
     /**
      * Creates new form JFrameBuscarFactura
      */
-    public JFrameBuscarFactura() {
+    public BuscarFactura() {
         initComponents();
         setTitle("buscar Facturas");
         this.setLocationRelativeTo(null);
@@ -141,20 +141,21 @@ public class JFrameBuscarFactura extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameBuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameBuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameBuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameBuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(BuscarFactura.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameBuscarFactura().setVisible(true);
+                new BuscarFactura().setVisible(true);
             }
         });
     }

@@ -18,7 +18,6 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-//import javafx.scene.input.KeyCode;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
@@ -40,7 +39,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
     public ServerControlador(Server serverView, ArrayList<ClienteHilo> listaClientes) {
         this.serverView = serverView;
         this.listaClientes = listaClientes;
-        //this.pantallabloqeadaView = pantallabloqeadaView;
         this.serverView.btDesbloquear.addActionListener(this);
         this.serverView.btDetenerServidor.addActionListener(this);
         this.serverView.btIniciarServidor.addActionListener(this);
@@ -252,11 +250,11 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 fila[2] = cliente.getEstadoActivo().toString();
                 fila[3] = cliente.HoraInicio();
                 if(cliente.estadoActivo==true){
-                
-                fila[4] = "sin definir"; 
-                }else
+                fila[4] = "sin definir";
+                }else{
                 fila[4] = cliente.HoraFin();
-                modeloTabla.addRow(fila);
+                }
+                modeloTabla.addRow(fila);   
 
             }
         } catch (Exception ex) {
