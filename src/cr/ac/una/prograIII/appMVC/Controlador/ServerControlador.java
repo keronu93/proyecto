@@ -32,7 +32,6 @@ import javax.swing.table.TableColumnModel;
 public class ServerControlador implements ActionListener, DocumentListener {
 
     private Server serverView;
-    //private Pantallabloqueada pantallabloqeadaView;
     ArrayList<ClienteHilo> listaClientes;
 
     
@@ -139,11 +138,16 @@ public class ServerControlador implements ActionListener, DocumentListener {
         
         }
         if (e.getSource() == this.serverView.btUsuariosEnLinea) {
-            for (ClienteHilo cliente : listaClientes) {
-                if (cliente.getEstadoActivo()) {
-                    System.out.println("Cliente PC nombre:" + cliente.getNombrePC().toString());
-                }
-            }
+             serverView.Chat_Servidor.append("\n Online users : \n");
+        for (ClienteHilo cliente : listaClientes){
+            serverView.Chat_Servidor.append("Cliente PC nombre:" +cliente);
+           serverView.Chat_Servidor.append("\n");
+        }    
+//            for (ClienteHilo cliente : listaClientes) {
+//                if (cliente.getEstadoActivo()) {
+//                    System.out.println("Cliente PC nombre:" + cliente.getNombrePC().toString());
+//                }
+//            }
         }
         if (e.getSource() == this.serverView.btLimpiarPantalla) {
             serverView.Chat_Servidor.setText("");
