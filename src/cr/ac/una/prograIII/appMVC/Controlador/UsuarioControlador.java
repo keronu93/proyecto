@@ -140,6 +140,9 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
            
             u.setPK_idUsuario(idUsuario);
             try {
+                int resp;
+                resp=JOptionPane.showConfirmDialog(mantUsuarioview, "Esta seguro que desea eliminar el Usuario");
+                if(resp==0){
                 usuarioBlModelo.eliminar(u);
                 llenarTabla(this.mantUsuarioview.jTableusuarios);
                 JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario ha sido eliminado correctamente",
@@ -149,6 +152,11 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 this.mantUsuarioview.txtUsuario.setText(null);
                 this.mantUsuarioview.txtidUsuario.setText(null);
                 this.mantUsuarioview.btEliminar.setEnabled(false);
+                }
+                if(resp==1){
+                    JOptionPane.showMessageDialog(mantUsuarioview, "El Usuario no sera eliminado ",
+                        "Usuario Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(UsuarioControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(mantUsuarioview, "Error al eliminar el Usuario:" + ex.getMessage(), 

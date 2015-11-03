@@ -87,6 +87,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         this.mantArticuloView.btAgregarProveedor.addActionListener(this);
         this.mantArticuloView.btModificar.setEnabled(false);
         this.mantArticuloView.btEliminar.setEnabled(false);
+        this.mantArticuloView.txtIdProveedor.setEnabled(false);
+        this.mantArticuloView.txtIdProveedor.setText("Seleccione un proveedor");
         inicializarPantalla();
     }
 
@@ -176,6 +178,9 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
             a.setPK_IDArticulo(idArticulo);
                System.out.println("ojo "+a.getPK_IDArticulo());
             try {
+                int resp;
+                resp=JOptionPane.showConfirmDialog(mantArticuloView, "Esta seguro que desea eliminar el Articulo");
+                if(resp==0){
                 ArticuloBLModelo.eliminar(a);
                 llenarTabla(this.mantArticuloView.jTableArticulos);
                 JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
@@ -186,6 +191,11 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                 this.mantArticuloView.txtIdProveedor.setText(null);
                 this.mantArticuloView.txtNombre.setText(null);
                 this.mantArticuloView.btEliminar.setEnabled(false);
+                }
+                if(resp==1){
+                    JOptionPane.showMessageDialog(mantArticuloView, "El Articulo no sera eliminado ",
+                        "Articulo Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
