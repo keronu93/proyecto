@@ -222,6 +222,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                     t = telefonoBLModelo.obtenerPorId(t);
                     this.mantTelfonoView.txtidTelefono.setText(String.valueOf(t.getPk_idTelefono().toString()));
                     this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
+                
                     if(mantTelfonoView.chckCasa.equals("Casa")){
                         mantTelfonoView.chckCasa.setSelected(true);
                     }
@@ -231,8 +232,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                     if(mantTelfonoView.chckOficina.equals("Oficina")){
                         mantTelfonoView.chckOficina.setSelected(true);
                     }
-                    //this.mantTelfonoView.jCTelefono.setSelectedItem(t.getTipoTelfono());
-                    //this.mantTelfonoView.jCTelefono.getSelectedItem().toString();
+                    
                     this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
                     this.mantTelfonoView.btEliminar.setEnabled(true);
                     
