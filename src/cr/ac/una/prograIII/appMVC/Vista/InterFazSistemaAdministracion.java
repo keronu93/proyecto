@@ -53,9 +53,10 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         MenuServer = new javax.swing.JMenuItem();
         MenuPC = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
-        jmArticulo = new javax.swing.JMenuItem();
-        jmCliente = new javax.swing.JMenuItem();
-        jmHoras = new javax.swing.JMenuItem();
+        ReporteCliente = new javax.swing.JMenuItem();
+        ReporteProveedores = new javax.swing.JMenuItem();
+        ReporteUsuarios = new javax.swing.JMenuItem();
+        ReporteArticulos = new javax.swing.JMenuItem();
         jMenuInformaciion = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -143,20 +144,28 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Reportes.png"))); // NOI18N
         jMenuEstadisticas.setText("Reportes");
 
-        jmArticulo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
-        jmArticulo.setText("Articulo");
-        jmArticulo.addActionListener(new java.awt.event.ActionListener() {
+        ReporteCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
+        ReporteCliente.setText("Reporte Clientes");
+        ReporteCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmArticuloActionPerformed(evt);
+                ReporteClienteActionPerformed(evt);
             }
         });
-        jMenuEstadisticas.add(jmArticulo);
+        jMenuEstadisticas.add(ReporteCliente);
 
-        jmCliente.setText("Cliente");
-        jMenuEstadisticas.add(jmCliente);
+        ReporteProveedores.setText("Reporte Proveedores");
+        ReporteProveedores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteProveedoresActionPerformed(evt);
+            }
+        });
+        jMenuEstadisticas.add(ReporteProveedores);
 
-        jmHoras.setText("Horas");
-        jMenuEstadisticas.add(jmHoras);
+        ReporteUsuarios.setText("Reporte Usuarios");
+        jMenuEstadisticas.add(ReporteUsuarios);
+
+        ReporteArticulos.setText("Reporte Articulos");
+        jMenuEstadisticas.add(ReporteArticulos);
 
         jMenuBar1.add(jMenuEstadisticas);
 
@@ -181,9 +190,9 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
       
     }//GEN-LAST:event_MenuPCActionPerformed
 
-    private void jmArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmArticuloActionPerformed
+    private void ReporteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jmArticuloActionPerformed
+    }//GEN-LAST:event_ReporteClienteActionPerformed
 
     private void jMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuClienteActionPerformed
         // TODO add your handling code here:
@@ -192,6 +201,10 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     private void jMenuArticuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuArticuloActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuArticuloActionPerformed
+
+    private void ReporteProveedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteProveedoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReporteProveedoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,6 +245,10 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     public javax.swing.JMenuItem MenuPC;
     public javax.swing.JMenu MenuPcMantenimiento;
     public javax.swing.JMenuItem MenuServer;
+    private javax.swing.JMenuItem ReporteArticulos;
+    private javax.swing.JMenuItem ReporteCliente;
+    private javax.swing.JMenuItem ReporteProveedores;
+    private javax.swing.JMenuItem ReporteUsuarios;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenuArchivo;
     public javax.swing.JMenuItem jMenuArticulo;
@@ -243,8 +260,5 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuProveedores;
     public javax.swing.JMenuItem jMenuTelefono;
     public javax.swing.JMenuItem jMenuUsuario;
-    private javax.swing.JMenuItem jmArticulo;
-    private javax.swing.JMenuItem jmCliente;
-    private javax.swing.JMenuItem jmHoras;
     // End of variables declaration//GEN-END:variables
 }

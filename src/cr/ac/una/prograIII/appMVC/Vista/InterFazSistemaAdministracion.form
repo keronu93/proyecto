@@ -153,25 +153,33 @@
             <Property name="text" type="java.lang.String" value="Reportes"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jmArticulo">
+            <MenuItem class="javax.swing.JMenuItem" name="ReporteCliente">
               <Properties>
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="H"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Articulo"/>
+                <Property name="text" type="java.lang.String" value="Reporte Clientes"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmArticuloActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReporteClienteActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmCliente">
+            <MenuItem class="javax.swing.JMenuItem" name="ReporteProveedores">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cliente"/>
+                <Property name="text" type="java.lang.String" value="Reporte Proveedores"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ReporteProveedoresActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="ReporteUsuarios">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Reporte Usuarios"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmHoras">
+            <MenuItem class="javax.swing.JMenuItem" name="ReporteArticulos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Horas"/>
+                <Property name="text" type="java.lang.String" value="Reporte Articulos"/>
               </Properties>
             </MenuItem>
           </SubComponents>

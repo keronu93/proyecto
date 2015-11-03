@@ -6,6 +6,7 @@
 package cr.ac.una.prograIII.appMVC.bl;
 
 import cr.ac.una.prograIII.appMVC.Dao.GenericDao;
+import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import cr.ac.una.prograIII.appMVC.Domain.Factura;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
  */
 public class FacturaBL implements IBaseBL<Factura>{
     private GenericDao fDao;
+    private DetalleFacturaBL dfDao;
 
     public FacturaBL() {
         this.fDao = new GenericDao();
