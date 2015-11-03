@@ -15,18 +15,28 @@ public class Telefono extends BaseDomain {
     private Integer FK_idCliente;
     private String tipoTelfono;
     private Integer numeroTelefono;
+    private Integer codtipo;
 
     public Telefono() {
     }
 
-    public Telefono(Integer Pk_idTelefono, Integer FK_idCliente, String tipoTelfono, Integer numeroTelefono, String ultUsuario, String ultFecha) {
+    public Telefono(Integer Pk_idTelefono, Integer FK_idCliente, String tipoTelfono, Integer numeroTelefono, String ultUsuario, String ultFecha, Integer codtipo ) {
         super(ultUsuario, ultFecha);
         this.Pk_idTelefono = Pk_idTelefono;
         this.FK_idCliente = FK_idCliente;
         this.tipoTelfono = tipoTelfono;
         this.numeroTelefono = numeroTelefono;
+        this.codtipo = codtipo;
     }
 
+    public Integer getCodtipo() {
+        return codtipo;
+    }
+
+    public void setCodtipo(Integer codtipo) {
+        this.codtipo = codtipo;
+    }
+    
     public Integer getPk_idTelefono() {
         return Pk_idTelefono;
     }

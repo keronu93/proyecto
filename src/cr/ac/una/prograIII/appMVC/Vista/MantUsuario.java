@@ -82,13 +82,13 @@ public class MantUsuario extends javax.swing.JFrame {
 
         jTableusuarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "idUsuario", "Nombre", "Usuario", "Contraseña"
+                "idUsuario", "Nombre", "Usuario"
             }
         ));
         jScrollPane1.setViewportView(jTableusuarios);

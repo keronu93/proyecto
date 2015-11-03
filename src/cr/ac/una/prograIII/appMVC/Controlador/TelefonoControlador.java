@@ -133,16 +133,22 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 t.setFK_idCliente(Integer.parseInt(this.mantTelfonoView.txtIdCliente.getText())); 
                 t.setNumeroTelefono(Integer.parseInt(this.mantTelfonoView.txtNumero.getText()));
                 String tipo="";
+                int x=0;
                 if(mantTelfonoView.chckCasa.isSelected()){
                     tipo= "Casa";
+                    x=1;
                 }
                 if(mantTelfonoView.chckCelular.isSelected()){
                     tipo="Celular";
+                    x=2;
                 }
                 if(mantTelfonoView.chckOficina.isSelected()){
                     tipo="Oficina";
+                    x=3;
                 }
                 t.setTipoTelfono(tipo);
+                t.setCodtipo(x);
+                System.out.println("insertando codigo "+t.getCodtipo());
             try {
                 
                 this.telefonoBLModelo.insertar(t);
@@ -215,7 +221,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                     //this.mantTelfonoView.jCTelefono.getSelectedItem().toString();
                     this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
                     this.mantTelfonoView.btEliminar.setEnabled(true);
-
+                    
                 } catch (SQLException ex) {
                     Logger.getLogger(TelefonoControlador.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -241,16 +247,22 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                     t.setFK_idCliente(Integer.parseInt(this.mantTelfonoView.txtIdCliente.getText())); 
                     t.setNumeroTelefono(Integer.parseInt(this.mantTelfonoView.txtNumero.getText()));
                     String tipo="";
+                    int x=0;
                 if(mantTelfonoView.chckCasa.isSelected()){
                     tipo= "Casa";
+                    x=1;
                 }
                 if(mantTelfonoView.chckCelular.isSelected()){
                     tipo="Celular";
+                    x=2;
                 }
                 if(mantTelfonoView.chckOficina.isSelected()){
                     tipo="Oficina";
+                    x=3;
                 }
                 t.setTipoTelfono(tipo);
+                t.setCodtipo(x);
+                
                    try {
                 
                         this.telefonoBLModelo.modificar(t);
@@ -331,15 +343,18 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 t = telefonoBLModelo.obtenerPorId(t);
                 this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
                 this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
-                if(t.getTipoTelfono().equals("Casa")){
+                
+                System.out.println("ojo:en el cargar "+t.getNumeroTelefono());
+                if(t.getCodtipo()==1){
                     mantTelfonoView.chckCasa.setSelected(true);
                 }
-                if(t.getTipoTelfono().equals("Celular")){
+                if(t.getCodtipo()==2){
                     mantTelfonoView.chckCelular.setSelected(true);
                 }
-                if(t.getTipoTelfono().equals("Oficina")){
+                if(t.getCodtipo()==3){
                     mantTelfonoView.chckOficina.setSelected(true);
                 }
+                
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantTelfonoView, "Error no se pudo consultar el Telefono (" + ex.getMessage() + ")",

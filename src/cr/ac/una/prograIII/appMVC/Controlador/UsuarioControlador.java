@@ -80,10 +80,10 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         modeloTabla.addColumn("Id Usuario");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Usuario");
-        modeloTabla.addColumn("Contraseña");
+        
         
 
-        Object fila[] = new Object[4];
+        Object fila[] = new Object[3];
 
         try {
             for (Object oAux : usuarioBlModelo.obtenerTodos()) {
@@ -91,7 +91,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                 fila[0] = u.getPK_idUsuario();
                 fila[1] = u.getNombre();
                 fila[2] = u.getUsuario();
-                fila[3] = u.getContraseña();
+                
                 
                 modeloTabla.addRow(fila);
             }
