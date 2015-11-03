@@ -146,7 +146,9 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
             int idProveedor = Integer.parseInt(this.mantProveedorView.txtIdProveedor.getText());
             p.setPK_IDProvedor(idProveedor);
                 try {
-                    
+                    int resp;
+                    resp=JOptionPane.showConfirmDialog(mantProveedorView, "Esta seguro que desea eliminar el Proveedor");
+                    if(resp==0){
                     ProveedorBLModelo.eliminar(p);
                     llenarTabla(this.mantProveedorView.jTableProveedor);
                     JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
@@ -157,6 +159,11 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
                     this.mantProveedorView.txtDireccion.setText(null);
                     this.mantProveedorView.btModificar.setEnabled(true);
                     this.mantProveedorView.btEliminar.setEnabled(false);
+                    }
+                    if(resp==1){
+                        JOptionPane.showMessageDialog(mantProveedorView, "El Proveedor no sera eliminado ",
+                        "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    }
                 } catch (SQLException ex) {
                     Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
                     JOptionPane.showMessageDialog(mantProveedorView, "Error al eliminar el Proveedor:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

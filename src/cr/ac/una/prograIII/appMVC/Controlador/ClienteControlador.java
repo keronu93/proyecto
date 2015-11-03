@@ -143,6 +143,9 @@ public class ClienteControlador implements ActionListener, DocumentListener  {
             int idCliente = Integer.parseInt(this.mantClienteview.txtIdCliente.getText());
             c.setPK_idCliente(idCliente);
             try {
+                int resp;
+                resp=JOptionPane.showConfirmDialog(mantClienteview, "Esta seguro que desea eliminar el Cliente");
+                if(resp==0){
                 clienteBlModelo.eliminar(c);
                 llenarTabla(this.mantClienteview.jTableCliente);
                 JOptionPane.showMessageDialog(mantClienteview, "El Cliente ha sido eliminado correctamente", "Cliente Eliminado", JOptionPane.INFORMATION_MESSAGE);
@@ -153,6 +156,10 @@ public class ClienteControlador implements ActionListener, DocumentListener  {
                 this.mantClienteview.txtObservaciones.setText(null);
                 this.mantClienteview.jDCFecNacimiento.setCalendar(null);
                 this.mantClienteview.btEliminar.setEnabled(false);
+                }if(resp==1){
+                    JOptionPane.showMessageDialog(mantClienteview, "El Cliente no sera eliminado ",
+                        "Cliente Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(ClienteControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(mantClienteview, "Error al eliminar el Cliente:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

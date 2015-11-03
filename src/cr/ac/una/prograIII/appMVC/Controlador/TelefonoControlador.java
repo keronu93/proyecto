@@ -84,6 +84,8 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
         this.mantTelfonoView.btBuscar.addActionListener(this);
         this.mantTelfonoView.btEliminar.setEnabled(false);
         this.mantTelfonoView.btModificar.setEnabled(false);
+        this.mantTelfonoView.txtIdCliente.setEnabled(false);
+        this.mantTelfonoView.txtIdCliente.setText("Select cliente");
         inicializarPantalla();
     }
     
@@ -146,11 +148,16 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                     tipo="Oficina";
                     x=3;
                 }
+                
                 t.setTipoTelfono(tipo);
                 t.setCodtipo(x);
                 System.out.println("insertando codigo "+t.getCodtipo());
-            try {
                 
+                
+            try {
+                if(tipo.equals("")){
+                    JOptionPane.showMessageDialog(mantTelfonoView, "Error faltan espacios por rellenar:", "Error en ingresar el Telefono", JOptionPane.ERROR_MESSAGE); 
+                }else{
                 this.telefonoBLModelo.insertar(t);
                 llenarTabla(this.mantTelfonoView.jTableTelfono);
                 JOptionPane.showMessageDialog(mantTelfonoView, "El Numero de Telefono ha sido ingresado correctamente", "Numerod de telefono Agreagado", JOptionPane.INFORMATION_MESSAGE);
@@ -161,6 +168,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 this.mantTelfonoView.chckCelular.setSelected(false);
                 this.mantTelfonoView.chckOficina.setSelected(false);
                 this.mantTelfonoView.btModificar.setEnabled(true);
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(TelefonoControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(mantTelfonoView, "Error al agregar el Numero de Telefono:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -177,6 +185,9 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
             int idTelefono = Integer.parseInt(this.mantTelfonoView.txtidTelefono.getText());
             t.setPk_idTelefono(idTelefono);
             try {
+                int resp;
+                resp=JOptionPane.showConfirmDialog(mantTelfonoView, "Esta seguro que desea eliminar el Telefono");
+                if(resp==0){
                 telefonoBLModelo.eliminar(t);
                 llenarTabla(this.mantTelfonoView.jTableTelfono);
                 JOptionPane.showMessageDialog(mantTelfonoView, "El Telefono ha sido eliminado correctamente", "Telefono Eliminado", JOptionPane.INFORMATION_MESSAGE);
@@ -187,6 +198,9 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 this.mantTelfonoView.chckCasa.setSelected(false);
                 this.mantTelfonoView.chckCelular.setSelected(false);
                 this.mantTelfonoView.chckOficina.setSelected(false);
+                }
+                
+                
             } catch (SQLException ex) {
                 Logger.getLogger(TelefonoControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(mantTelfonoView, "Error al eliminar el Telefono:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
