@@ -100,6 +100,7 @@ public class ControladorSistAdministracion implements ActionListener {
         this.ManteAdmiView.jMenuUsuario.addActionListener(this);
         this.ManteAdmiView.MenuServer.addActionListener(this);
         this.ManteAdmiView.MenuPC.addActionListener(this);
+        this.ManteAdmiView.jMenuEstadisticas.addActionListener(this);
         inicializarPantalla();
     }
 
@@ -152,6 +153,7 @@ public class ControladorSistAdministracion implements ActionListener {
              serControlador.getServerView().setVisible(true);
         
         }
+        
     }
     
 }
