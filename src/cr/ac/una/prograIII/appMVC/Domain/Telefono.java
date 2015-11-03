@@ -20,7 +20,7 @@ public class Telefono extends BaseDomain {
     public Telefono() {
     }
 
-    public Telefono(Integer Pk_idTelefono, Integer FK_idCliente, String tipoTelfono, Integer numeroTelefono, String ultUsuario, String ultFecha, Integer codtipo ) {
+    public Telefono(Integer Pk_idTelefono, Integer FK_idCliente,String tipoTelfono,Integer numeroTelefono, String ultUsuario, String ultFecha, Integer codtipo ) {
         super(ultUsuario, ultFecha);
         this.Pk_idTelefono = Pk_idTelefono;
         this.FK_idCliente = FK_idCliente;

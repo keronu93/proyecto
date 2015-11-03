@@ -224,14 +224,21 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                     this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
                 
                     if(mantTelfonoView.chckCasa.equals("Casa")){
-                        mantTelfonoView.chckCasa.setSelected(true);
+                        this.mantTelfonoView.chckCasa.setSelected(true);
                     }
                     if(mantTelfonoView.chckCelular.equals("Celular")){
-                        mantTelfonoView.chckCelular.setSelected(true);
+                        this.mantTelfonoView.chckCelular.setSelected(true);
                     }
                     if(mantTelfonoView.chckOficina.equals("Oficina")){
-                        mantTelfonoView.chckOficina.setSelected(true);
+                        this.mantTelfonoView.chckOficina.setSelected(true);
                     }
+//                     if(t.getCodtipo()==1){
+//                        this.mantTelfonoView.chckCasa.setSelected(true);
+//                    }if(t.getCodtipo()==2){
+//                        this.mantTelfonoView.chckCelular.setSelected(true);
+//                    }if(t.getCodtipo()==3){
+//                        this.mantTelfonoView.chckOficina.setSelected(true);
+//                    }
                     
                     this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
                     this.mantTelfonoView.btEliminar.setEnabled(true);
@@ -356,9 +363,9 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
             try {
                 t = telefonoBLModelo.obtenerPorId(t);
                 this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
-                this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
+                //this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
                 
-                System.out.println("ojo:en el cargar "+t.getNumeroTelefono());
+                //System.out.println("ojo:en el cargar "+t.getNumeroTelefono());
                 if(t.getCodtipo()==1){
                     mantTelfonoView.chckCasa.setSelected(true);
                 }
@@ -368,7 +375,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 if(t.getCodtipo()==3){
                     mantTelfonoView.chckOficina.setSelected(true);
                 }
-                
+                this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono()));
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantTelfonoView, "Error no se pudo consultar el Telefono (" + ex.getMessage() + ")",
