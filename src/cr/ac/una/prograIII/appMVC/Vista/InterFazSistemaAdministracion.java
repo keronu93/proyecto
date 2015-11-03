@@ -191,7 +191,8 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuPCActionPerformed
 
     private void ReporteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteClienteActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_ReporteClienteActionPerformed
 
     private void jMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuClienteActionPerformed
