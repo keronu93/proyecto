@@ -26,42 +26,42 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="jLNumeroTelefono" min="-2" max="-2" attributes="0"/>
                           <Component id="jLIdCliente" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="IDTelefono" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtIdCliente" pref="90" max="32767" attributes="0"/>
-                                  <Component id="txtidTelefono" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="btBuscarCliente" max="32767" attributes="0"/>
-                                  <Component id="btBuscar" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Component id="txtNumero" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="32767" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="TipoTelefono" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="chckCasa" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="txtIdCliente" pref="90" max="32767" attributes="0"/>
+                          <Component id="txtidTelefono" max="32767" attributes="0"/>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btBuscarCliente" max="32767" attributes="0"/>
+                          <Component id="btBuscar" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="txtNumero" alignment="0" min="-2" pref="219" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="chckCasa" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="chckOficina" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="chckCelular" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="23" max="32767" attributes="0"/>
               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
           </Group>
@@ -96,33 +96,25 @@
                           <Component id="IDTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btBuscar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btBuscarCliente" min="-2" pref="27" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="btBuscarCliente" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
+                          <Component id="txtIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLIdCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="TipoTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="chckCasa" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="chckOficina" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="chckCelular" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="txtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLNumeroTelefono" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
               </Group>
@@ -157,9 +149,6 @@
     </Component>
     <Component class="javax.swing.JButton" name="btBuscarCliente">
       <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="10" style="0"/>
-        </Property>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/vista/images/buscar.png"/>
         </Property>
