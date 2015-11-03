@@ -5,6 +5,8 @@
  */
 package cr.ac.una.prograIII.appMVC.Dao;
 
+import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
+import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,36 +14,45 @@ import java.util.ArrayList;
  *
  * @author Gustavo
  */
-public class DetalleFacturaDao implements IBaseDao<DetalleFacturaDao> {
+public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
+
+    private final MySQLConexion conexion;
+
+    public DetalleFacturaDao() {
+         conexion = new MySQLConexion();
+    }
 
     @Override
-    public void insertar(DetalleFacturaDao obj) throws SQLException {
+    public void insertar(DetalleFactura obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void modificar(DetalleFacturaDao obj) throws SQLException {
+    public void modificar(DetalleFactura obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void eliminar(DetalleFacturaDao obj) throws SQLException {
+    public void eliminar(DetalleFactura obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public DetalleFacturaDao obtenerPorId(DetalleFacturaDao obj) throws SQLException {
+    public DetalleFactura obtenerPorId(DetalleFactura obj) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<DetalleFacturaDao> obtenerTodos() throws SQLException {
+    public ArrayList<DetalleFactura> obtenerTodos() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public ArrayList<DetalleFacturaDao> obtenerConWhere(String where) throws SQLException {
+    public ArrayList<DetalleFactura> obtenerConWhere(String where) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+    
+  
 }

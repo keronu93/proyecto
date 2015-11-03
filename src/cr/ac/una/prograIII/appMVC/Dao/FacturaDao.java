@@ -5,6 +5,11 @@
  */
 package cr.ac.una.prograIII.appMVC.Dao;
 
+import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
+import cr.ac.una.prograIII.appMVC.Domain.Factura;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -12,36 +17,81 @@ import java.util.ArrayList;
  *
  * @author Gustavo
  */
-public class FacturaDao implements IBaseDao<FacturaDao>{
+public class FacturaDao implements IBaseDao<Factura>{
+    
+    private final MySQLConexion conexion;
+
+    public FacturaDao() {
+        conexion = new MySQLConexion();
+    }
 
     @Override
-    public void insertar(FacturaDao obj) throws SQLException {
+    public void insertar(Factura obj) throws SQLException {
+         Connection con = conexion.getConexion();
+        CallableStatement cs = con.prepareCall("insert into Factura(FK_idCliente ,ultUsuario,ultFecha) values "
+                                             + "(?,?,curdate())");
+        cs.setInt(1, obj.getFk_idCliente());
+        cs.setString(2, obj.getUltUsuario());     
+        cs.executeUpdate();
+        con.close();
+    }
+
+    @Override
+    public void modificar(Factura obj) throws SQLException {
+        Connection con = conexion.getConexion();
+         CallableStatement cs = con.prepareCall("update Factura set Pk_idfacturacion= ?," 
+                                                +"Fk_idCliente=?,"
+                                                +"ultUsuario=?,"
+                                                +"ultFecha = curdate()"
+                                                +"where Pk_idfacturacion=? ");
+        cs.setInt(1, obj.getFk_idCliente());
+        cs.setString(2, obj.getUltUsuario());  
+        cs.setInt(3,obj.getPk_idfacturacion());
+        cs.executeUpdate();
+        con.close();
+       
+    }
+
+    @Override
+    public void eliminar(Factura obj) throws SQLException {
+       Connection con = conexion.getConexion();
+        
+        CallableStatement cs = con.prepareCall("delete from Factura where Pk_idfacturacion = ?");
+        cs.setInt(1, obj.getPk_idfacturacion());
+        
+        cs.executeUpdate();
+        con.close();
+    }
+
+    @Override
+    public Factura obtenerPorId(Factura obj) throws SQLException {
+        Factura f = null;
+        Connection con = conexion.getConexion();
+        
+        CallableStatement cs = con.prepareCall("select * from Factura where Pk_idfacturacion = ? " );
+        cs.setInt(1, obj.getPk_idfacturacion());
+        
+        ResultSet result = cs.executeQuery();
+        while(result.next()){
+            f = new Factura();
+            f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
+            f.setFk_idCliente(result.getInt("Fk_idCliente"));
+            f.setUltUsuario(result.getString("UltUsuario"));
+        }
+        con.close();
+        return f;
+    }
+
+    @Override
+    public ArrayList<Factura> obtenerTodos() throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void modificar(FacturaDao obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void eliminar(FacturaDao obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public FacturaDao obtenerPorId(FacturaDao obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<FacturaDao> obtenerTodos() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public ArrayList<FacturaDao> obtenerConWhere(String where) throws SQLException {
+    public ArrayList<Factura> obtenerConWhere(String where) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+    
+   
 }
