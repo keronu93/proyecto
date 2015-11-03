@@ -191,7 +191,8 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuPCActionPerformed
 
     private void ReporteClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteClienteActionPerformed
-        // TODO add your handling code here:
+        
+        
     }//GEN-LAST:event_ReporteClienteActionPerformed
 
     private void jMenuClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuClienteActionPerformed
@@ -254,7 +255,7 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     public javax.swing.JMenuItem jMenuArticulo;
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenuItem jMenuCliente;
-    private javax.swing.JMenu jMenuEstadisticas;
+    public javax.swing.JMenu jMenuEstadisticas;
     private javax.swing.JMenu jMenuInformaciion;
     private javax.swing.JMenu jMenuMantenimiento;
     public javax.swing.JMenuItem jMenuProveedores;
