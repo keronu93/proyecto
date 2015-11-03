@@ -247,8 +247,8 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     public javax.swing.JMenu MenuPcMantenimiento;
     public javax.swing.JMenuItem MenuServer;
     private javax.swing.JMenuItem ReporteArticulos;
-    private javax.swing.JMenuItem ReporteCliente;
-    private javax.swing.JMenuItem ReporteProveedores;
+    public javax.swing.JMenuItem ReporteCliente;
+    public javax.swing.JMenuItem ReporteProveedores;
     private javax.swing.JMenuItem ReporteUsuarios;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenu jMenuArchivo;
