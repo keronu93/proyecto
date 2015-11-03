@@ -5,6 +5,7 @@
  */
 package cr.ac.una.prograIII.appMVC.Controlador;
 
+import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.prograIII.appMVC.Controlador.ServerControlador.ClienteHilo;
 import cr.ac.una.prograIII.appMVC.Vista.InterFazSistemaAdministracion;
 import cr.ac.una.prograIII.appMVC.Vista.MantUsuario;
@@ -18,9 +19,28 @@ import cr.ac.una.prograIII.appMVC.bl.ClienteBL;
 import cr.ac.una.prograIII.appMVC.bl.ProveedorBL;
 import cr.ac.una.prograIII.appMVC.bl.TelefonoBL;
 import cr.ac.una.prograIII.appMVC.bl.UsuarioBL;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 /**
  *
@@ -34,6 +54,7 @@ public class ControladorSistAdministracion implements ActionListener {
     private ProveedorBL proveedorBlModelo;
     private TelefonoBL telefonoBlModelo;
     private UsuarioBL usuarioBLModelo;
+    
     
 
     public UsuarioBL getUsuarioBLModelo() {
@@ -100,6 +121,7 @@ public class ControladorSistAdministracion implements ActionListener {
         this.ManteAdmiView.jMenuUsuario.addActionListener(this);
         this.ManteAdmiView.MenuServer.addActionListener(this);
         this.ManteAdmiView.MenuPC.addActionListener(this);
+        this.ManteAdmiView.ReporteCliente.addActionListener(this);
         inicializarPantalla();
     }
 
@@ -150,6 +172,38 @@ public class ControladorSistAdministracion implements ActionListener {
              Server serverView =new Server();
              ServerControlador serControlador = new ServerControlador(serverView,listaClientes);
              serControlador.getServerView().setVisible(true);
+        
+        }
+        if(e.getSource()==this.ManteAdmiView.ReporteCliente){
+        InputStream inputStream = null;
+        try {            
+            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\CafeInternet\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ListaClientes.jrxml");
+            Map parameters = new HashMap();
+            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            
+            MySQLConexion Con = new MySQLConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ListaClientes.pdf");
+            
+            File file = new File("C:\\Users\\Gustavo\\Desktop\\ListaClientes.pdf");
+            if (file.toString().endsWith(".pdf")) 
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+            else {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+            }
+
+        } catch (FileNotFoundException ex) {
+            System.out.println("ver si entra");
+            System.err.println(ex.getMessage());
+        }   catch (IOException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
         }
     }
