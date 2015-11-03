@@ -5,6 +5,7 @@
  */
 package cr.ac.una.prograIII.appMVC.bl;
 
+import cr.ac.una.prograIII.appMVC.Dao.GenericDao;
 import cr.ac.una.prograIII.appMVC.Domain.Cliente;
 import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import java.sql.SQLException;
@@ -15,32 +16,39 @@ import java.util.ArrayList;
  * @author Gustavo
  */
 public class DetalleFacturaBL implements IBaseBL<DetalleFactura> {
+     private GenericDao dfDao;
+
+    public DetalleFacturaBL() {
+        this.dfDao = new GenericDao();
+    }
 
     @Override
     public void insertar(DetalleFactura obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         this.dfDao.insertar(obj);
     }
 
     @Override
     public void modificar(DetalleFactura obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.dfDao.modificar(obj);
     }
 
     @Override
     public void eliminar(DetalleFactura obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.dfDao.eliminar(obj);
     }
 
     @Override
     public DetalleFactura obtenerPorId(DetalleFactura obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return (DetalleFactura)this.dfDao.obtenerPorId(obj);    
     }
 
     @Override
     public ArrayList<DetalleFactura> obtenerTodos() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         return this.dfDao.obtenerTodos(new DetalleFactura());
     }
-
+     public ArrayList<DetalleFactura> obtenerConWhere(DetalleFactura obj, String where ) throws SQLException {
+        return this.dfDao.obtenerConWhere(obj, where);
+    } 
  
     
 }
