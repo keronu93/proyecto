@@ -9,6 +9,7 @@ import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.prograIII.appMVC.Domain.Factura;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -84,12 +85,35 @@ public class FacturaDao implements IBaseDao<Factura>{
 
     @Override
     public ArrayList<Factura> obtenerTodos() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = conexion.getConexion();
+        ArrayList<Factura> l = new ArrayList();
+        PreparedStatement ps = con.prepareStatement("select * from Factura ");
+        ResultSet result = ps.executeQuery();
+        while(result.next()){
+            Factura f = new Factura();
+            f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
+            f.setFk_idCliente(result.getInt("Fk_idCliente"));
+            f.setUltUsuario(result.getString("UltUsuario"));
+        }
+        con.close();
+        return l;
+
     }
 
     @Override
     public ArrayList<Factura> obtenerConWhere(String where) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = conexion.getConexion();
+        ArrayList<Factura> l = new ArrayList();
+        PreparedStatement ps = con.prepareStatement("select * from Factura "+where);
+        ResultSet result = ps.executeQuery();
+        while(result.next()){
+            Factura f = new Factura();
+            f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
+            f.setFk_idCliente(result.getInt("Fk_idCliente"));
+            f.setUltUsuario(result.getString("UltUsuario"));
+        }
+        con.close();
+        return l;
     }
     
     
