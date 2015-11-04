@@ -174,6 +174,7 @@ public class ControladorSistAdministracion implements ActionListener {
              serControlador.getServerView().setVisible(true);
         
         }
+        
         if(e.getSource()==this.ManteAdmiView.ReporteCliente){
         InputStream inputStream = null;
         try {            
