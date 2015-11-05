@@ -159,8 +159,24 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             DetalleFactura df = new DetalleFactura();
             f.setPk_idfacturacion(1); //como es auto generado no es relavante tomar el campo de texto id.
             f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
-            df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()))
-           
+            df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            df.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
+            df.setNombre(this.agregarFacturaView.txtNombreArticulo.getText());
+            df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
+            try {
+               
+                this.FacturaBlModelo.insertar(f);
+                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+                JOptionPane.showMessageDialog(mantArticuloView, "la Factura ha sido ingresado correctamente", "Factura Agregada", JOptionPane.INFORMATION_MESSAGE);
+                
+            } catch (SQLException ex) {
+                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(mantArticuloView, "Error al agregar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+          
         }
     }
     
