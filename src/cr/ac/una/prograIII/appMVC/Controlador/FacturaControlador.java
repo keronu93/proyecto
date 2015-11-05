@@ -38,6 +38,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.DetalleFacturaBLModelo = DetalleFacturaBLModelo;
+        this.agregarFacturaView.btInsertar.addActionListener(this);
     }
 
     public AgregarFactura getAgregarFacturaView() {

@@ -47,13 +47,13 @@ public class AgregarFactura extends javax.swing.JFrame {
         jButtonSalir = new javax.swing.JButton();
         txtidFactura = new javax.swing.JTextField();
         txtCliente = new javax.swing.JTextField();
-        btBuscar = new javax.swing.JButton();
+        btBuscarCliente = new javax.swing.JButton();
         btCargar = new javax.swing.JButton();
         btInsertar = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        btBuscar1 = new javax.swing.JButton();
+        btBuscarId = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Crear Factura");
@@ -112,12 +112,12 @@ public class AgregarFactura extends javax.swing.JFrame {
             }
         });
 
-        btBuscar.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
-        btBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/buscar.png"))); // NOI18N
-        btBuscar.setText("Buscar Cliente");
-        btBuscar.addActionListener(new java.awt.event.ActionListener() {
+        btBuscarCliente.setFont(new java.awt.Font("Arial", 1, 10)); // NOI18N
+        btBuscarCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/buscar.png"))); // NOI18N
+        btBuscarCliente.setText("Buscar Cliente");
+        btBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarActionPerformed(evt);
+                btBuscarClienteActionPerformed(evt);
             }
         });
 
@@ -145,11 +145,11 @@ public class AgregarFactura extends javax.swing.JFrame {
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/user.png"))); // NOI18N
 
-        btBuscar1.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        btBuscar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/buscar.png"))); // NOI18N
-        btBuscar1.addActionListener(new java.awt.event.ActionListener() {
+        btBuscarId.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        btBuscarId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/buscar.png"))); // NOI18N
+        btBuscarId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscar1ActionPerformed(evt);
+                btBuscarIdActionPerformed(evt);
             }
         });
 
@@ -169,7 +169,7 @@ public class AgregarFactura extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(txtidFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btBuscar1))
+                                        .addComponent(btBuscarId))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel4)
@@ -190,7 +190,7 @@ public class AgregarFactura extends javax.swing.JFrame {
                                         .addComponent(jLabel1)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel2))
-                                    .addComponent(btBuscar))
+                                    .addComponent(btBuscarCliente))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel9)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -230,15 +230,16 @@ public class AgregarFactura extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabelNumerodeFactura)
                                     .addComponent(txtidFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(btBuscar1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btBuscarId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel2)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btBuscarCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel3)
+                                .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
@@ -272,9 +273,9 @@ public class AgregarFactura extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButtonSalirActionPerformed
 
-    private void btBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarActionPerformed
+    private void btBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarClienteActionPerformed
 
-    }//GEN-LAST:event_btBuscarActionPerformed
+    }//GEN-LAST:event_btBuscarClienteActionPerformed
 
     private void btCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarActionPerformed
         // TODO add your handling code here:
@@ -284,9 +285,9 @@ public class AgregarFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btInsertarActionPerformed
 
-    private void btBuscar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscar1ActionPerformed
+    private void btBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarIdActionPerformed
 
-    }//GEN-LAST:event_btBuscar1ActionPerformed
+    }//GEN-LAST:event_btBuscarIdActionPerformed
 
     /**
      * @param args the command line arguments
@@ -327,8 +328,8 @@ public class AgregarFactura extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JButton btBuscar;
-    public javax.swing.JButton btBuscar1;
+    public javax.swing.JButton btBuscarCliente;
+    public javax.swing.JButton btBuscarId;
     public javax.swing.JButton btCancelar;
     public javax.swing.JButton btCargar;
     public javax.swing.JButton btCrearFac;
