@@ -7,6 +7,7 @@ package cr.ac.una.prograIII.appMVC.Controlador;
 
 import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.prograIII.appMVC.Controlador.ServerControlador.ClienteHilo;
+import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
 import cr.ac.una.prograIII.appMVC.Vista.InterFazSistemaAdministracion;
 import cr.ac.una.prograIII.appMVC.Vista.MantUsuario;
 import cr.ac.una.prograIII.appMVC.Vista.ManteArticulos;
@@ -16,6 +17,8 @@ import cr.ac.una.prograIII.appMVC.Vista.ManteTelefono;
 import cr.ac.una.prograIII.appMVC.Vista.Server;
 import cr.ac.una.prograIII.appMVC.bl.ArticuloBL;
 import cr.ac.una.prograIII.appMVC.bl.ClienteBL;
+import cr.ac.una.prograIII.appMVC.bl.DetalleFacturaBL;
+import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
 import cr.ac.una.prograIII.appMVC.bl.ProveedorBL;
 import cr.ac.una.prograIII.appMVC.bl.TelefonoBL;
 import cr.ac.una.prograIII.appMVC.bl.UsuarioBL;
@@ -122,6 +125,7 @@ public class ControladorSistAdministracion implements ActionListener {
         this.ManteAdmiView.MenuServer.addActionListener(this);
         this.ManteAdmiView.MenuPC.addActionListener(this);
         this.ManteAdmiView.ReporteCliente.addActionListener(this);
+        this.ManteAdmiView.jMFactura.addActionListener(this);
         inicializarPantalla();
     }
 
@@ -173,6 +177,17 @@ public class ControladorSistAdministracion implements ActionListener {
              ServerControlador serControlador = new ServerControlador(serverView,listaClientes);
              serControlador.getServerView().setVisible(true);
         
+        }
+        if(e.getSource()==this.ManteAdmiView.jMFactura){
+            AgregarFactura manteFacturaView= new AgregarFactura();
+            FacturaBL facturaBLModelo= new FacturaBL();
+            DetalleFacturaBL detalleBLModelo= new DetalleFacturaBL();
+            ManteCliente manteClienteView = new ManteCliente();
+            ClienteBL clienteBLModelo= new ClienteBL();
+            ManteArticulos manteArticuloView= new ManteArticulos();
+            ArticuloBL articuloBLModelo= new ArticuloBL();
+            FacturaControlador fControlador= new FacturaControlador(manteFacturaView,facturaBLModelo,manteClienteView,clienteBLModelo,manteArticuloView,articuloBLModelo,detalleBLModelo); 
+            fControlador.getAgregarFacturaView().setVisible(true);
         }
         
         if(e.getSource()==this.ManteAdmiView.ReporteCliente){

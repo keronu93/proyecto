@@ -40,6 +40,8 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
         jLabel2 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenuArchivo = new javax.swing.JMenu();
@@ -57,7 +59,13 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         ReporteProveedores = new javax.swing.JMenuItem();
         ReporteUsuarios = new javax.swing.JMenuItem();
         ReporteArticulos = new javax.swing.JMenuItem();
-        jMenuInformaciion = new javax.swing.JMenu();
+        jMFacturacion = new javax.swing.JMenu();
+        jMFactura = new javax.swing.JMenuItem();
+        jMInformacion = new javax.swing.JMenu();
+
+        jMenuItem1.setText("jMenuItem1");
+
+        jMenu1.setText("jMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sistema de Adminsitracion Internet Cafe");
@@ -169,9 +177,17 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuEstadisticas);
 
-        jMenuInformaciion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Informacion.png"))); // NOI18N
-        jMenuInformaciion.setText("Informacion");
-        jMenuBar1.add(jMenuInformaciion);
+        jMFacturacion.setText("Facturacion");
+
+        jMFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Factura.png"))); // NOI18N
+        jMFactura.setText("Factura");
+        jMFacturacion.add(jMFactura);
+
+        jMenuBar1.add(jMFacturacion);
+
+        jMInformacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Informacion.png"))); // NOI18N
+        jMInformacion.setText("Informacion");
+        jMenuBar1.add(jMInformacion);
 
         setJMenuBar(jMenuBar1);
 
@@ -251,12 +267,16 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     public javax.swing.JMenuItem ReporteProveedores;
     private javax.swing.JMenuItem ReporteUsuarios;
     private javax.swing.JLabel jLabel2;
+    public javax.swing.JMenuItem jMFactura;
+    public javax.swing.JMenu jMFacturacion;
+    public javax.swing.JMenu jMInformacion;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenuArchivo;
     public javax.swing.JMenuItem jMenuArticulo;
     private javax.swing.JMenuBar jMenuBar1;
     public javax.swing.JMenuItem jMenuCliente;
     public javax.swing.JMenu jMenuEstadisticas;
-    private javax.swing.JMenu jMenuInformaciion;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenu jMenuMantenimiento;
     public javax.swing.JMenuItem jMenuProveedores;
     public javax.swing.JMenuItem jMenuTelefono;
