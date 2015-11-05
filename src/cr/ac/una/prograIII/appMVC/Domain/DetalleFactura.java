@@ -12,7 +12,7 @@ package cr.ac.una.prograIII.appMVC.Domain;
 public class DetalleFactura extends BaseDomain {
     private Integer FK_PK_idFacturacion;
     private Integer FK_PK_idArticulo;
-    private Double PrecioUnitario;
+    private Double  PrecioUnitario;
     private Integer Cantidad;
 
     public DetalleFactura(Integer FK_PK_idFacturacion, Integer FK_PK_idArticulo, Double PrecioUnitario, Integer Cantidad, String ultUsuario, String ultFecha) {

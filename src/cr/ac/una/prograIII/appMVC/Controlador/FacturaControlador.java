@@ -5,6 +5,7 @@
  */
 package cr.ac.una.prograIII.appMVC.Controlador;
 
+import cr.ac.una.prograIII.appMVC.Domain.Articulos;
 import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
 import cr.ac.una.prograIII.appMVC.Vista.ManteArticulos;
 import cr.ac.una.prograIII.appMVC.Vista.ManteCliente;
@@ -14,8 +15,12 @@ import cr.ac.una.prograIII.appMVC.bl.DetalleFacturaBL;
 import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -107,7 +112,38 @@ public class FacturaControlador implements ActionListener, DocumentListener{
      private void inicializarPantalla() {
         this.agregarFacturaView.txtidFactura.setEnabled(false);
         this.agregarFacturaView.txtCliente.setEnabled(false);
+        this.agregarFacturaView.EtiquetaTiempo.setEnabled(false);
+        this.agregarFacturaView.etiquetaFecha.setEnabled(false);
+        this.agregarFacturaView.EtiquetaValorHora.setEnabled(false);
+        this.agregarFacturaView.jlTotal.setEnabled(false);
     }
+     
+     public void llenarTabla(JTable tablaArticulos) {
+        DefaultTableModel modeloTabla = new DefaultTableModel();
+        tablaArticulos.setModel(modeloTabla);
+        modeloTabla.addColumn("Id Articulo");
+        modeloTabla.addColumn("Nombre");
+        modeloTabla.addColumn("Cantidad");
+        modeloTabla.addColumn("Precio");
+
+        Object fila[] = new Object[4];
+
+        try {
+            for (Object oAux : ArticuloBLModelo.obtenerTodos()) {
+                Articulos a = (Articulos) oAux;
+                
+                fila[0] = a.getPK_IDArticulo();
+                fila[1] = a.getNombre();
+                fila[2] = a.getCantidadExistencia();
+                fila[3] = a.getPrecioUnitario();
+                
+                modeloTabla.addRow(fila);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(mantArticuloView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     
 
     @Override
