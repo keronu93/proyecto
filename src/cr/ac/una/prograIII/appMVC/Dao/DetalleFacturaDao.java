@@ -9,6 +9,8 @@ import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import java.sql.CallableStatement;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -67,17 +69,60 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
 
     @Override
     public DetalleFactura obtenerPorId(DetalleFactura obj) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        DetalleFactura df = null;
+        Connection con = conexion.getConexion();
+        
+        CallableStatement cs = con.prepareCall("select * from DetalleFactura where FK_PK_idFacturacion = ? " );
+        cs.setInt(1, obj.getFK_PK_idFacturacion());
+        
+         ResultSet result = cs.executeQuery();
+        while(result.next()){
+            df = new DetalleFactura();
+            df.setFK_PK_idFacturacion(result.getInt("FK_PK_idFacturacion"));
+            df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
+            df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
+            df.setCantidad(result.getInt("Cantidad"));
+            df.setUltUsuario(result.getString("UltUsuario"));
+        }
+        con.close();
+        return df;
     }
 
     @Override
     public ArrayList<DetalleFactura> obtenerTodos() throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = conexion.getConexion();
+        ArrayList<DetalleFactura> l = new ArrayList();
+        PreparedStatement ps = con.prepareStatement("select * from DetalleFactura ");
+        ResultSet result = ps.executeQuery();
+        while(result.next()){
+            DetalleFactura df = new DetalleFactura();
+            df.setFK_PK_idFacturacion(result.getInt("FK_PK_idFacturacion"));
+            df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
+            df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
+            df.setCantidad(result.getInt("Cantidad"));
+            df.setUltUsuario(result.getString("UltUsuario"));
+        }
+        con.close();
+        return l;
+
     }
 
     @Override
     public ArrayList<DetalleFactura> obtenerConWhere(String where) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Connection con = conexion.getConexion();
+        ArrayList<DetalleFactura> l = new ArrayList();
+        PreparedStatement ps = con.prepareStatement("select * from DetalleFactura "+where);
+        ResultSet result = ps.executeQuery();
+        while(result.next()){
+            DetalleFactura df = new DetalleFactura();
+            df.setFK_PK_idFacturacion(result.getInt("FK_PK_idFacturacion"));
+            df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
+            df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
+            df.setCantidad(result.getInt("Cantidad"));
+            df.setUltUsuario(result.getString("UltUsuario"));
+        }
+        con.close();
+        return l;
     }
     
     
