@@ -141,6 +141,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
         }
         if (e.getSource() == this.serverView.btUsuariosEnLinea) {
              serverView.Chat_Servidor.append("\n Usuarios en Linea : \n");
+             
         for (ClienteHilo cliente : listaClientes){
             serverView.Chat_Servidor.append("Cliente PC nombre:" +cliente.getNombrePC().toString());
            serverView.Chat_Servidor.append("\n");
@@ -182,6 +183,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     llenarTabla();
                     
                     serverView.Chat_Servidor.append("tienes una conexion \n" + clientSock.getInetAddress());
+                    llenarTabla();
                 }
             } catch (Exception ex) {
                 serverView.Chat_Servidor.append("Error al realizar la conexión. \n");

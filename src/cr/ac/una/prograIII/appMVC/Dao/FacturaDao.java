@@ -28,7 +28,7 @@ public class FacturaDao implements IBaseDao<Factura>{
 
     @Override
     public void insertar(Factura obj) throws SQLException {
-         Connection con = conexion.getConexion();
+        Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into Factura(FK_idCliente ,ultUsuario,ultFecha) values "
                                              + "(?,?,curdate())");
         cs.setInt(1, obj.getFk_idCliente());
@@ -40,7 +40,7 @@ public class FacturaDao implements IBaseDao<Factura>{
     @Override
     public void modificar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-         CallableStatement cs = con.prepareCall("update Factura set Pk_idfacturacion= ?," 
+         CallableStatement cs = con.prepareCall("update Factura set FK_PK_idFacturacion= ?," 
                                                 +"Fk_idCliente=?,"
                                                 +"ultUsuario=?,"
                                                 +"ultFecha = curdate()"
