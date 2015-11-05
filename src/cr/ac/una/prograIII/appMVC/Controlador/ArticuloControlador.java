@@ -7,6 +7,7 @@ package cr.ac.una.prograIII.appMVC.Controlador;
 
 import cr.ac.una.prograIII.appMVC.Domain.Articulos;
 import cr.ac.una.prograIII.appMVC.Domain.Cliente;
+import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import cr.ac.una.prograIII.appMVC.Domain.Proveedores;
 import cr.ac.una.prograIII.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.prograIII.appMVC.Vista.MantClienteBuscar;

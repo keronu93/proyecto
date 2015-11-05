@@ -6,6 +6,8 @@
 package cr.ac.una.prograIII.appMVC.Controlador;
 
 import cr.ac.una.prograIII.appMVC.Domain.Articulos;
+import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
+import cr.ac.una.prograIII.appMVC.Domain.Factura;
 import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
 import cr.ac.una.prograIII.appMVC.Vista.ManteArticulos;
 import cr.ac.una.prograIII.appMVC.Vista.ManteCliente;
@@ -16,6 +18,8 @@ import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -115,6 +119,8 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         this.agregarFacturaView.EtiquetaTiempo.setEnabled(false);
         this.agregarFacturaView.etiquetaFecha.setEnabled(false);
         this.agregarFacturaView.EtiquetaValorHora.setEnabled(false);
+        this.agregarFacturaView.txtNombreArticulo.setEnabled(false);
+        this.agregarFacturaView.txtPrecioUnitario.setEnabled(false);
         this.agregarFacturaView.jlTotal.setEnabled(false);
     }
      
@@ -129,13 +135,12 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         Object fila[] = new Object[4];
 
         try {
-            for (Object oAux : ArticuloBLModelo.obtenerTodos()) {
-                Articulos a = (Articulos) oAux;
-                
-                fila[0] = a.getPK_IDArticulo();
-                fila[1] = a.getNombre();
-                fila[2] = a.getCantidadExistencia();
-                fila[3] = a.getPrecioUnitario();
+            for (Object oAux : DetalleFacturaBLModelo.obtenerTodos()) {
+                DetalleFactura df =(DetalleFactura)oAux;
+                fila[0] = df.getFK_PK_idFacturacion();
+                fila[1] = df.getFK_PK_idArticulo();
+                fila[2] = df.getCantidad();
+                fila[3] = df.getPrecioUnitario();
                 
                 modeloTabla.addRow(fila);
             }
@@ -148,8 +153,30 @@ public class FacturaControlador implements ActionListener, DocumentListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+         if (e.getSource() == this.agregarFacturaView.btInsertar) {
+            
+            Factura f = new Factura();
+            f.setPk_idfacturacion(1); //como es auto generado no es relavante tomar el campo de texto id.
+            f.setFk_idCliente(Integer.parseInt(this.mantArticuloView.txtIdProveedor.getText()));
+            try {
+               
+                this.ArticuloBLModelo.insertar(a);
+                llenarTabla(this.mantArticuloView.jTableArticulos);
+                JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
+                this.mantArticuloView.TxtCantidad.setText(null);
+                this.mantArticuloView.TxtPrecio.setText(null);
+                this.mantArticuloView.txtDescripcion.setText(null);
+                this.mantArticuloView.txtIdArticulo.setText(null);
+                this.mantArticuloView.txtIdProveedor.setText(null);
+                this.mantArticuloView.txtNombre.setText(null);
+                this.mantArticuloView.btModificar.setEnabled(true);
+            } catch (Exception ex) {
+                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+          }
+        }
+    
 
     @Override
     public void insertUpdate(DocumentEvent e) {
