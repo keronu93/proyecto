@@ -30,13 +30,14 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public void insertar(DetalleFactura obj) throws SQLException {
        Connection con = conexion.getConexion();
        CallableStatement cs = con.prepareCall("insert into DetalleFactura(FK_PK_idArticulo,"
-                                             +"precioUnitario,Cantidad"
+                                             +"precioUnitario,Cantidad, Nombre"
                                              +",ultUsuario,ultFecha) values "
-                                             + "(?,?,?,?,curdate())");
+                                             + "(?,?,?,?,?,curdate())");
         cs.setInt(1, obj.getFK_PK_idArticulo());
         cs.setDouble(2, obj.getPrecioUnitario());
         cs.setInt(3, obj.getCantidad());
-        cs.setString(4, obj.getUltUsuario());     
+        cs.setString(4, obj.getNombre()); 
+        cs.setString(5, obj.getUltUsuario());     
         cs.executeUpdate();
         con.close();
     }
@@ -45,14 +46,15 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public void modificar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
        CallableStatement cs = con.prepareCall("update DetalleFactura set FK_PK_idArticulo= ?,"
-                                             +"precioUnitario=?,Cantidad=?"
+                                             +"precioUnitario=?,Cantidad=?,Nombre=?"
                                              +",ultUsuario=?,ultFecha=curdate()) values "
                                              + "where FK_PK_idFacturacion=?");
         cs.setInt(1, obj.getFK_PK_idArticulo());
         cs.setDouble(2, obj.getPrecioUnitario());
         cs.setInt(3, obj.getCantidad());
-        cs.setString(4, obj.getUltUsuario());   
-        cs.setInt(7,obj.getFK_PK_idFacturacion());
+        cs.setString(4, obj.getNombre()); 
+        cs.setString(5, obj.getUltUsuario());   
+        cs.setInt(6,obj.getFK_PK_idFacturacion());
         cs.executeUpdate();
         con.close();
     }
@@ -82,6 +84,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
             df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
             df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
             df.setCantidad(result.getInt("Cantidad"));
+            df.setNombre(result.getString("Nombre"));
             df.setUltUsuario(result.getString("UltUsuario"));
         }
         con.close();
@@ -100,6 +103,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
             df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
             df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
             df.setCantidad(result.getInt("Cantidad"));
+            df.setNombre(result.getString("Nombre"));
             df.setUltUsuario(result.getString("UltUsuario"));
         }
         con.close();
@@ -119,6 +123,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
             df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
             df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
             df.setCantidad(result.getInt("Cantidad"));
+            df.setNombre(result.getString("Nombre"));
             df.setUltUsuario(result.getString("UltUsuario"));
         }
         con.close();

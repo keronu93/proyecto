@@ -137,8 +137,8 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         try {
             for (Object oAux : DetalleFacturaBLModelo.obtenerTodos()) {
                 DetalleFactura df =(DetalleFactura)oAux;
-                fila[0] = df.getFK_PK_idFacturacion();
-                fila[1] = df.getFK_PK_idArticulo();
+                fila[0] = df.getFK_PK_idArticulo();
+                fila[1] = df.getNombre();
                 fila[2] = df.getCantidad();
                 fila[3] = df.getPrecioUnitario();
                 
@@ -156,26 +156,13 @@ public class FacturaControlador implements ActionListener, DocumentListener{
          if (e.getSource() == this.agregarFacturaView.btInsertar) {
             
             Factura f = new Factura();
+            DetalleFactura df = new DetalleFactura();
             f.setPk_idfacturacion(1); //como es auto generado no es relavante tomar el campo de texto id.
-            f.setFk_idCliente(Integer.parseInt(this.mantArticuloView.txtIdProveedor.getText()));
-            try {
-               
-                this.ArticuloBLModelo.insertar(a);
-                llenarTabla(this.mantArticuloView.jTableArticulos);
-                JOptionPane.showMessageDialog(mantArticuloView, "El Articulo ha sido ingresado correctamente", "Articulo Agregado", JOptionPane.INFORMATION_MESSAGE);
-                this.mantArticuloView.TxtCantidad.setText(null);
-                this.mantArticuloView.TxtPrecio.setText(null);
-                this.mantArticuloView.txtDescripcion.setText(null);
-                this.mantArticuloView.txtIdArticulo.setText(null);
-                this.mantArticuloView.txtIdProveedor.setText(null);
-                this.mantArticuloView.txtNombre.setText(null);
-                this.mantArticuloView.btModificar.setEnabled(true);
-            } catch (Exception ex) {
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar el Articulo:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-          }
+            f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
+            df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()))
+           
         }
+    }
     
 
     @Override

@@ -21,12 +21,14 @@ public class FacturaBL implements IBaseBL<Factura>{
 
     public FacturaBL() {
         this.fDao = new GenericDao();
+        
     }
     
     
     @Override
     public void insertar(Factura obj) throws SQLException {
        this.fDao.insertar(obj);
+       
     }
 
     @Override
