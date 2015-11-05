@@ -39,6 +39,14 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.DetalleFacturaBLModelo = DetalleFacturaBLModelo;
         this.agregarFacturaView.btInsertar.addActionListener(this);
+        this.agregarFacturaView.btBuscarCliente.addActionListener(this);
+        this.agregarFacturaView.btBuscarId.addActionListener(this);
+        this.agregarFacturaView.btCancelar.addActionListener(this);
+        this.agregarFacturaView.btCargar.addActionListener(this);
+        this.agregarFacturaView.btCrearFac.addActionListener(this);
+        this.agregarFacturaView.btEliminar.addActionListener(this);
+        this.agregarFacturaView.btagregarArticulos.addActionListener(this);
+        inicializarPantalla();
     }
 
     public AgregarFactura getAgregarFacturaView() {
@@ -96,7 +104,10 @@ public class FacturaControlador implements ActionListener, DocumentListener{
     public void setDetalleFacturaBLModelo(DetalleFacturaBL DetalleFacturaBLModelo) {
         this.DetalleFacturaBLModelo = DetalleFacturaBLModelo;
     }
-    
+     private void inicializarPantalla() {
+        this.agregarFacturaView.txtidFactura.setEnabled(false);
+        this.agregarFacturaView.txtCliente.setEnabled(false);
+    }
     
 
     @Override
@@ -118,5 +129,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
     public void changedUpdate(DocumentEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+   
     
 }
