@@ -6,6 +6,7 @@
 package cr.ac.una.prograIII.appMVC.Controlador;
 
 import cr.ac.una.prograIII.appMVC.Domain.Articulos;
+import cr.ac.una.prograIII.appMVC.Domain.Cliente;
 import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import cr.ac.una.prograIII.appMVC.Domain.Factura;
 import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
@@ -116,6 +117,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
      private void inicializarPantalla() {
         this.agregarFacturaView.txtidFactura.setEnabled(false);
         this.agregarFacturaView.txtCliente.setEnabled(false);
+        this.agregarFacturaView.txtIdArticulo.setEnabled(false);
         this.agregarFacturaView.EtiquetaTiempo.setEnabled(false);
         this.agregarFacturaView.etiquetaFecha.setEnabled(false);
         this.agregarFacturaView.EtiquetaValorHora.setEnabled(false);
@@ -167,14 +169,14 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                
                 this.FacturaBlModelo.insertar(f);
                 llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-                JOptionPane.showMessageDialog(mantArticuloView, "la Factura ha sido ingresado correctamente", "Factura Agregada", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(agregarFacturaView, "la Factura ha sido ingresado correctamente", "Factura Agregada", JOptionPane.INFORMATION_MESSAGE);
                 
             } catch (SQLException ex) {
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al agregar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error al agregar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantArticuloView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
           
         }
@@ -195,7 +197,35 @@ public class FacturaControlador implements ActionListener, DocumentListener{
     public void changedUpdate(DocumentEvent e) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+ private void cargarArticulo() {
+        Articulos a = new Articulos();
+        if (!this.agregarFacturaView.txtIdArticulo.getText().isEmpty()) {
+            a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            try {
+                a = ArticuloBLModelo.obtenerPorId(a);
+                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre().toString());
+                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));                                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
+                        "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+ private void cargarCliente() {
+      Cliente c = new Cliente();
+        if (!this.agregarFacturaView.txtCliente.getText().isEmpty()) {
+            c.setPK_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
+            try {
+                c = clienteBlModelo.obtenerPorId(c);
 
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Cliente (" + ex.getMessage() + ")",
+                        "Error al cargar el cliente", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
    
     
 }
