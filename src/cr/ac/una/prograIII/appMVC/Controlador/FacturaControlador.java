@@ -21,6 +21,7 @@ import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -41,6 +42,8 @@ public class FacturaControlador implements ActionListener, DocumentListener{
     private ManteArticulos mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
     private DetalleFacturaBL DetalleFacturaBLModelo;
+    private Calendar calendario = Calendar.getInstance();
+    private String Fecha; 
 
     public FacturaControlador(AgregarFactura agregarFacturaView, FacturaBL FacturaBlModelo, ManteCliente mantClienteview, ClienteBL clienteBlModelo, ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, DetalleFacturaBL DetalleFacturaBLModelo) {
         this.agregarFacturaView = agregarFacturaView;
@@ -61,6 +64,23 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         inicializarPantalla();
     }
 
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String Fecha) {
+        this.Fecha = Fecha;
+    }
+    
+    
+    public void setCalendario(Calendar calendario) {
+        this.calendario = calendario;
+    }
+
+    public Calendar getCalendario() {
+        return calendario;
+    }
+    
     public AgregarFactura getAgregarFacturaView() {
         return agregarFacturaView;
     }
@@ -126,6 +146,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         this.agregarFacturaView.txtNombreArticulo.setEnabled(false);
         this.agregarFacturaView.txtPrecioUnitario.setEnabled(false);
         this.agregarFacturaView.jlTotal.setEnabled(false);
+        this.agregarFacturaView.btEliminar.setEnabled(false);
     }
      
      public void llenarTabla(JTable tablaArticulos) {
@@ -199,6 +220,15 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                     this.agregarFacturaView.txtCliente);
             clienteBControlador.getClienteBuscarView().setVisible(true);
              
+        }if(e.getSource()== this.agregarFacturaView.btCancelar){
+            this.agregarFacturaView.txtCantidadArticulos.setText(null);
+            this.agregarFacturaView.txtCliente.setText(null);
+            this.agregarFacturaView.txtIdArticulo.setText(null);
+            this.agregarFacturaView.txtNombreArticulo.setText(null);
+            this.agregarFacturaView.txtPrecioUnitario.setText(null);
+            this.agregarFacturaView.txtidFactura.setText(null);
+            this.agregarFacturaView.EtiquetaTiempo.setText("0.0");
+            this.agregarFacturaView.etiquetaFecha.setText("Sin definir");
         }
     }
     
@@ -242,7 +272,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             c.setPK_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
             try {
                 c = clienteBlModelo.obtenerPorId(c);
-
+                System.out.println("nombre: "+c.getNombre());
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Cliente (" + ex.getMessage() + ")",
                         "Error al cargar el cliente", JOptionPane.ERROR_MESSAGE);
