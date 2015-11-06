@@ -10,6 +10,8 @@ import cr.ac.una.prograIII.appMVC.Domain.Cliente;
 import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import cr.ac.una.prograIII.appMVC.Domain.Factura;
 import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
+import cr.ac.una.prograIII.appMVC.Vista.MantArticuloBuscar;
+import cr.ac.una.prograIII.appMVC.Vista.MantClienteBuscar;
 import cr.ac.una.prograIII.appMVC.Vista.ManteArticulos;
 import cr.ac.una.prograIII.appMVC.Vista.ManteCliente;
 import cr.ac.una.prograIII.appMVC.bl.ArticuloBL;
@@ -172,6 +174,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 JOptionPane.showMessageDialog(agregarFacturaView, "la Factura ha sido ingresado correctamente", "Factura Agregada", JOptionPane.INFORMATION_MESSAGE);
                 
             } catch (SQLException ex) {
+                
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al agregar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
@@ -179,23 +182,43 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
           
+        } if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
+            MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
+            ArticuloBuscarControlador articuloBControlador ;
+            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, 
+                    ArticuloBLModelo, 
+                    this.agregarFacturaView.txtIdArticulo);
+            articuloBControlador.getArticuloBuscarView().setVisible(true);
+            
+             
+        }if (e.getSource() == this.agregarFacturaView.btBuscarCliente) { 
+            MantClienteBuscar mantClienteBuscarView = new MantClienteBuscar();
+            ClienteBuscarControlador clienteBControlador ;
+            clienteBControlador = new ClienteBuscarControlador(mantClienteBuscarView, 
+                    clienteBlModelo, 
+                    this.agregarFacturaView.txtCliente);
+            clienteBControlador.getClienteBuscarView().setVisible(true);
+             
         }
     }
     
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       cargarArticulo();
+       cargarCliente();
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        cargarArticulo();
+       cargarCliente();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        cargarArticulo();
+       cargarCliente();
     }
  private void cargarArticulo() {
         Articulos a = new Articulos();
