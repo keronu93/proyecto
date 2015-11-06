@@ -25,13 +25,11 @@ public class FacturaBuscarControlador implements  ActionListener {
     
     private BuscarFactura buscarFacturaView;
     private FacturaBL facturablModelo;
-    private DetalleFacturaBL detalleblModelo;
     private JTextField txtRespuesta;
 
-    public FacturaBuscarControlador(BuscarFactura buscarFacturaView, FacturaBL facturablModelo, DetalleFacturaBL detalleblModelo, JTextField txtRespuesta) {
+    public FacturaBuscarControlador(BuscarFactura buscarFacturaView, FacturaBL facturablModelo, JTextField txtRespuesta) {
         this.buscarFacturaView = buscarFacturaView;
         this.facturablModelo = facturablModelo;
-        this.detalleblModelo = detalleblModelo;
         this.txtRespuesta = txtRespuesta;
         this.buscarFacturaView.btBuscar1.addActionListener(this);
         this.buscarFacturaView.btSeleccionar.addActionListener(this);
@@ -53,13 +51,6 @@ public class FacturaBuscarControlador implements  ActionListener {
         this.facturablModelo = facturablModelo;
     }
 
-    public DetalleFacturaBL getDetalleblModelo() {
-        return detalleblModelo;
-    }
-
-    public void setDetalleblModelo(DetalleFacturaBL detalleblModelo) {
-        this.detalleblModelo = detalleblModelo;
-    }
 
     public JTextField getTxtRespuesta() {
         return txtRespuesta;

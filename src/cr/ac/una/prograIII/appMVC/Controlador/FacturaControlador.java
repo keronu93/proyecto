@@ -10,6 +10,7 @@ import cr.ac.una.prograIII.appMVC.Domain.Cliente;
 import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
 import cr.ac.una.prograIII.appMVC.Domain.Factura;
 import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
+import cr.ac.una.prograIII.appMVC.Vista.BuscarFactura;
 import cr.ac.una.prograIII.appMVC.Vista.MantArticuloBuscar;
 import cr.ac.una.prograIII.appMVC.Vista.MantClienteBuscar;
 import cr.ac.una.prograIII.appMVC.Vista.ManteArticulos;
@@ -61,6 +62,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         this.agregarFacturaView.btCrearFac.addActionListener(this);
         this.agregarFacturaView.btEliminar.addActionListener(this);
         this.agregarFacturaView.btagregarArticulos.addActionListener(this);
+      
         inicializarPantalla();
     }
 
@@ -236,6 +238,14 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             this.agregarFacturaView.txtidFactura.setText(null);
             this.agregarFacturaView.EtiquetaTiempo.setText("0.0");
             this.agregarFacturaView.etiquetaFecha.setText("Sin definir");
+        }if (e.getSource() == this.agregarFacturaView.btBuscarId) { 
+            BuscarFactura BuscarView = new BuscarFactura();
+            FacturaBuscarControlador FacturaBControlador ;
+            FacturaBControlador = new FacturaBuscarControlador(BuscarView, 
+                    FacturaBlModelo
+                    ,this.agregarFacturaView.txtidFactura);
+            FacturaBControlador.getBuscarFacturaView().setVisible(true);
+             
         }
     }
     
