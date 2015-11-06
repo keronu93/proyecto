@@ -224,11 +224,9 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         Articulos a = new Articulos();
         if (!this.agregarFacturaView.txtIdArticulo.getText().isEmpty()) {
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
-            
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
-                //this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
-                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre());
+                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre().toString());
                 this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));  
                
             } catch (SQLException ex) {
