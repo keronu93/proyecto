@@ -182,7 +182,16 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
           
-        } if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
+        }if (e.getSource() == this.agregarFacturaView.btCancelar) {
+            this.agregarFacturaView.txtidFactura.setText(null);
+            this.agregarFacturaView.txtCliente.setText(null);
+            this.agregarFacturaView.txtIdArticulo.setText(null);
+            this.agregarFacturaView.txtNombreArticulo.setText(null);
+            this.agregarFacturaView.txtPrecioUnitario.setText(null);
+            this.agregarFacturaView.txtCantidadArticulos.setText(null);
+
+        }
+         if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
             
             MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
             ArticuloBuscarControlador articuloBControlador ;
@@ -227,8 +236,8 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
-                this.mantArticuloView.txtNombre.setText(a.getNombre().toString());
-                this.mantArticuloView.TxtPrecio.setText(String.valueOf(a.getPrecioUnitario()));                            
+                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre().toString());
+                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));                            
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
