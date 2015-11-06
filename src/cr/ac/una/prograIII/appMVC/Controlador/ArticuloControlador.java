@@ -100,6 +100,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     
     private void inicializarPantalla() {
        this.mantArticuloView.txtIdArticulo.setEnabled(false);
+       this.mantArticuloView.txtIdProveedor.setEnabled(false);
        //this.mantArticuloView.txtIdProveedor.setEnabled(false);
         llenarTabla(this.mantArticuloView.jTableArticulos);
     }
@@ -354,7 +355,7 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private void cargarIdProveedor(){
         Proveedores p= new Proveedores();
         if (!this.mantArticuloView.txtIdArticulo.getText().isEmpty()) {
-            p.setPK_IDProvedor(Integer.parseInt(this.mantArticuloView.txtIdArticulo.getText()));
+            p.setPK_IDProvedor(Integer.parseInt(this.mantArticuloView.txtIdProveedor.getText()));
             try {
                 p = ProveedorBLModelo.obtenerPorId(p);
                     
