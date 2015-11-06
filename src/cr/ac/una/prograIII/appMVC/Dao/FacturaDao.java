@@ -29,7 +29,7 @@ public class FacturaDao implements IBaseDao<Factura>{
     @Override
     public void insertar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into Factura(FK_idCliente ,ultUsuario,ultFecha) values "
+        CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente ,ultUsuario,ultFecha) values "
                                              + "(?,?,curdate())");
         cs.setInt(1, obj.getFk_idCliente());
         cs.setString(2, obj.getUltUsuario());     
@@ -40,7 +40,7 @@ public class FacturaDao implements IBaseDao<Factura>{
     @Override
     public void modificar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-         CallableStatement cs = con.prepareCall("update Factura set FK_PK_idFacturacion= ?," 
+         CallableStatement cs = con.prepareCall("update Facturacion set FK_PK_idFacturacion= ?," 
                                                 +"Fk_idCliente=?,"
                                                 +"ultUsuario=?,"
                                                 +"ultFecha = curdate()"
@@ -57,7 +57,7 @@ public class FacturaDao implements IBaseDao<Factura>{
     public void eliminar(Factura obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from Factura where Pk_idfacturacion = ?");
+        CallableStatement cs = con.prepareCall("delete from Facturacion where Pk_idfacturacion = ?");
         cs.setInt(1, obj.getPk_idfacturacion());
         
         cs.executeUpdate();
@@ -69,7 +69,7 @@ public class FacturaDao implements IBaseDao<Factura>{
         Factura f = null;
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("select * from Factura where Pk_idfacturacion = ? " );
+        CallableStatement cs = con.prepareCall("select * from Facturacion where Pk_idfacturacion = ? " );
         cs.setInt(1, obj.getPk_idfacturacion());
         
         ResultSet result = cs.executeQuery();
@@ -87,7 +87,7 @@ public class FacturaDao implements IBaseDao<Factura>{
     public ArrayList<Factura> obtenerTodos() throws SQLException {
         Connection con = conexion.getConexion();
         ArrayList<Factura> l = new ArrayList();
-        PreparedStatement ps = con.prepareStatement("select * from Factura ");
+        PreparedStatement ps = con.prepareStatement("select * from Facturacion ");
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Factura f = new Factura();
@@ -104,7 +104,7 @@ public class FacturaDao implements IBaseDao<Factura>{
     public ArrayList<Factura> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();
         ArrayList<Factura> l = new ArrayList();
-        PreparedStatement ps = con.prepareStatement("select * from Factura "+where);
+        PreparedStatement ps = con.prepareStatement("select * from Facturacion "+where);
         ResultSet result = ps.executeQuery();
         while(result.next()){
             Factura f = new Factura();
