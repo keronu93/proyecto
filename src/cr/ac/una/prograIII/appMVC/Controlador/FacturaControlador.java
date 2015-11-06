@@ -227,6 +227,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
+                //this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
                 this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre());
                 this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));  
                
