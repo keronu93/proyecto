@@ -55,10 +55,10 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         MenuServer = new javax.swing.JMenuItem();
         MenuPC = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
+        ReporteArticulos = new javax.swing.JMenuItem();
         ReporteCliente = new javax.swing.JMenuItem();
         ReporteProveedores = new javax.swing.JMenuItem();
         ReporteUsuarios = new javax.swing.JMenuItem();
-        ReporteArticulos = new javax.swing.JMenuItem();
         jMFacturacion = new javax.swing.JMenu();
         jMFactura = new javax.swing.JMenuItem();
         jMInformacion = new javax.swing.JMenu();
@@ -152,8 +152,13 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Reportes.png"))); // NOI18N
         jMenuEstadisticas.setText("Reportes");
 
+        ReporteArticulos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Agregar Articulos.png"))); // NOI18N
+        ReporteArticulos.setText("Reporte Articulos");
+        jMenuEstadisticas.add(ReporteArticulos);
+
         ReporteCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
-        ReporteCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/ClientePequeno.png"))); // NOI18N
+        ReporteCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/usuarioPequeño_1.png"))); // NOI18N
         ReporteCliente.setText("Reporte Clientes");
         ReporteCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,14 +178,9 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         jMenuEstadisticas.add(ReporteProveedores);
 
         ReporteUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK));
-        ReporteUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/usuarioPequeño_1.png"))); // NOI18N
+        ReporteUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/usuariope.png"))); // NOI18N
         ReporteUsuarios.setText("Reporte Usuarios");
         jMenuEstadisticas.add(ReporteUsuarios);
-
-        ReporteArticulos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
-        ReporteArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Agregar Articulos.png"))); // NOI18N
-        ReporteArticulos.setText("Reporte Articulos");
-        jMenuEstadisticas.add(ReporteArticulos);
 
         jMenuBar1.add(jMenuEstadisticas);
 
