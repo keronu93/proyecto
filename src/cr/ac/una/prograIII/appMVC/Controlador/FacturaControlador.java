@@ -203,13 +203,46 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 this.agregarFacturaView.txtidFactura.setText(null);
             } catch (SQLException ex) {
                 
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al agregar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
           
+        } if (e.getSource() == this.agregarFacturaView.btEliminar) { 
+            Factura f = new Factura();
+            
+            int fila = this.agregarFacturaView.jTableDetalleFactura.getSelectedRow();
+            int idFactura = Integer.parseInt(this.agregarFacturaView.txtidFactura.getText());
+            f.setPk_idfacturacion(idFactura);
+               System.out.println(f.getPk_idfacturacion());
+            try {
+                int resp;
+                resp=JOptionPane.showConfirmDialog(agregarFacturaView, "Esta seguro que desea eliminar la Factura");
+                if(resp==0){
+                FacturaBlModelo.eliminar(f);
+                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+                JOptionPane.showMessageDialog(agregarFacturaView, "La Factura ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                this.agregarFacturaView.txtCantidadArticulos.setText(null);
+                this.agregarFacturaView.txtCliente.setText(null);
+                this.agregarFacturaView.txtIdArticulo.setText(null);
+                this.agregarFacturaView.txtNombreArticulo.setText(null);
+                this.agregarFacturaView.txtPrecioUnitario.setText(null);
+                this.agregarFacturaView.txtidFactura.setText(null);
+                }
+                if(resp==1){
+                    JOptionPane.showMessageDialog(agregarFacturaView, "La Factura sera eliminado ",
+                        "Factura Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar La Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar La Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        
         }
          if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
             
