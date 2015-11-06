@@ -29,7 +29,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     @Override
     public void insertar(DetalleFactura obj) throws SQLException {
        Connection con = conexion.getConexion();
-       CallableStatement cs = con.prepareCall("insert into DetalleFactura(FK_PK_idArticulo,"
+       CallableStatement cs = con.prepareCall("insert into Detalle(FK_PK_idArticulo,"
                                              +"precioUnitario,Cantidad, Nombre"
                                              +",ultUsuario,ultFecha) values "
                                              + "(?,?,?,?,?,curdate())");
@@ -45,7 +45,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     @Override
     public void modificar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
-       CallableStatement cs = con.prepareCall("update DetalleFactura set FK_PK_idArticulo= ?,"
+       CallableStatement cs = con.prepareCall("update Detalle set FK_PK_idArticulo= ?,"
                                              +"precioUnitario=?,Cantidad=?,Nombre=?"
                                              +",ultUsuario=?,ultFecha=curdate()) values "
                                              + "where FK_PK_idFacturacion=?");
@@ -63,7 +63,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public void eliminar(DetalleFactura obj) throws SQLException {
        Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("delete from DetalleFacturacion where FK_PK_idFacturacion = ?");
+        CallableStatement cs = con.prepareCall("delete from Detalle where FK_PK_idFacturacion = ?");
         cs.setInt(1, obj.getFK_PK_idFacturacion());
         cs.executeUpdate();
         con.close();
@@ -74,7 +74,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
         DetalleFactura df = null;
         Connection con = conexion.getConexion();
         
-        CallableStatement cs = con.prepareCall("select * from DetalleFactura where FK_PK_idFacturacion = ? " );
+        CallableStatement cs = con.prepareCall("select * from Detalle where FK_PK_idFacturacion = ? " );
         cs.setInt(1, obj.getFK_PK_idFacturacion());
         
          ResultSet result = cs.executeQuery();
@@ -95,7 +95,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public ArrayList<DetalleFactura> obtenerTodos() throws SQLException {
         Connection con = conexion.getConexion();
         ArrayList<DetalleFactura> l = new ArrayList();
-        PreparedStatement ps = con.prepareStatement("select * from DetalleFactura ");
+        PreparedStatement ps = con.prepareStatement("select * from Detalle ");
         ResultSet result = ps.executeQuery();
         while(result.next()){
             DetalleFactura df = new DetalleFactura();
@@ -115,7 +115,7 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public ArrayList<DetalleFactura> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();
         ArrayList<DetalleFactura> l = new ArrayList();
-        PreparedStatement ps = con.prepareStatement("select * from DetalleFactura "+where);
+        PreparedStatement ps = con.prepareStatement("select * from Detalle "+where);
         ResultSet result = ps.executeQuery();
         while(result.next()){
             DetalleFactura df = new DetalleFactura();
