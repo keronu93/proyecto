@@ -178,8 +178,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         if (e.getSource() == this.agregarFacturaView.btInsertar) {
-            
+         if (e.getSource() == this.agregarFacturaView.btInsertar) { 
             Factura f = new Factura();
             DetalleFactura df = new DetalleFactura();
             f.setPk_idfacturacion(1); //como es auto generado no es relavante tomar el campo de texto id.
@@ -191,9 +190,15 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             try {
                
                 this.FacturaBlModelo.insertar(f);
+                this.DetalleFacturaBLModelo.insertar(df);
                 llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
                 JOptionPane.showMessageDialog(agregarFacturaView, "la Factura ha sido ingresado correctamente", "Factura Agregada", JOptionPane.INFORMATION_MESSAGE);
-                
+                this.agregarFacturaView.txtCantidadArticulos.setText(null);
+                this.agregarFacturaView.txtCliente.setText(null);
+                this.agregarFacturaView.txtIdArticulo.setText(null);
+                this.agregarFacturaView.txtNombreArticulo.setText(null);
+                this.agregarFacturaView.txtPrecioUnitario.setText(null);
+                this.agregarFacturaView.txtidFactura.setText(null);
             } catch (SQLException ex) {
                 
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -203,14 +208,6 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
           
-        }if (e.getSource() == this.agregarFacturaView.btCancelar) {
-            this.agregarFacturaView.txtidFactura.setText(null);
-            this.agregarFacturaView.txtCliente.setText(null);
-            this.agregarFacturaView.txtIdArticulo.setText(null);
-            this.agregarFacturaView.txtNombreArticulo.setText(null);
-            this.agregarFacturaView.txtPrecioUnitario.setText(null);
-            this.agregarFacturaView.txtCantidadArticulos.setText(null);
-
         }
          if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
             
