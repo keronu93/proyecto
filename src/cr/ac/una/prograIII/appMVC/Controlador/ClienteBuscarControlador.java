@@ -74,6 +74,7 @@ public class ClienteBuscarControlador implements  ActionListener{
             if (fila != -1) {
             Integer idCliente = Integer.parseInt(this.clienteBuscarView.jTBuscarCliente.getValueAt(fila, 0).toString());
             txtRespuesta.setText(String.valueOf(idCliente));
+            
             this.clienteBuscarView.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(clienteBuscarView, "Error debe seleccionar un cliente:", "Error", JOptionPane.ERROR_MESSAGE);

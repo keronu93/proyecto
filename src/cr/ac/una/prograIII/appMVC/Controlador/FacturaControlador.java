@@ -203,21 +203,31 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
           
-        } if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
+        }if (e.getSource() == this.agregarFacturaView.btCancelar) {
+            this.agregarFacturaView.txtidFactura.setText(null);
+            this.agregarFacturaView.txtCliente.setText(null);
+            this.agregarFacturaView.txtIdArticulo.setText(null);
+            this.agregarFacturaView.txtNombreArticulo.setText(null);
+            this.agregarFacturaView.txtPrecioUnitario.setText(null);
+            this.agregarFacturaView.txtCantidadArticulos.setText(null);
+
+        }
+         if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
+            
             MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
             ArticuloBuscarControlador articuloBControlador ;
-            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, 
-                    ArticuloBLModelo, 
+            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView,
+                    ArticuloBLModelo,
                     this.agregarFacturaView.txtIdArticulo);
             articuloBControlador.getArticuloBuscarView().setVisible(true);
-            
+          
              
         }if (e.getSource() == this.agregarFacturaView.btBuscarCliente) { 
             MantClienteBuscar mantClienteBuscarView = new MantClienteBuscar();
             ClienteBuscarControlador clienteBControlador ;
             clienteBControlador = new ClienteBuscarControlador(mantClienteBuscarView, 
-                    clienteBlModelo, 
-                    this.agregarFacturaView.txtCliente);
+                    clienteBlModelo
+                    ,this.agregarFacturaView.txtIdArticulo);
             clienteBControlador.getClienteBuscarView().setVisible(true);
              
         }if(e.getSource()== this.agregarFacturaView.btCancelar){
@@ -257,12 +267,11 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
                 this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre().toString());
-                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));  
-               
+                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));                            
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
+                JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
@@ -272,7 +281,8 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             c.setPK_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
             try {
                 c = clienteBlModelo.obtenerPorId(c);
-                System.out.println("nombre: "+c.getNombre());
+                
+
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Cliente (" + ex.getMessage() + ")",
                         "Error al cargar el cliente", JOptionPane.ERROR_MESSAGE);
