@@ -144,7 +144,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.txtCliente.setEnabled(false);
         this.agregarFacturaView.txtIdArticulo.setEnabled(false);
         this.agregarFacturaView.EtiquetaTiempo.setEnabled(false);
-        this.agregarFacturaView.etiquetaFecha.setEnabled(false);
+        this.agregarFacturaView.etiquetaFecha.setText(calendario.getTime().toString());
         this.agregarFacturaView.EtiquetaValorHora.setEnabled(false);
         this.agregarFacturaView.txtNombreArticulo.setEnabled(false);
         this.agregarFacturaView.txtPrecioUnitario.setEnabled(false);
@@ -180,6 +180,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.agregarFacturaView.btInsertar) {
+            if(this.agregarFacturaView.txtCliente.equals("")||this.agregarFacturaView.txtCantidadArticulos.getText().equals("")||this.agregarFacturaView.txtIdArticulo.getText().equals("")||this.agregarFacturaView.txtNombreArticulo.getText().equals("")||this.agregarFacturaView.txtPrecioUnitario.getText().equals("")||this.agregarFacturaView.txtidFactura.getText().equals(""))
+            {
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
+            }
+            else{
             Factura f = new Factura();
             DetalleFactura df = new DetalleFactura();
             f.setPk_idfacturacion(1); //como es auto generado no es relavante tomar el campo de texto id.
@@ -208,7 +213,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-
+        }
         }
         if (e.getSource() == this.agregarFacturaView.btEliminar) {
             Factura f = new Factura();
