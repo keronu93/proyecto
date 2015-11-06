@@ -35,16 +35,17 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Gustavo
  */
-public class FacturaControlador implements ActionListener, DocumentListener{
+public class FacturaControlador implements ActionListener, DocumentListener {
+
     private AgregarFactura agregarFacturaView;
     private FacturaBL FacturaBlModelo;
     private ManteCliente mantClienteview;
-    private ClienteBL clienteBlModelo; 
+    private ClienteBL clienteBlModelo;
     private ManteArticulos mantArticuloView;
     private ArticuloBL ArticuloBLModelo;
     private DetalleFacturaBL DetalleFacturaBLModelo;
     private Calendar calendario = Calendar.getInstance();
-    private String Fecha; 
+    private String Fecha;
 
     public FacturaControlador(AgregarFactura agregarFacturaView, FacturaBL FacturaBlModelo, ManteCliente mantClienteview, ClienteBL clienteBlModelo, ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, DetalleFacturaBL DetalleFacturaBLModelo) {
         this.agregarFacturaView = agregarFacturaView;
@@ -62,7 +63,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         this.agregarFacturaView.btCrearFac.addActionListener(this);
         this.agregarFacturaView.btEliminar.addActionListener(this);
         this.agregarFacturaView.btagregarArticulos.addActionListener(this);
-      
+
         inicializarPantalla();
     }
 
@@ -73,8 +74,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
     public void setFecha(String Fecha) {
         this.Fecha = Fecha;
     }
-    
-    
+
     public void setCalendario(Calendar calendario) {
         this.calendario = calendario;
     }
@@ -82,7 +82,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
     public Calendar getCalendario() {
         return calendario;
     }
-    
+
     public AgregarFactura getAgregarFacturaView() {
         return agregarFacturaView;
     }
@@ -138,7 +138,8 @@ public class FacturaControlador implements ActionListener, DocumentListener{
     public void setDetalleFacturaBLModelo(DetalleFacturaBL DetalleFacturaBLModelo) {
         this.DetalleFacturaBLModelo = DetalleFacturaBLModelo;
     }
-     private void inicializarPantalla() {
+
+    private void inicializarPantalla() {
         this.agregarFacturaView.txtidFactura.setEnabled(false);
         this.agregarFacturaView.txtCliente.setEnabled(false);
         this.agregarFacturaView.txtIdArticulo.setEnabled(false);
@@ -150,8 +151,8 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         this.agregarFacturaView.jlTotal.setEnabled(false);
         this.agregarFacturaView.btEliminar.setEnabled(false);
     }
-     
-     public void llenarTabla(JTable tablaArticulos) {
+
+    public void llenarTabla(JTable tablaArticulos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulos.setModel(modeloTabla);
         modeloTabla.addColumn("Id Articulo");
@@ -163,24 +164,22 @@ public class FacturaControlador implements ActionListener, DocumentListener{
 
         try {
             for (Object oAux : DetalleFacturaBLModelo.obtenerTodos()) {
-                DetalleFactura df =(DetalleFactura)oAux;
+                DetalleFactura df = (DetalleFactura) oAux;
                 fila[0] = df.getFK_PK_idArticulo();
                 fila[1] = df.getNombre();
                 fila[2] = df.getCantidad();
                 fila[3] = df.getPrecioUnitario();
-                
+
                 modeloTabla.addRow(fila);
             }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(mantArticuloView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent e) {
-         if (e.getSource() == this.agregarFacturaView.btInsertar) { 
+        if (e.getSource() == this.agregarFacturaView.btInsertar) {
             Factura f = new Factura();
             DetalleFactura df = new DetalleFactura();
             f.setPk_idfacturacion(1); //como es auto generado no es relavante tomar el campo de texto id.
@@ -190,7 +189,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             df.setNombre(this.agregarFacturaView.txtNombreArticulo.getText());
             df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
             try {
-               
+
                 this.FacturaBlModelo.insertar(f);
                 this.DetalleFacturaBLModelo.insertar(df);
                 llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
@@ -202,38 +201,39 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 this.agregarFacturaView.txtPrecioUnitario.setText(null);
                 this.agregarFacturaView.txtidFactura.setText(null);
             } catch (SQLException ex) {
-                
+
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al agregar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             } catch (Exception ex) {
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-          
-        } if (e.getSource() == this.agregarFacturaView.btEliminar) { 
+
+        }
+        if (e.getSource() == this.agregarFacturaView.btEliminar) {
             Factura f = new Factura();
-            
+
             int fila = this.agregarFacturaView.jTableDetalleFactura.getSelectedRow();
             int idFactura = Integer.parseInt(this.agregarFacturaView.txtidFactura.getText());
             f.setPk_idfacturacion(idFactura);
-               System.out.println(f.getPk_idfacturacion());
+            System.out.println(f.getPk_idfacturacion());
             try {
                 int resp;
-                resp=JOptionPane.showConfirmDialog(agregarFacturaView, "Esta seguro que desea eliminar la Factura");
-                if(resp==0){
-                FacturaBlModelo.eliminar(f);
-                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-                JOptionPane.showMessageDialog(agregarFacturaView, "La Factura ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
-                this.agregarFacturaView.txtCantidadArticulos.setText(null);
-                this.agregarFacturaView.txtCliente.setText(null);
-                this.agregarFacturaView.txtIdArticulo.setText(null);
-                this.agregarFacturaView.txtNombreArticulo.setText(null);
-                this.agregarFacturaView.txtPrecioUnitario.setText(null);
-                this.agregarFacturaView.txtidFactura.setText(null);
+                resp = JOptionPane.showConfirmDialog(agregarFacturaView, "Esta seguro que desea eliminar la Factura");
+                if (resp == 0) {
+                    FacturaBlModelo.eliminar(f);
+                    llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+                    JOptionPane.showMessageDialog(agregarFacturaView, "La Factura ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                    this.agregarFacturaView.txtCantidadArticulos.setText(null);
+                    this.agregarFacturaView.txtCliente.setText(null);
+                    this.agregarFacturaView.txtIdArticulo.setText(null);
+                    this.agregarFacturaView.txtNombreArticulo.setText(null);
+                    this.agregarFacturaView.txtPrecioUnitario.setText(null);
+                    this.agregarFacturaView.txtidFactura.setText(null);
                 }
-                if(resp==1){
+                if (resp == 1) {
                     JOptionPane.showMessageDialog(agregarFacturaView, "La Factura sera eliminado ",
-                        "Factura Eliminado", JOptionPane.INFORMATION_MESSAGE);
+                            "Factura Eliminado", JOptionPane.INFORMATION_MESSAGE);
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -242,27 +242,48 @@ public class FacturaControlador implements ActionListener, DocumentListener{
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar La Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
-        
+
         }
-         if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
-            
+        if (e.getSource() == this.agregarFacturaView.btCargar) {
+            Factura f = new Factura();
+            DetalleFactura df = new DetalleFactura();
+            int fila = this.agregarFacturaView.jTableDetalleFactura.getSelectedRow();
+            f.setPk_idfacturacion( Integer.parseInt(this.agregarFacturaView.jTableDetalleFactura.getValueAt(fila, 1).toString()));
+            try {                    
+                    f = FacturaBlModelo.obtenerPorId(f);
+                    df= DetalleFacturaBLModelo.obtenerPorId(df);
+                    this.agregarFacturaView.txtidFactura.setText(String.valueOf(f.getPk_idfacturacion().toString()));
+                    this.agregarFacturaView.txtIdArticulo.setText(String.valueOf(df.getFK_PK_idArticulo().toString()));
+                    this.agregarFacturaView.txtCliente.setText(String.valueOf(f.getFk_idCliente().toString()));
+                    this.agregarFacturaView.txtNombreArticulo.setText(df.getNombre().toString());
+                    this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(df.getPrecioUnitario()));
+                    this.agregarFacturaView.txtCantidadArticulos.setText(String.valueOf(df.getCantidad().toString()));
+                    this.mantArticuloView.btEliminar.setEnabled(true);
+                                
+                } catch (SQLException ex) {
+                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        
+        if (e.getSource() == this.agregarFacturaView.btagregarArticulos) {
+
             MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
-            ArticuloBuscarControlador articuloBControlador ;
+            ArticuloBuscarControlador articuloBControlador;
             articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView,
                     ArticuloBLModelo,
                     this.agregarFacturaView.txtIdArticulo);
             articuloBControlador.getArticuloBuscarView().setVisible(true);
-          
-             
-        }if (e.getSource() == this.agregarFacturaView.btBuscarCliente) { 
+
+        }
+        if (e.getSource() == this.agregarFacturaView.btBuscarCliente) {
             MantClienteBuscar mantClienteBuscarView = new MantClienteBuscar();
-            ClienteBuscarControlador clienteBControlador ;
-            clienteBControlador = new ClienteBuscarControlador(mantClienteBuscarView, 
-                    clienteBlModelo
-                    ,this.agregarFacturaView.txtCliente);
+            ClienteBuscarControlador clienteBControlador;
+            clienteBControlador = new ClienteBuscarControlador(mantClienteBuscarView,
+                    clienteBlModelo, this.agregarFacturaView.txtCliente);
             clienteBControlador.getClienteBuscarView().setVisible(true);
-             
-        }if(e.getSource()== this.agregarFacturaView.btCancelar){
+
+        }
+        if (e.getSource() == this.agregarFacturaView.btCancelar) {
             this.agregarFacturaView.txtCantidadArticulos.setText(null);
             this.agregarFacturaView.txtCliente.setText(null);
             this.agregarFacturaView.txtIdArticulo.setText(null);
@@ -271,43 +292,43 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             this.agregarFacturaView.txtidFactura.setText(null);
             this.agregarFacturaView.EtiquetaTiempo.setText("0.0");
             this.agregarFacturaView.etiquetaFecha.setText("Sin definir");
-        }if (e.getSource() == this.agregarFacturaView.btBuscarId) { 
+        }
+        if (e.getSource() == this.agregarFacturaView.btBuscarId) {
             BuscarFactura BuscarView = new BuscarFactura();
-            FacturaBuscarControlador FacturaBControlador ;
-            FacturaBControlador = new FacturaBuscarControlador(BuscarView, 
-                    FacturaBlModelo
-                    ,this.agregarFacturaView.txtidFactura);
+            FacturaBuscarControlador FacturaBControlador;
+            FacturaBControlador = new FacturaBuscarControlador(BuscarView,
+                    FacturaBlModelo, this.agregarFacturaView.txtidFactura);
             FacturaBControlador.getBuscarFacturaView().setVisible(true);
-             
+
         }
     }
-    
 
     @Override
     public void insertUpdate(DocumentEvent e) {
-       cargarArticulo();
-       cargarCliente();
+        cargarArticulo();
+        cargarCliente();
     }
 
     @Override
     public void removeUpdate(DocumentEvent e) {
         cargarArticulo();
-       cargarCliente();
+        cargarCliente();
     }
 
     @Override
     public void changedUpdate(DocumentEvent e) {
         cargarArticulo();
-       cargarCliente();
+        cargarCliente();
     }
- private void cargarArticulo() {
+
+    private void cargarArticulo() {
         Articulos a = new Articulos();
         if (!this.agregarFacturaView.txtIdArticulo.getText().isEmpty()) {
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
                 this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre().toString());
-                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));                            
+                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
@@ -315,13 +336,13 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             }
         }
     }
- private void cargarCliente() {
-      Cliente c = new Cliente();
+
+    private void cargarCliente() {
+        Cliente c = new Cliente();
         if (!this.agregarFacturaView.txtCliente.getText().isEmpty()) {
             c.setPK_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
             try {
                 c = clienteBlModelo.obtenerPorId(c);
-                
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Cliente (" + ex.getMessage() + ")",
@@ -330,6 +351,5 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             }
         }
     }
-   
-    
+
 }
