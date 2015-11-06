@@ -277,7 +277,13 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView,
                     ArticuloBLModelo,
                     this.agregarFacturaView.txtIdArticulo);
+            
             articuloBControlador.getArticuloBuscarView().setVisible(true);
+            int idArticulo= Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText());
+            
+            ArticuloBLModelo.obtenerPorId(idArticulo);
+            
+            
 
         }
         if (e.getSource() == this.agregarFacturaView.btBuscarCliente) {
@@ -361,5 +367,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }
         }
     }
+    
+    
 
 }

@@ -217,19 +217,19 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 Telefono t = new Telefono();
                 int fila = this.mantTelfonoView.jTableTelfono.getSelectedRow();
                 t.setPk_idTelefono(Integer.parseInt(this.mantTelfonoView.jTableTelfono.getValueAt(fila, 0).toString()));
-                System.out.println("ojo " +t.getTipoTelfono());
+               
                 try {
                     t = telefonoBLModelo.obtenerPorId(t);
                     this.mantTelfonoView.txtidTelefono.setText(String.valueOf(t.getPk_idTelefono().toString()));
                     this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
                 
-                    if(mantTelfonoView.jTableTelfono.equals("Casa")){
+                    if(mantTelfonoView.jTableTelfono.getValueAt(fila, 2).equals("Casa")){
                         this.mantTelfonoView.chckCasa.setSelected(true);
                     }
-                    if(mantTelfonoView.jTableTelfono.equals("Celular")){
+                    if(mantTelfonoView.jTableTelfono.getValueAt(fila, 2).equals("Celular")){
                         this.mantTelfonoView.chckCelular.setSelected(true);
                     }
-                    if(mantTelfonoView.jTableTelfono.equals("Oficina")){
+                    if(mantTelfonoView.jTableTelfono.getValueAt(fila, 2).equals("Oficina")){
                         this.mantTelfonoView.chckOficina.setSelected(true);
                     }
 //                     if(t.getCodtipo()==1){

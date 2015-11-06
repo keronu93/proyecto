@@ -55,6 +55,10 @@ public class ArticuloBL implements IBaseBL<Articulos> {
         return this.aDao.obtenerConWhere(obj, where);
     } 
 
+    public void obtenerPorId(int idArticulo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     
     
 }
