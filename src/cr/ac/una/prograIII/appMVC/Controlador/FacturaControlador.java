@@ -183,20 +183,21 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             }
           
         } if (e.getSource() == this.agregarFacturaView.btagregarArticulos) { 
+            
             MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
             ArticuloBuscarControlador articuloBControlador ;
-            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView, 
-                    ArticuloBLModelo, 
+            articuloBControlador = new ArticuloBuscarControlador(mantArticuloBuscarView,
+                    ArticuloBLModelo,
                     this.agregarFacturaView.txtIdArticulo);
             articuloBControlador.getArticuloBuscarView().setVisible(true);
-            
+          
              
         }if (e.getSource() == this.agregarFacturaView.btBuscarCliente) { 
             MantClienteBuscar mantClienteBuscarView = new MantClienteBuscar();
             ClienteBuscarControlador clienteBControlador ;
             clienteBControlador = new ClienteBuscarControlador(mantClienteBuscarView, 
-                    clienteBlModelo, 
-                    this.agregarFacturaView.txtCliente);
+                    clienteBlModelo
+                    ,this.agregarFacturaView.txtIdArticulo);
             clienteBControlador.getClienteBuscarView().setVisible(true);
              
         }
@@ -226,8 +227,9 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
-                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre().toString());
-                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));  
+                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre());
+                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario())); 
+                
                
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
@@ -242,6 +244,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             c.setPK_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
             try {
                 c = clienteBlModelo.obtenerPorId(c);
+                
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Cliente (" + ex.getMessage() + ")",

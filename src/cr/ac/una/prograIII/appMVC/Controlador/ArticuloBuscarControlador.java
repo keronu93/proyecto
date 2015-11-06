@@ -26,6 +26,7 @@ public class ArticuloBuscarControlador implements  ActionListener {
     private MantArticuloBuscar articuloBuscarView;
     private ArticuloBL ArticuloBLModelo;
     private JTextField txtRespuesta;
+    
 
     public ArticuloBuscarControlador(MantArticuloBuscar articuloBuscarView, ArticuloBL ArticuloBLModelo, JTextField txtRespuesta) {
         this.articuloBuscarView = articuloBuscarView;
@@ -36,6 +37,11 @@ public class ArticuloBuscarControlador implements  ActionListener {
         llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
     }
 
+   
+
+    
+
+    
     public MantArticuloBuscar getArticuloBuscarView() {
         return articuloBuscarView;
     }
@@ -73,6 +79,7 @@ public class ArticuloBuscarControlador implements  ActionListener {
             if (fila != -1) {
             Integer idArticulo = Integer.parseInt(this.articuloBuscarView.jTBuscarArticulo.getValueAt(fila, 0).toString());
             txtRespuesta.setText(String.valueOf(idArticulo));
+            
             this.articuloBuscarView.setVisible(false);
             }else{
                 JOptionPane.showMessageDialog(articuloBuscarView, "Error debe seleccionar un Articulo:", "Error", JOptionPane.ERROR_MESSAGE);

@@ -361,8 +361,8 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
                     
 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
-                        "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Proveedor (" + ex.getMessage() + ")",
+                        "Error al cargar el proveedor", JOptionPane.ERROR_MESSAGE);
                 Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }    
