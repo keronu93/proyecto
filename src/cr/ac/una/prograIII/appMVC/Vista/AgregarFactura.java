@@ -150,6 +150,11 @@ public class AgregarFactura extends javax.swing.JFrame {
 
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/cancelar.png"))); // NOI18N
         btCancelar.setText("Cancelar");
+        btCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCancelarActionPerformed(evt);
+            }
+        });
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/user.png"))); // NOI18N
 
@@ -301,7 +306,7 @@ public class AgregarFactura extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btagregarArticulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btagregarArticulosActionPerformed
-        dispose();
+        
     }//GEN-LAST:event_btagregarArticulosActionPerformed
 
     private void btBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarClienteActionPerformed
@@ -319,6 +324,10 @@ public class AgregarFactura extends javax.swing.JFrame {
     private void btBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarIdActionPerformed
 
     }//GEN-LAST:event_btBuscarIdActionPerformed
+
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btCancelarActionPerformed
 
     /**
      * @param args the command line arguments
