@@ -189,7 +189,7 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
 
         jMFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
         jMFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/agregarFactura.png"))); // NOI18N
-        jMFactura.setText("Factura");
+        jMFactura.setText("Agregar Factura");
         jMFacturacion.add(jMFactura);
 
         jMenuBar1.add(jMFacturacion);

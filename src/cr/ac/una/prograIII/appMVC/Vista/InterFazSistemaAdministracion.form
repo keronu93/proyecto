@@ -247,7 +247,7 @@
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                   <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/agregarFactura.png"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Factura"/>
+                <Property name="text" type="java.lang.String" value="Agregar Factura"/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
