@@ -92,7 +92,8 @@ public class FacturaBuscarControlador implements  ActionListener {
     public void actionPerformed(ActionEvent e) {
          if(e.getSource() == this.buscarFacturaView.btBuscar1){
            llenarTabla(this.buscarFacturaView.tablaFacturas);
-        } if(e.getSource() == this.buscarFacturaView.btSeleccionar){
+        } 
+         if(e.getSource() == this.buscarFacturaView.btSeleccionar){
             int fila = this.buscarFacturaView.tablaFacturas.getSelectedRow();
             if (fila != -1) {
             Integer idFactura = Integer.parseInt(this.buscarFacturaView.tablaFacturas.getValueAt(fila, 0).toString());

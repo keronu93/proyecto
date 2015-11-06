@@ -296,7 +296,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             this.agregarFacturaView.txtPrecioUnitario.setText(null);
             this.agregarFacturaView.txtidFactura.setText(null);
             this.agregarFacturaView.EtiquetaTiempo.setText("0.0");
-            this.agregarFacturaView.etiquetaFecha.setText("Sin definir");
+            
         }
         if (e.getSource() == this.agregarFacturaView.btBuscarId) {
             BuscarFactura BuscarView = new BuscarFactura();
@@ -305,6 +305,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                     FacturaBlModelo, this.agregarFacturaView.txtidFactura);
             FacturaBControlador.getBuscarFacturaView().setVisible(true);
 
+        }
+        if(e.getSource() == this.agregarFacturaView.btCrearFac){
+            if(this.agregarFacturaView.jTableDetalleFactura.equals("")){
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 

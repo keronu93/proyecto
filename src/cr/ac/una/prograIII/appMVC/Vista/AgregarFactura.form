@@ -88,7 +88,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btCancelar" min="-2" pref="131" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btagregarArticulos" pref="168" max="32767" attributes="0"/>
+                              <Component id="btagregarArticulos" pref="178" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
