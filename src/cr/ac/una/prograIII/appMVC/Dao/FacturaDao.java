@@ -29,7 +29,7 @@ public class FacturaDao implements IBaseDao<Factura>{
     @Override
     public void insertar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente ,ultUsuario,ultFecha) values "
+        CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente ,ult_Usuario,ult_Fecha) values "
                                              + "(?,?,curdate())");
         cs.setInt(1, obj.getFk_idCliente());
         cs.setString(2, obj.getUltUsuario());     
@@ -42,8 +42,8 @@ public class FacturaDao implements IBaseDao<Factura>{
         Connection con = conexion.getConexion();
          CallableStatement cs = con.prepareCall("update Facturacion set FK_PK_idFacturacion= ?," 
                                                 +"Fk_idCliente=?,"
-                                                +"ultUsuario=?,"
-                                                +"ultFecha = curdate()"
+                                                +"ult_Usuario=?,"
+                                                +"ult_Fecha = curdate()"
                                                 +"where Pk_idfacturacion=? ");
         cs.setInt(1, obj.getFk_idCliente());
         cs.setString(2, obj.getUltUsuario());  
@@ -77,7 +77,7 @@ public class FacturaDao implements IBaseDao<Factura>{
             f = new Factura();
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
-            f.setUltUsuario(result.getString("UltUsuario"));
+            f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
         return f;
@@ -93,7 +93,7 @@ public class FacturaDao implements IBaseDao<Factura>{
             Factura f = new Factura();
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
-            f.setUltUsuario(result.getString("UltUsuario"));
+            f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
         return l;
@@ -110,7 +110,7 @@ public class FacturaDao implements IBaseDao<Factura>{
             Factura f = new Factura();
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
-            f.setUltUsuario(result.getString("UltUsuario"));
+            f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
         return l;
