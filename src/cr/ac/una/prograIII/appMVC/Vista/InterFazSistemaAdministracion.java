@@ -152,7 +152,8 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Reportes.png"))); // NOI18N
         jMenuEstadisticas.setText("Reportes");
 
-        ReporteCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, 0));
+        ReporteCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/ClientePequeno.png"))); // NOI18N
         ReporteCliente.setText("Reporte Clientes");
         ReporteCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -161,6 +162,8 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         });
         jMenuEstadisticas.add(ReporteCliente);
 
+        ReporteProveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/ProvedorPequeño.png"))); // NOI18N
         ReporteProveedores.setText("Reporte Proveedores");
         ReporteProveedores.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,17 +172,23 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         });
         jMenuEstadisticas.add(ReporteProveedores);
 
+        ReporteUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/usuarioPequeño_1.png"))); // NOI18N
         ReporteUsuarios.setText("Reporte Usuarios");
         jMenuEstadisticas.add(ReporteUsuarios);
 
+        ReporteArticulos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Agregar Articulos.png"))); // NOI18N
         ReporteArticulos.setText("Reporte Articulos");
         jMenuEstadisticas.add(ReporteArticulos);
 
         jMenuBar1.add(jMenuEstadisticas);
 
+        jMFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Facturacion.png"))); // NOI18N
         jMFacturacion.setText("Facturacion");
 
-        jMFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Factura.png"))); // NOI18N
+        jMFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/agregarFactura.png"))); // NOI18N
         jMFactura.setText("Factura");
         jMFacturacion.add(jMFactura);
 
