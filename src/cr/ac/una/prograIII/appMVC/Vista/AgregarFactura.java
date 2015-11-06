@@ -63,7 +63,7 @@ public class AgregarFactura extends javax.swing.JFrame {
         IDArticulo = new javax.swing.JLabel();
         txtIdArticulo = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Factura");
 
         Fecha.setText("Fecha:");

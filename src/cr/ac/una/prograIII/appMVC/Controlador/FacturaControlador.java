@@ -224,10 +224,12 @@ public class FacturaControlador implements ActionListener, DocumentListener{
         Articulos a = new Articulos();
         if (!this.agregarFacturaView.txtIdArticulo.getText().isEmpty()) {
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            
             try {
                 a = ArticuloBLModelo.obtenerPorId(a);
-                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre().toString());
-                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));                                
+                this.agregarFacturaView.txtNombreArticulo.setText(a.getNombre());
+                this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(a.getPrecioUnitario()));  
+               
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
