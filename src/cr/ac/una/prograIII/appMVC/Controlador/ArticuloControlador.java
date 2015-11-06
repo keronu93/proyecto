@@ -101,7 +101,6 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private void inicializarPantalla() {
        this.mantArticuloView.txtIdArticulo.setEnabled(false);
        this.mantArticuloView.txtIdProveedor.setEnabled(false);
-       //this.mantArticuloView.txtIdProveedor.setEnabled(false);
         llenarTabla(this.mantArticuloView.jTableArticulos);
     }
     

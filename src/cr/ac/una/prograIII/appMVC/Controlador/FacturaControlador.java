@@ -19,9 +19,11 @@ import cr.ac.una.prograIII.appMVC.bl.ArticuloBL;
 import cr.ac.una.prograIII.appMVC.bl.ClienteBL;
 import cr.ac.una.prograIII.appMVC.bl.DetalleFacturaBL;
 import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -46,6 +48,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     private DetalleFacturaBL DetalleFacturaBLModelo;
     private Calendar calendario = Calendar.getInstance();
     private String Fecha;
+    ArrayList<Articulos> listAr=new ArrayList();
 
     public FacturaControlador(AgregarFactura agregarFacturaView, FacturaBL FacturaBlModelo, ManteCliente mantClienteview, ClienteBL clienteBlModelo, ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, DetalleFacturaBL DetalleFacturaBLModelo) {
         this.agregarFacturaView = agregarFacturaView;
@@ -63,6 +66,9 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.btCrearFac.addActionListener(this);
         this.agregarFacturaView.btEliminar.addActionListener(this);
         this.agregarFacturaView.btagregarArticulos.addActionListener(this);
+        this.agregarFacturaView.txtIdArticulo.getDocument().addDocumentListener(this);
+        
+        
 
         inicializarPantalla();
     }
@@ -150,6 +156,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.txtPrecioUnitario.setEnabled(false);
         this.agregarFacturaView.jlTotal.setEnabled(false);
         this.agregarFacturaView.btEliminar.setEnabled(false);
+        llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
     }
 
     public void llenarTabla(JTable tablaArticulos) {
@@ -180,7 +187,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.agregarFacturaView.btInsertar) {
-            if(this.agregarFacturaView.txtCliente.equals("")||this.agregarFacturaView.txtCantidadArticulos.getText().equals("")||this.agregarFacturaView.txtIdArticulo.getText().equals("")||this.agregarFacturaView.txtNombreArticulo.getText().equals("")||this.agregarFacturaView.txtPrecioUnitario.getText().equals("")||this.agregarFacturaView.txtidFactura.getText().equals(""))
+            if(this.agregarFacturaView.txtCliente.getText().isEmpty()||this.agregarFacturaView.txtCantidadArticulos.getText().equals("")||this.agregarFacturaView.txtNombreArticulo.getText().equals("")||this.agregarFacturaView.txtPrecioUnitario.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
             }
@@ -198,6 +205,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                 this.FacturaBlModelo.insertar(f);
                 this.DetalleFacturaBLModelo.insertar(df);
                 llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+                //double total;
+                //int cant=Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText());
+                //int valor=Integer.parseInt(this.agregarFacturaView.txtPrecioUnitario.getText());
+                //total=cant*valor;
+                //this.agregarFacturaView.jlTotal.setText();
                 JOptionPane.showMessageDialog(agregarFacturaView, "la Factura ha sido ingresado correctamente", "Factura Agregada", JOptionPane.INFORMATION_MESSAGE);
                 this.agregarFacturaView.txtCantidadArticulos.setText(null);
                 this.agregarFacturaView.txtCliente.setText(null);
@@ -205,6 +217,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                 this.agregarFacturaView.txtNombreArticulo.setText(null);
                 this.agregarFacturaView.txtPrecioUnitario.setText(null);
                 this.agregarFacturaView.txtidFactura.setText(null);
+                
             } catch (SQLException ex) {
 
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
@@ -279,11 +292,6 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                     this.agregarFacturaView.txtIdArticulo);
             
             articuloBControlador.getArticuloBuscarView().setVisible(true);
-            int idArticulo= Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText());
-            
-            ArticuloBLModelo.obtenerPorId(idArticulo);
-            
-            
 
         }
         if (e.getSource() == this.agregarFacturaView.btBuscarCliente) {
