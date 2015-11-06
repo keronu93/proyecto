@@ -66,11 +66,11 @@ public class BuscarFactura extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "ID Factura", "Nombre Cliente", "Fecha", "monto"
+                "ID Factura", "ID Cliente", "Fecha", "monto"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.String.class, java.lang.Double.class, java.lang.Object.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -165,7 +165,7 @@ public class BuscarFactura extends javax.swing.JFrame {
     public javax.swing.JButton btBuscar1;
     public javax.swing.JButton btSeleccionar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable tablaFacturas;
+    public javax.swing.JTable tablaFacturas;
     public javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
