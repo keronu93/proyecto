@@ -311,7 +311,7 @@ public class FacturaControlador implements ActionListener, DocumentListener{
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantArticuloView, "Error no se pudo consultar el Articulo (" + ex.getMessage() + ")",
                         "Error al cargar el Articulo", JOptionPane.ERROR_MESSAGE);
-                Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
