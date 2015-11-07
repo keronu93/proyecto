@@ -165,6 +165,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.txtPrecioUnitario.setEnabled(false);
         this.agregarFacturaView.jlTotal.setEnabled(false);
         this.agregarFacturaView.btEliminar.setEnabled(false);
+        this.agregarFacturaView.TxTNombreCliente.setEnabled(false);
+        this.agregarFacturaView.TxtApellidosCliente.setEnabled(false);
         llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
     }
 
