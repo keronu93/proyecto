@@ -330,9 +330,10 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             Articulos a = new Articulos();
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             a.setNombre(this.agregarFacturaView.txtNombreArticulo.getText());
-            a.setCantidadExistencia(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
+            //a.setCantidadExistencia(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
             a.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
             listAr.add(a);
+            llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
             
         }
         if(e.getSource() == this.agregarFacturaView.btCrearFac){
