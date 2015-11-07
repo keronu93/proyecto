@@ -82,6 +82,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     public void setListAr(ArrayList<DetalleFactura> listAr) {
         this.listAr = listAr;
     }
+
+    
     
     public String getFecha() {
         return Fecha;
@@ -181,11 +183,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
 
         Object fila[] = new Object[4];
         
-        for (DetalleFactura a : listAr) {
-            fila[0] = a.getFK_PK_idFacturacion();
-            fila[1] = a.getFK_PK_idArticulo();
-            fila[2] = a.getCantidad();
-            fila[3] = a.getPrecioUnitario();
+        for (DetalleFactura df : listAr) {
+            fila[0] = df.getFK_PK_idFacturacion();
+            fila[1] = df.getFK_PK_idArticulo();
+            fila[2] = df.getCantidad();
+            fila[3] = df.getPrecioUnitario();
             modeloTabla.addRow(fila);
         }
         tablaArticulos.setModel(modeloTabla);
@@ -327,12 +329,12 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             FacturaBControlador.getBuscarFacturaView().setVisible(true);
 
         }if(e.getSource() == this.agregarFacturaView.BtAgregarArticulo){
-            DetalleFactura a = new DetalleFactura();
-            a.setFK_PK_idFacturacion(Integer.parseInt(this.agregarFacturaView.txtidFactura.getText()));
-            a.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
-            a.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
-            a.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
-            listAr.add(a);
+            DetalleFactura df = new DetalleFactura();
+//            df.setFK_PK_idFacturacion(Integer.parseInt(this.agregarFacturaView.txtidFactura.getText()));
+            //df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
+            df.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
+            listAr.add(df);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
             
         }
