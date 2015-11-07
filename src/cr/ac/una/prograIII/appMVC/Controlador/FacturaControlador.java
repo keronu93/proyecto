@@ -65,7 +65,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.btCargar.addActionListener(this);
         this.agregarFacturaView.btCrearFac.addActionListener(this);
         this.agregarFacturaView.btEliminar.addActionListener(this);
-        this.agregarFacturaView.btagregarArticulos.addActionListener(this);
+        this.agregarFacturaView.BtAgregarArticulo.addActionListener(this);
+        this.agregarFacturaView.btBuscarArticulos.addActionListener(this);
         this.agregarFacturaView.txtIdArticulo.getDocument().addDocumentListener(this);
         this.agregarFacturaView.txtCliente.getDocument().addDocumentListener(this);
         
@@ -176,23 +177,18 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         modeloTabla.addColumn("Id Articulo");
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Cantidad");
-        modeloTabla.addColumn("Precio");
+        modeloTabla.addColumn("Subtotal");
 
         Object fila[] = new Object[4];
 
-        try {
-            for (Object oAux : DetalleFacturaBLModelo.obtenerTodos()) {
-                DetalleFactura df = (DetalleFactura) oAux;
-                fila[0] = df.getFK_PK_idArticulo();
-                //fila[1] = df.getNombre();
-                fila[2] = df.getCantidad();
-                fila[3] = df.getPrecioUnitario();
-
-                modeloTabla.addRow(fila);
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(mantArticuloView, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
+        for (Articulos a : listAr) {
+            fila[0] = a.getPK_IDArticulo();
+            fila[1] = a.getNombre();
+            fila[2] = a.getCantidadExistencia();
+            fila[3] = a.getPrecioUnitario();
+            modeloTabla.addRow(fila);
         }
+        tablaArticulos.setModel(modeloTabla);
     }
 
     @Override
@@ -294,7 +290,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                 }
             }
         
-        if (e.getSource() == this.agregarFacturaView.btagregarArticulos) {
+        if (e.getSource() == this.agregarFacturaView.btBuscarArticulos) {
 
             MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
             ArticuloBuscarControlador articuloBControlador;
@@ -330,6 +326,14 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                     FacturaBlModelo, this.agregarFacturaView.txtidFactura);
             FacturaBControlador.getBuscarFacturaView().setVisible(true);
 
+        }if(e.getSource() == this.agregarFacturaView.BtAgregarArticulo){
+            Articulos a = new Articulos();
+            a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            a.setNombre(this.agregarFacturaView.txtNombreArticulo.getText());
+            a.setCantidadExistencia(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
+            a.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
+            listAr.add(a);
+            
         }
         if(e.getSource() == this.agregarFacturaView.btCrearFac){
             if(this.agregarFacturaView.jTableDetalleFactura.equals("")){
