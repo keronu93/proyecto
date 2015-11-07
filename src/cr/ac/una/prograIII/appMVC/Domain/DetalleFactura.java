@@ -14,15 +14,15 @@ public class DetalleFactura extends BaseDomain {
     private Integer FK_PK_idArticulo;
     private Double  PrecioUnitario;
     private Integer Cantidad;
-    private String nombre;
+    
 
-    public DetalleFactura(Integer FK_PK_idFacturacion, Integer FK_PK_idArticulo, Double PrecioUnitario, Integer Cantidad, String nombre, String ultUsuario, String ultFecha) {
+    public DetalleFactura(Integer FK_PK_idFacturacion, Integer FK_PK_idArticulo, Double PrecioUnitario, Integer Cantidad,  String ultUsuario, String ultFecha) {
         super(ultUsuario, ultFecha);
         this.FK_PK_idFacturacion = FK_PK_idFacturacion;
         this.FK_PK_idArticulo = FK_PK_idArticulo;
         this.PrecioUnitario = PrecioUnitario;
         this.Cantidad = Cantidad;
-        this.nombre = nombre;
+        
     }
 
     
@@ -32,13 +32,6 @@ public class DetalleFactura extends BaseDomain {
     public DetalleFactura() {
     }
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
-    }
     public Integer getFK_PK_idFacturacion() {
         return FK_PK_idFacturacion;
     }

@@ -12,12 +12,15 @@ package cr.ac.una.prograIII.appMVC.Domain;
 public class Factura extends BaseDomain {
     private Integer Pk_idfacturacion;
     private Integer Fk_idCliente;
+    private String Fecha;
 
-    public Factura(Integer Pk_idfacturacion, Integer Fk_idCliente, String ultUsuario, String ultFecha) {
+    public Factura(Integer Pk_idfacturacion, Integer Fk_idCliente, String Fecha, String ultUsuario, String ultFecha) {
         super(ultUsuario, ultFecha);
         this.Pk_idfacturacion = Pk_idfacturacion;
         this.Fk_idCliente = Fk_idCliente;
+        this.Fecha = Fecha;
     }
+
 
     public Factura() {
     }
@@ -25,6 +28,7 @@ public class Factura extends BaseDomain {
     public Integer getPk_idfacturacion() {
         return Pk_idfacturacion;
     }
+    
 
     public void setPk_idfacturacion(Integer Pk_idfacturacion) {
         this.Pk_idfacturacion = Pk_idfacturacion;
@@ -36,6 +40,14 @@ public class Factura extends BaseDomain {
 
     public void setFk_idCliente(Integer Fk_idCliente) {
         this.Fk_idCliente = Fk_idCliente;
+    }
+
+    public String getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(String Fecha) {
+        this.Fecha = Fecha;
     }
     
     

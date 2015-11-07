@@ -74,6 +74,14 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         inicializarPantalla();
     }
 
+    public ArrayList<Articulos> getListAr() {
+        return listAr;
+    }
+
+    public void setListAr(ArrayList<Articulos> listAr) {
+        this.listAr = listAr;
+    }
+    
     public String getFecha() {
         return Fecha;
     }
@@ -174,7 +182,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             for (Object oAux : DetalleFacturaBLModelo.obtenerTodos()) {
                 DetalleFactura df = (DetalleFactura) oAux;
                 fila[0] = df.getFK_PK_idArticulo();
-                fila[1] = df.getNombre();
+                //fila[1] = df.getNombre();
                 fila[2] = df.getCantidad();
                 fila[3] = df.getPrecioUnitario();
 
@@ -199,7 +207,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
             df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             df.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
-            df.setNombre(this.agregarFacturaView.txtNombreArticulo.getText());
+            
             df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
             try {
 
@@ -274,7 +282,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                     this.agregarFacturaView.txtidFactura.setText(String.valueOf(f.getPk_idfacturacion().toString()));
                     this.agregarFacturaView.txtIdArticulo.setText(String.valueOf(df.getFK_PK_idArticulo().toString()));
                     this.agregarFacturaView.txtCliente.setText(String.valueOf(f.getFk_idCliente().toString()));
-                    this.agregarFacturaView.txtNombreArticulo.setText(df.getNombre().toString());
+                    
                     this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(df.getPrecioUnitario()));
                     this.agregarFacturaView.txtCantidadArticulos.setText(String.valueOf(df.getCantidad().toString()));
                     this.mantArticuloView.btEliminar.setEnabled(true);
@@ -368,6 +376,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             c.setPK_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
             try {
                 c = clienteBlModelo.obtenerPorId(c);
+                this.agregarFacturaView.TxTNombreCliente.setText(c.getNombre().toString());
+                this.agregarFacturaView.TxtApellidosCliente.setText(c.getApellidos().toString());
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error no se pudo consultar el Cliente (" + ex.getMessage() + ")",

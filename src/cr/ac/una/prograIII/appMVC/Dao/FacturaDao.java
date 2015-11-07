@@ -18,8 +18,8 @@ import java.util.ArrayList;
  *
  * @author Gustavo
  */
-public class FacturaDao implements IBaseDao<Factura>{
-    
+public class FacturaDao implements IBaseDao<Factura> {
+
     private final MySQLConexion conexion;
 
     public FacturaDao() {
@@ -29,10 +29,11 @@ public class FacturaDao implements IBaseDao<Factura>{
     @Override
     public void insertar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente ,ult_Usuario,ult_Fecha) values "
-                                             + "(?,?,curdate())");
+        CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente,Fecha ,ult_Usuario,ult_Fecha) values "
+                + "(?,?,?,curdate())");
         cs.setInt(1, obj.getFk_idCliente());
-        cs.setString(2, obj.getUltUsuario());     
+        cs.setString(2, obj.getFecha());
+        cs.setString(3, obj.getUltUsuario());
         cs.executeUpdate();
         con.close();
     }
@@ -40,26 +41,28 @@ public class FacturaDao implements IBaseDao<Factura>{
     @Override
     public void modificar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-         CallableStatement cs = con.prepareCall("update Facturacion set FK_PK_idFacturacion= ?," 
-                                                +"Fk_idCliente=?,"
-                                                +"ult_Usuario=?,"
-                                                +"ult_Fecha = curdate()"
-                                                +"where Pk_idfacturacion=? ");
+        CallableStatement cs = con.prepareCall("update Facturacion set FK_PK_idFacturacion= ?,"
+                + "Fk_idCliente=?,"
+                + "Fecha=?"
+                + "ult_Usuario=?,"
+                + "ult_Fecha = curdate()"
+                + "where Pk_idfacturacion=? ");
         cs.setInt(1, obj.getFk_idCliente());
-        cs.setString(2, obj.getUltUsuario());  
-        cs.setInt(3,obj.getPk_idfacturacion());
+        cs.setString(2, obj.getFecha());
+        cs.setString(3, obj.getUltUsuario());
+        cs.setInt(4, obj.getPk_idfacturacion());
         cs.executeUpdate();
         con.close();
-       
+
     }
 
     @Override
     public void eliminar(Factura obj) throws SQLException {
-       Connection con = conexion.getConexion();
-        
+        Connection con = conexion.getConexion();
+
         CallableStatement cs = con.prepareCall("delete from Facturacion where Pk_idfacturacion = ?");
         cs.setInt(1, obj.getPk_idfacturacion());
-        
+
         cs.executeUpdate();
         con.close();
     }
@@ -68,15 +71,16 @@ public class FacturaDao implements IBaseDao<Factura>{
     public Factura obtenerPorId(Factura obj) throws SQLException {
         Factura f = null;
         Connection con = conexion.getConexion();
-        
-        CallableStatement cs = con.prepareCall("select * from Facturacion where Pk_idfacturacion = ? " );
+
+        CallableStatement cs = con.prepareCall("select * from Facturacion where Pk_idfacturacion = ? ");
         cs.setInt(1, obj.getPk_idfacturacion());
-        
+
         ResultSet result = cs.executeQuery();
-        while(result.next()){
+        while (result.next()) {
             f = new Factura();
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
+            f.setFecha(result.getString("Fecha"));
             f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
@@ -89,10 +93,11 @@ public class FacturaDao implements IBaseDao<Factura>{
         ArrayList<Factura> l = new ArrayList();
         PreparedStatement ps = con.prepareStatement("select * from Facturacion ");
         ResultSet result = ps.executeQuery();
-        while(result.next()){
+        while (result.next()) {
             Factura f = new Factura();
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
+            f.setFecha(result.getString("Fecha"));
             f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
@@ -104,18 +109,17 @@ public class FacturaDao implements IBaseDao<Factura>{
     public ArrayList<Factura> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();
         ArrayList<Factura> l = new ArrayList();
-        PreparedStatement ps = con.prepareStatement("select * from Facturacion "+where);
+        PreparedStatement ps = con.prepareStatement("select * from Facturacion " + where);
         ResultSet result = ps.executeQuery();
-        while(result.next()){
+        while (result.next()) {
             Factura f = new Factura();
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
+            f.setFecha(result.getString("Fecha"));
             f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
         return l;
     }
-    
-    
-   
+
 }

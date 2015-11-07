@@ -23,21 +23,20 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     private final MySQLConexion conexion;
 
     public DetalleFacturaDao() {
-         conexion = new MySQLConexion();
+        conexion = new MySQLConexion();
     }
 
     @Override
     public void insertar(DetalleFactura obj) throws SQLException {
-       Connection con = conexion.getConexion();
-       CallableStatement cs = con.prepareCall("insert into Detalle(FK_PK_idArticulo,"
-                                             +"precioUnitario,Cantidad, Nombre"
-                                             +",ultUsuario,ultFecha) values "
-                                             + "(?,?,?,?,?,curdate())");
+        Connection con = conexion.getConexion();
+        CallableStatement cs = con.prepareCall("insert into Detalle(FK_PK_idArticulo,"
+                + "precioUnitario,Cantidad"
+                + ",ultUsuario,ultFecha) values "
+                + "(?,?,?,?,curdate())");
         cs.setInt(1, obj.getFK_PK_idArticulo());
         cs.setDouble(2, obj.getPrecioUnitario());
         cs.setInt(3, obj.getCantidad());
-        cs.setString(4, obj.getNombre()); 
-        cs.setString(5, obj.getUltUsuario());     
+        cs.setString(4, obj.getUltUsuario());
         cs.executeUpdate();
         con.close();
     }
@@ -45,24 +44,23 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     @Override
     public void modificar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
-       CallableStatement cs = con.prepareCall("update Detalle set FK_PK_idArticulo= ?,"
-                                             +"precioUnitario=?,Cantidad=?,Nombre=?"
-                                             +",ultUsuario=?,ultFecha=curdate()) values "
-                                             + "where FK_PK_idFacturacion=?");
-        cs.setInt(1, obj.getFK_PK_idArticulo());
+        CallableStatement cs = con.prepareCall("update Detalle set FK_PK_idFacturacion= ?,"
+                + "precioUnitario=?,Cantidad=?"
+                + ",ultUsuario=?,ultFecha=curdate()) values "
+                + "where  FK_PK_idArticulo=?");
+        cs.setInt(1, obj.getFK_PK_idFacturacion());
         cs.setDouble(2, obj.getPrecioUnitario());
         cs.setInt(3, obj.getCantidad());
-        cs.setString(4, obj.getNombre()); 
-        cs.setString(5, obj.getUltUsuario());   
-        cs.setInt(6,obj.getFK_PK_idFacturacion());
+        cs.setString(5, obj.getUltUsuario());
+        cs.setInt(6, obj.getFK_PK_idArticulo());
         cs.executeUpdate();
         con.close();
     }
 
     @Override
     public void eliminar(DetalleFactura obj) throws SQLException {
-       Connection con = conexion.getConexion();
-        
+        Connection con = conexion.getConexion();
+
         CallableStatement cs = con.prepareCall("delete from Detalle where FK_PK_idFacturacion = ?");
         cs.setInt(1, obj.getFK_PK_idFacturacion());
         cs.executeUpdate();
@@ -73,18 +71,17 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public DetalleFactura obtenerPorId(DetalleFactura obj) throws SQLException {
         DetalleFactura df = null;
         Connection con = conexion.getConexion();
-        
-        CallableStatement cs = con.prepareCall("select * from Detalle where FK_PK_idFacturacion = ? " );
+
+        CallableStatement cs = con.prepareCall("select * from Detalle where FK_PK_idFacturacion = ? ");
         cs.setInt(1, obj.getFK_PK_idFacturacion());
-        
-         ResultSet result = cs.executeQuery();
-        while(result.next()){
+
+        ResultSet result = cs.executeQuery();
+        while (result.next()) {
             df = new DetalleFactura();
             df.setFK_PK_idFacturacion(result.getInt("FK_PK_idFacturacion"));
             df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
             df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
             df.setCantidad(result.getInt("Cantidad"));
-            df.setNombre(result.getString("Nombre"));
             df.setUltUsuario(result.getString("UltUsuario"));
         }
         con.close();
@@ -97,13 +94,12 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
         ArrayList<DetalleFactura> l = new ArrayList();
         PreparedStatement ps = con.prepareStatement("select * from Detalle ");
         ResultSet result = ps.executeQuery();
-        while(result.next()){
+        while (result.next()) {
             DetalleFactura df = new DetalleFactura();
             df.setFK_PK_idFacturacion(result.getInt("FK_PK_idFacturacion"));
             df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
             df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
             df.setCantidad(result.getInt("Cantidad"));
-            df.setNombre(result.getString("Nombre"));
             df.setUltUsuario(result.getString("UltUsuario"));
         }
         con.close();
@@ -115,22 +111,18 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public ArrayList<DetalleFactura> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();
         ArrayList<DetalleFactura> l = new ArrayList();
-        PreparedStatement ps = con.prepareStatement("select * from Detalle "+where);
+        PreparedStatement ps = con.prepareStatement("select * from Detalle " + where);
         ResultSet result = ps.executeQuery();
-        while(result.next()){
+        while (result.next()) {
             DetalleFactura df = new DetalleFactura();
             df.setFK_PK_idFacturacion(result.getInt("FK_PK_idFacturacion"));
             df.setFK_PK_idArticulo(result.getInt("FK_PK_idArticulo"));
             df.setPrecioUnitario(result.getDouble("PrecioUnitario"));
             df.setCantidad(result.getInt("Cantidad"));
-            df.setNombre(result.getString("Nombre"));
             df.setUltUsuario(result.getString("UltUsuario"));
         }
         con.close();
         return l;
     }
-    
-    
-    
-  
+
 }

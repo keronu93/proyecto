@@ -38,27 +38,23 @@
                           <Component id="Cantidad" alignment="1" max="32767" attributes="0"/>
                           <Component id="Tiempo" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Component id="ValorHora" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jNombreCliente" min="-2" max="-2" attributes="0"/>
+                          <Component id="JApellidosCliente" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="txtidFactura" min="-2" pref="104" max="-2" attributes="0"/>
-                                          <EmptySpace max="32767" attributes="0"/>
-                                          <Component id="btBuscarId" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtIdArticulo" min="-2" pref="221" max="-2" attributes="0"/>
-                                          <Component id="txtPrecioUnitario" min="-2" pref="221" max="-2" attributes="0"/>
-                                          <Component id="EtiquetaTiempo" min="-2" max="-2" attributes="0"/>
-                                          <Component id="txtCantidadArticulos" min="-2" pref="221" max="-2" attributes="0"/>
-                                          <Component id="txtNombreArticulo" min="-2" pref="221" max="-2" attributes="0"/>
-                                          <Component id="EtiquetaValorHora" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="TxTNombreCliente" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="txtidFactura" min="-2" pref="104" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="btBuscarId" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtCliente" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="txtIdArticulo" alignment="0" pref="221" max="32767" attributes="0"/>
+                                  <Component id="txtPrecioUnitario" alignment="0" pref="221" max="32767" attributes="0"/>
+                                  <Component id="txtCliente" alignment="0" pref="221" max="32767" attributes="0"/>
+                                  <Component id="TxtApellidosCliente" max="32767" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -69,7 +65,7 @@
                                   </Group>
                                   <Component id="btBuscarCliente" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="82" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                               <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
@@ -80,7 +76,16 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btCancelar" min="-2" pref="131" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btagregarArticulos" max="32767" attributes="0"/>
+                              <Component id="btagregarArticulos" pref="182" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="EtiquetaValorHora" min="-2" max="-2" attributes="0"/>
+                                  <Component id="EtiquetaTiempo" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtCantidadArticulos" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="txtNombreArticulo" min="-2" pref="221" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -101,8 +106,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel9" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" alignment="0" groupAlignment="3" attributes="0">
@@ -128,28 +134,37 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxTNombreCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="JApellidosCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="TxtApellidosCliente" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="IDArticulo" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="txtIdArticulo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="JPrecioUnitario" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtPrecioUnitario" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtNombreArticulo" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="NombreArticulo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
                   </Group>
-                  <Component id="jLabel9" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="txtCantidadArticulos" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="Cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="JPrecioUnitario" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtPrecioUnitario" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="NombreArticulo" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtNombreArticulo" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="Cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtCantidadArticulos" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="Tiempo" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="EtiquetaTiempo" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -200,7 +215,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="Cliente">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Cliente:"/>
+        <Property name="text" type="java.lang.String" value="Id Cliente:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="Tiempo">
@@ -468,6 +483,26 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtIdArticulo">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jNombreCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Nombre :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="JApellidosCliente">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Apellidos :"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TxTNombreCliente">
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JTextField" name="TxtApellidosCliente">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
