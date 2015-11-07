@@ -48,7 +48,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     private DetalleFacturaBL DetalleFacturaBLModelo;
     private Calendar calendario = Calendar.getInstance();
     private String Fecha;
-    ArrayList<Articulos> listAr=new ArrayList();
+    ArrayList<DetalleFactura> listAr=new ArrayList();
 
     public FacturaControlador(AgregarFactura agregarFacturaView, FacturaBL FacturaBlModelo, ManteCliente mantClienteview, ClienteBL clienteBlModelo, ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, DetalleFacturaBL DetalleFacturaBLModelo) {
         this.agregarFacturaView = agregarFacturaView;
@@ -75,11 +75,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         inicializarPantalla();
     }
 
-    public ArrayList<Articulos> getListAr() {
+    public ArrayList<DetalleFactura> getListAr() {
         return listAr;
     }
 
-    public void setListAr(ArrayList<Articulos> listAr) {
+    public void setListAr(ArrayList<DetalleFactura> listAr) {
         this.listAr = listAr;
     }
     
@@ -174,17 +174,17 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     public void llenarTabla(JTable tablaArticulos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulos.setModel(modeloTabla);
+        modeloTabla.addColumn("Id Factura");
         modeloTabla.addColumn("Id Articulo");
-        modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Cantidad");
         modeloTabla.addColumn("Subtotal");
 
         Object fila[] = new Object[4];
-
-        for (Articulos a : listAr) {
-            fila[0] = a.getPK_IDArticulo();
-            fila[1] = a.getNombre();
-            fila[2] = a.getCantidadExistencia();
+        
+        for (DetalleFactura a : listAr) {
+            fila[0] = a.getFK_PK_idFacturacion();
+            fila[1] = a.getFK_PK_idArticulo();
+            fila[2] = a.getCantidad();
             fila[3] = a.getPrecioUnitario();
             modeloTabla.addRow(fila);
         }
@@ -327,10 +327,10 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             FacturaBControlador.getBuscarFacturaView().setVisible(true);
 
         }if(e.getSource() == this.agregarFacturaView.BtAgregarArticulo){
-            Articulos a = new Articulos();
-            a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
-            a.setNombre(this.agregarFacturaView.txtNombreArticulo.getText());
-            //a.setCantidadExistencia(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
+            DetalleFactura a = new DetalleFactura();
+            a.setFK_PK_idFacturacion(Integer.parseInt(this.agregarFacturaView.txtidFactura.getText()));
+            a.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            a.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
             a.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
             listAr.add(a);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
