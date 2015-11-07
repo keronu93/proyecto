@@ -81,16 +81,18 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
         this.mantTelfonoView.btEliminar.addActionListener(this);
         this.mantTelfonoView.btInsertar.addActionListener(this);
         this.mantTelfonoView.btModificar.addActionListener(this);
+        this.mantTelfonoView.txtidTelefono.getDocument().addDocumentListener(this);
+        //this.mantTelfonoView.txtIdCliente.getDocument().addDocumentListener(this);
         this.mantTelfonoView.btBuscar.addActionListener(this);
         this.mantTelfonoView.btEliminar.setEnabled(false);
         this.mantTelfonoView.btModificar.setEnabled(false);
-        this.mantTelfonoView.txtIdCliente.setEnabled(false);
-        this.mantTelfonoView.txtIdCliente.setText("Select cliente");
         inicializarPantalla();
     }
     
      private void inicializarPantalla() {
         this.mantTelfonoView.txtidTelefono.setEnabled(false);
+        this.mantTelfonoView.txtIdCliente.setEnabled(false);
+        this.mantTelfonoView.txtIdCliente.setText("Select cliente");
         llenarTabla(this.mantTelfonoView.jTableTelfono);
     }
      
@@ -362,7 +364,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
             t.setPk_idTelefono(Integer.parseInt(this.mantTelfonoView.txtidTelefono.getText()));
             try {
                 t = telefonoBLModelo.obtenerPorId(t);
-                this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
+                //this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
                 //this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
                 
                 //System.out.println("ojo:en el cargar "+t.getNumeroTelefono());
@@ -375,7 +377,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 if(t.getCodtipo()==3){
                     mantTelfonoView.chckOficina.setSelected(true);
                 }
-                this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono()));
+                this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(mantTelfonoView, "Error no se pudo consultar el Telefono (" + ex.getMessage() + ")",

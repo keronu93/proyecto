@@ -67,6 +67,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.btEliminar.addActionListener(this);
         this.agregarFacturaView.btagregarArticulos.addActionListener(this);
         this.agregarFacturaView.txtIdArticulo.getDocument().addDocumentListener(this);
+        this.agregarFacturaView.txtCliente.getDocument().addDocumentListener(this);
         
         
 
