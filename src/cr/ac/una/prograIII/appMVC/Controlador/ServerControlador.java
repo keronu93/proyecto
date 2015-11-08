@@ -178,17 +178,18 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     //si el sokect es la tiene la ip seleccionada
                         //se le envia un mensaje
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
-                        
+                        cliente.HoraFin();
+                        llenarTabla();
                         writer.println("Desconectado");
                         writer.flush();
                         
                     }
                 }
-                llenarTabla();
+                
             } catch (Exception ex) {
                  serverView.Chat_Servidor.append("Error no se puede Desconectar. \n");
             }
-
+            llenarTabla();
         }
     }
      
@@ -217,7 +218,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     llenarTabla();
                     
                     serverView.Chat_Servidor.append("tienes una conexion \n" + clientSock.getInetAddress());
-                    llenarTabla();
+                   
                 }
             } catch (Exception ex) {
                 serverView.Chat_Servidor.append("Error al realizar la conexión. \n");
@@ -292,9 +293,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 fila[1] = cliente.getSock().getInetAddress().toString();
                 fila[2] = cliente.getEstadoActivo().toString();
                 fila[3] = cliente.HoraInicio();
-                if(cliente.estadoActivo==true){
-                fila[4] = "sin definir";
-                }else
                 fila[4] = cliente.HoraFin();
                 
                 modeloTabla.addRow(fila); 
@@ -402,7 +400,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         this.nombrePC = mensajeEnPartes[1];
                         llenarTabla();// se llena la tabla de clientes
                     }
-                    
+                    llenarTabla();
                 }
             } catch (Exception ex) {
                 serverView.Chat_Servidor.append("conexion perdida. \n");
@@ -443,7 +441,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
             this.hoInicio = hoInicio;
         }
         public String HoraInicio(){
-           return getHora() + ":" + getMinutos() + ":" + getSegundos();
+             return  getHora() + ":" + getMinutos() + ":" + getSegundos();
         }
         public String HoraFin(){
              return getHorafin()+ ":" + getMinutosfin()+ ":" + getSegundosfin();
