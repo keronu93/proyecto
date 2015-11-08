@@ -160,7 +160,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
             serverView.Chat_Servidor.setText("");
 
         }
-        if (e.getSource() == this.serverView.btDesbloquear) {  
+        if (e.getSource() == this.serverView.BTDesconectar) {  
              try {
                 int fila = serverView.jTPC.getSelectedRow();
                 String ipSeleccionada = serverView.jTPC.getValueAt(fila, 1).toString();
@@ -181,15 +181,17 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         
                         writer.println("Desconectado");
                         writer.flush();
+                        
                     }
                 }
+                llenarTabla();
             } catch (Exception ex) {
                  serverView.Chat_Servidor.append("Error no se puede Desconectar. \n");
             }
-//            sendDisconnect();
-//            Disconnect();
+
         }
     }
+     
    
     public class ServerStart implements Runnable {
         @Override
