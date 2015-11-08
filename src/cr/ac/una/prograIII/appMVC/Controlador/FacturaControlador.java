@@ -58,7 +58,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
         this.DetalleFacturaBLModelo = DetalleFacturaBLModelo;
-        this.agregarFacturaView.btInsertar.addActionListener(this);
+        this.agregarFacturaView.btInsertarPC.addActionListener(this);
         this.agregarFacturaView.btBuscarCliente.addActionListener(this);
         this.agregarFacturaView.btBuscarId.addActionListener(this);
         this.agregarFacturaView.btCancelar.addActionListener(this);
@@ -170,7 +170,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.btEliminar.setEnabled(false);
         this.agregarFacturaView.TxTNombreCliente.setEnabled(false);
         this.agregarFacturaView.TxtApellidosCliente.setEnabled(false);
-        this.agregarFacturaView.btInsertar.setEnabled(false);
+        this.agregarFacturaView.btInsertarPC.setEnabled(false);
         llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
     }
 
@@ -182,7 +182,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         modeloTabla.addColumn("Cantidad");
         modeloTabla.addColumn("Precio Unitario");
 
-        Object fila[] = new Object[4];
+        Object fila[] = new Object[3];
         
         for (DetalleFactura df : listAr) {
             fila[0] = df.getFK_PK_idArticulo();
@@ -195,47 +195,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.agregarFacturaView.btInsertar) {
-            if(this.agregarFacturaView.txtCliente.getText().isEmpty()||this.agregarFacturaView.txtCantidadArticulos.getText().equals("")||this.agregarFacturaView.txtNombreArticulo.getText().equals("")||this.agregarFacturaView.txtPrecioUnitario.getText().equals(""))
-            {
-                JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
-            }
-            else{
-            Factura f = new Factura();
-            DetalleFactura df = new DetalleFactura();
-            f.setPk_idfacturacion(1); //como es auto generado no es relavante tomar el campo de texto id.
-            f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
-            df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
-            df.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
+        if (e.getSource() == this.agregarFacturaView.btInsertarPC) {
             
-            df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
-            try {
-
-                this.FacturaBlModelo.insertar(f);
-                this.DetalleFacturaBLModelo.insertar(df);
-                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-                //double total;
-                //int cant=Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText());
-                //int valor=Integer.parseInt(this.agregarFacturaView.txtPrecioUnitario.getText());
-                //total=cant*valor;
-                //this.agregarFacturaView.jlTotal.setText();
-                JOptionPane.showMessageDialog(agregarFacturaView, "la Factura ha sido ingresado correctamente", "Factura Agregada", JOptionPane.INFORMATION_MESSAGE);
-                this.agregarFacturaView.txtCantidadArticulos.setText(null);
-                this.agregarFacturaView.txtCliente.setText(null);
-                this.agregarFacturaView.txtIdArticulo.setText(null);
-                this.agregarFacturaView.txtNombreArticulo.setText(null);
-                this.agregarFacturaView.txtPrecioUnitario.setText(null);
-                this.agregarFacturaView.txtidFactura.setText(null);
-                
-            } catch (SQLException ex) {
-
-                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(agregarFacturaView, "Error al agregar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception ex) {
-                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(agregarFacturaView, "Error al eliminar la Factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
         }
         if (e.getSource() == this.agregarFacturaView.btEliminar) {
             Factura f = new Factura();

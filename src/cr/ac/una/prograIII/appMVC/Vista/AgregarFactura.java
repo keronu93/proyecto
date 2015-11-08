@@ -49,7 +49,7 @@ public class AgregarFactura extends javax.swing.JFrame {
         txtCliente = new javax.swing.JTextField();
         btBuscarCliente = new javax.swing.JButton();
         btCargar = new javax.swing.JButton();
-        btInsertar = new javax.swing.JButton();
+        btInsertarPC = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
         btBuscarId = new javax.swing.JButton();
@@ -67,6 +67,8 @@ public class AgregarFactura extends javax.swing.JFrame {
         TxtApellidosCliente = new javax.swing.JTextField();
         BtAgregarArticulo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        JNombrePC = new javax.swing.JLabel();
+        TxtNombreEquipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Factura");
@@ -143,16 +145,16 @@ public class AgregarFactura extends javax.swing.JFrame {
             }
         });
 
-        btInsertar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/agregar.png"))); // NOI18N
-        btInsertar.setText("Insertar");
-        btInsertar.addActionListener(new java.awt.event.ActionListener() {
+        btInsertarPC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/PCS.png"))); // NOI18N
+        btInsertarPC.setText("Buscar PC");
+        btInsertarPC.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btInsertarActionPerformed(evt);
+                btInsertarPCActionPerformed(evt);
             }
         });
 
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/elimiar.png"))); // NOI18N
-        btEliminar.setText("Eliminar");
+        btEliminar.setText("Eliminar Detalle");
 
         btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/cancelar.png"))); // NOI18N
         btCancelar.setText("Cancelar");
@@ -187,33 +189,38 @@ public class AgregarFactura extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/user.png"))); // NOI18N
 
+        JNombrePC.setText("Equipo :");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btCrearFac)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(TotalEtiqueta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(Cantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(ValorHora)
-                                .addComponent(Tiempo)
-                                .addComponent(NombreArticulo)
-                                .addComponent(JPrecioUnitario)
-                                .addComponent(IDArticulo)
-                                .addComponent(JApellidosCliente)
-                                .addComponent(jNombreCliente)
-                                .addComponent(Cliente)
-                                .addComponent(jLabelNumerodeFactura))
-                            .addComponent(btCrearFac))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(JNombrePC)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(Cantidad, javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(NombreArticulo)
+                                        .addComponent(JPrecioUnitario)
+                                        .addComponent(IDArticulo)
+                                        .addComponent(JApellidosCliente)
+                                        .addComponent(jNombreCliente)
+                                        .addComponent(Cliente)
+                                        .addComponent(jLabelNumerodeFactura)))
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EtiquetaTiempo)
-                                    .addComponent(EtiquetaValorHora)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(TxTNombreCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -237,26 +244,32 @@ public class AgregarFactura extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(jLabel1))))
                                     .addComponent(txtPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCantidadArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombreArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(txtNombreArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(TxtNombreEquipo, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(txtCantidadArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
+                                        .addGap(19, 19, 19)
+                                        .addComponent(btInsertarPC))))
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(66, 66, 66)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(ValorHora)
+                                    .addComponent(Tiempo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(EtiquetaValorHora)
+                                    .addComponent(EtiquetaTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(TotalEtiqueta)
-                                .addGap(18, 18, 18)
-                                .addComponent(jlTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addComponent(btInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCargar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(BtAgregarArticulo))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(BtAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -308,26 +321,34 @@ public class AgregarFactura extends javax.swing.JFrame {
                     .addComponent(txtCantidadArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(JNombrePC)
+                    .addComponent(TxtNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btInsertarPC))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Tiempo)
                     .addComponent(EtiquetaTiempo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(ValorHora)
                     .addComponent(EtiquetaValorHora))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(BtAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCrearFac)
-                    .addComponent(TotalEtiqueta)
-                    .addComponent(jlTotal))
+                    .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(TotalEtiqueta)
+                            .addComponent(jlTotal)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(13, 13, 13)
+                        .addComponent(btCrearFac, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -346,9 +367,9 @@ public class AgregarFactura extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btCargarActionPerformed
 
-    private void btInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInsertarActionPerformed
+    private void btInsertarPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInsertarPCActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btInsertarActionPerformed
+    }//GEN-LAST:event_btInsertarPCActionPerformed
 
     private void btBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarIdActionPerformed
 
@@ -405,12 +426,14 @@ public class AgregarFactura extends javax.swing.JFrame {
     private javax.swing.JLabel Fecha;
     private javax.swing.JLabel IDArticulo;
     private javax.swing.JLabel JApellidosCliente;
+    private javax.swing.JLabel JNombrePC;
     private javax.swing.JLabel JPrecioUnitario;
     private javax.swing.JLabel NombreArticulo;
     private javax.swing.JLabel Tiempo;
     private javax.swing.JLabel TotalEtiqueta;
     public javax.swing.JTextField TxTNombreCliente;
     public javax.swing.JTextField TxtApellidosCliente;
+    private javax.swing.JTextField TxtNombreEquipo;
     private javax.swing.JLabel ValorHora;
     public javax.swing.JButton btBuscarArticulos;
     public javax.swing.JButton btBuscarCliente;
@@ -419,7 +442,7 @@ public class AgregarFactura extends javax.swing.JFrame {
     public javax.swing.JButton btCargar;
     public javax.swing.JButton btCrearFac;
     public javax.swing.JButton btEliminar;
-    public javax.swing.JButton btInsertar;
+    public javax.swing.JButton btInsertarPC;
     public javax.swing.JLabel etiquetaFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelNumerodeFactura;
