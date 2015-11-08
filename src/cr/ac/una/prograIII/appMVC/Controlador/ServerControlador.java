@@ -178,18 +178,18 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     //si el sokect es la tiene la ip seleccionada
                         //se le envia un mensaje
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
-                        cliente.HoraFin();
-                        llenarTabla();
                         writer.println("Desconectado");
                         writer.flush();
+                        cliente.HoraFin();
                         
                     }
+                   
                 }
                 
             } catch (Exception ex) {
                  serverView.Chat_Servidor.append("Error no se puede Desconectar. \n");
             }
-            llenarTabla();
+            
         }
     }
      
@@ -293,7 +293,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 fila[1] = cliente.getSock().getInetAddress().toString();
                 fila[2] = cliente.getEstadoActivo().toString();
                 fila[3] = cliente.HoraInicio();
-                fila[4] = cliente.HoraFin();
+                fila[4] = cliente.getHoFin();
                 
                 modeloTabla.addRow(fila); 
                 
