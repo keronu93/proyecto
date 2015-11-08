@@ -170,24 +170,24 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.btEliminar.setEnabled(false);
         this.agregarFacturaView.TxTNombreCliente.setEnabled(false);
         this.agregarFacturaView.TxtApellidosCliente.setEnabled(false);
+        this.agregarFacturaView.btInsertar.setEnabled(false);
         llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
     }
 
     public void llenarTabla(JTable tablaArticulos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulos.setModel(modeloTabla);
-        modeloTabla.addColumn("Id Factura");
+       
         modeloTabla.addColumn("Id Articulo");
         modeloTabla.addColumn("Cantidad");
-        modeloTabla.addColumn("Subtotal");
+        modeloTabla.addColumn("Precio Unitario");
 
         Object fila[] = new Object[4];
         
         for (DetalleFactura df : listAr) {
-            fila[0] = df.getFK_PK_idFacturacion();
-            fila[1] = df.getFK_PK_idArticulo();
-            fila[2] = df.getCantidad();
-            fila[3] = df.getPrecioUnitario();
+            fila[0] = df.getFK_PK_idArticulo();
+            fila[1] = df.getCantidad();
+            fila[2] = df.getPrecioUnitario();
             modeloTabla.addRow(fila);
         }
         tablaArticulos.setModel(modeloTabla);
@@ -331,12 +331,23 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         }if(e.getSource() == this.agregarFacturaView.BtAgregarArticulo){
             DetalleFactura df = new DetalleFactura();
 //            df.setFK_PK_idFacturacion(Integer.parseInt(this.agregarFacturaView.txtidFactura.getText()));
-            //df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
             df.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
+            int can;
+            double precio,subtotal;
+            double total=Double.parseDouble(this.agregarFacturaView.jlTotal.getText());
+            can=Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText());
+            precio=Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText());
+            subtotal=this.calcularSubtotal(precio, can);
+            total=this.calcularTotal(total, subtotal);
+            this.agregarFacturaView.jlTotal.setText(String.valueOf(total));
             listAr.add(df);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-            
+            this.agregarFacturaView.txtIdArticulo.setText("");
+            this.agregarFacturaView.txtCantidadArticulos.setText("");
+            this.agregarFacturaView.txtNombreArticulo.setText("");
+            this.agregarFacturaView.txtPrecioUnitario.setText("");
         }
         if(e.getSource() == this.agregarFacturaView.btCrearFac){
             if(this.agregarFacturaView.jTableDetalleFactura.equals("")){
@@ -396,6 +407,12 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         }
     }
     
-    
+    public double calcularSubtotal(double precio, int cantidad){
+        double total=0.0;
+        return total=precio*cantidad;
+    }
+    public double calcularTotal(double total,double subtotal){
+        return total=total+subtotal;
+    }
 
 }
