@@ -48,7 +48,7 @@ public class AgregarFactura extends javax.swing.JFrame {
         txtidFactura = new javax.swing.JTextField();
         txtCliente = new javax.swing.JTextField();
         btBuscarCliente = new javax.swing.JButton();
-        btCargar = new javax.swing.JButton();
+        btAnulaFac = new javax.swing.JButton();
         btInsertarPC = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -137,11 +137,11 @@ public class AgregarFactura extends javax.swing.JFrame {
             }
         });
 
-        btCargar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/upload.png"))); // NOI18N
-        btCargar.setText("Cargar");
-        btCargar.addActionListener(new java.awt.event.ActionListener() {
+        btAnulaFac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/elimiar.png"))); // NOI18N
+        btAnulaFac.setText("Anular Factura");
+        btAnulaFac.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btCargarActionPerformed(evt);
+                btAnulaFacActionPerformed(evt);
             }
         });
 
@@ -263,7 +263,7 @@ public class AgregarFactura extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btAnulaFac, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -335,7 +335,7 @@ public class AgregarFactura extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btCargar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btAnulaFac, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -363,9 +363,9 @@ public class AgregarFactura extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btBuscarClienteActionPerformed
 
-    private void btCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCargarActionPerformed
+    private void btAnulaFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnulaFacActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btCargarActionPerformed
+    }//GEN-LAST:event_btAnulaFacActionPerformed
 
     private void btInsertarPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInsertarPCActionPerformed
         // TODO add your handling code here:
@@ -435,11 +435,11 @@ public class AgregarFactura extends javax.swing.JFrame {
     public javax.swing.JTextField TxtApellidosCliente;
     private javax.swing.JTextField TxtNombreEquipo;
     private javax.swing.JLabel ValorHora;
+    public javax.swing.JButton btAnulaFac;
     public javax.swing.JButton btBuscarArticulos;
     public javax.swing.JButton btBuscarCliente;
     public javax.swing.JButton btBuscarId;
     public javax.swing.JButton btCancelar;
-    public javax.swing.JButton btCargar;
     public javax.swing.JButton btCrearFac;
     public javax.swing.JButton btEliminar;
     public javax.swing.JButton btInsertarPC;

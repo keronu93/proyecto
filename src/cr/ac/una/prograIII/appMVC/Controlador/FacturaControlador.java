@@ -62,7 +62,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.btBuscarCliente.addActionListener(this);
         this.agregarFacturaView.btBuscarId.addActionListener(this);
         this.agregarFacturaView.btCancelar.addActionListener(this);
-        this.agregarFacturaView.btCargar.addActionListener(this);
+        this.agregarFacturaView.btAnulaFac.addActionListener(this);
         this.agregarFacturaView.btCrearFac.addActionListener(this);
         this.agregarFacturaView.btEliminar.addActionListener(this);
         this.agregarFacturaView.BtAgregarArticulo.addActionListener(this);
@@ -226,7 +226,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }
 
         }
-        if (e.getSource() == this.agregarFacturaView.btCargar) {
+        if (e.getSource() == this.agregarFacturaView.btAnulaFac) {
             Factura f = new Factura();
             DetalleFactura df = new DetalleFactura();
             int fila = this.agregarFacturaView.jTableDetalleFactura.getSelectedRow();
@@ -309,16 +309,29 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             this.agregarFacturaView.txtNombreArticulo.setText("");
             this.agregarFacturaView.txtPrecioUnitario.setText("");
             } catch (Exception ex) {
-                Logger.getLogger(ClienteControlador.class.getName()).log(Level.SEVERE, null, ex);
-                JOptionPane.showMessageDialog(mantClienteview, "Error al eliminar el Cliente:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error al agregar el detalle a la factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
             }
         }
         if(e.getSource() == this.agregarFacturaView.btCrearFac){
-            if(this.agregarFacturaView.jTableDetalleFactura.equals("")){
-                JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
+            if(listAr.isEmpty()){
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan agregar detalles para crear la factura:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
             }else{
-                
+               Factura f=new Factura();
+               f.setPk_idfacturacion(1);
+               f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
+               f.setFecha(this.agregarFacturaView.etiquetaFecha.getText());
+               try{
+               this.FacturaBlModelo.insertar(f);
+               JOptionPane.showMessageDialog(agregarFacturaView, "La factura ha sido creada correctamente", "Factura", JOptionPane.INFORMATION_MESSAGE);
+               }catch (SQLException ex) {
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error al facturar:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            } catch (Exception ex) {
+                Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error al facturar:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            }
             }
         }
     }

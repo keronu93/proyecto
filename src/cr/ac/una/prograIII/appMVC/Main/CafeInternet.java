@@ -7,12 +7,15 @@ package cr.ac.una.prograIII.appMVC.Main;
 
 
 import cr.ac.una.prograIII.appMVC.Controlador.ControladorSistAdministracion;
+import cr.ac.una.prograIII.appMVC.Controlador.ServerControlador;
 import cr.ac.una.prograIII.appMVC.Vista.InterFazSistemaAdministracion;
+import cr.ac.una.prograIII.appMVC.Vista.Server;
 import cr.ac.una.prograIII.appMVC.bl.ArticuloBL;
 import cr.ac.una.prograIII.appMVC.bl.ClienteBL;
 import cr.ac.una.prograIII.appMVC.bl.ProveedorBL;
 import cr.ac.una.prograIII.appMVC.bl.TelefonoBL;
 import cr.ac.una.prograIII.appMVC.bl.UsuarioBL;
+import java.util.ArrayList;
 
 /**
  *
@@ -35,6 +38,10 @@ public class CafeInternet {
           ControladorSistAdministracion admiControlador= new ControladorSistAdministracion(manteAdmiView,articuloBlModelo,clienteBlModelo,proveedorBlModelo,telefonoBlModelo,usuarioBLModelo);
     
           admiControlador.getManteAdmiView().setVisible(true);
+          ArrayList<ServerControlador.ClienteHilo> listaClientes =new ArrayList<>();
+          Server manteServerView = new Server();
+          ServerControlador serControlador = new ServerControlador(manteServerView,listaClientes);
+          serControlador.getServerView().setVisible(true);
     }
     
 }

@@ -16,8 +16,10 @@ public class Server extends javax.swing.JFrame {
      */
     public Server() {
         initComponents();
+        
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        
     }
 
     /**
@@ -40,7 +42,7 @@ public class Server extends javax.swing.JFrame {
         jTPC = new javax.swing.JTable();
         BtBloquear = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Servidor");
 
         btDesbloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Candado.png"))); // NOI18N
