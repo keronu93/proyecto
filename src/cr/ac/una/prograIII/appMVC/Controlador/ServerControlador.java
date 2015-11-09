@@ -107,6 +107,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         
                         writer.println("Desbloqueado");
+                        cliente.setEstadoActivo(true);
+                        llenarTabla();
                         writer.flush();
                     }
                 }
@@ -133,7 +135,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         //se le envia un mensaje
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         writer.println("Bloqueado");
-                        
+                        cliente.setEstadoActivo(false);
+                        llenarTabla();
                         
                         writer.flush();
                     }

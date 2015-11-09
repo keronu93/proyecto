@@ -317,6 +317,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         if(e.getSource() == this.agregarFacturaView.btCrearFac){
             if(this.agregarFacturaView.jTableDetalleFactura.equals("")){
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
+            }else{
+                
             }
         }
     }
