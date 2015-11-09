@@ -301,6 +301,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             total=this.calcularTotal(total, subtotal);
             this.agregarFacturaView.jlTotal.setText(String.valueOf(total));
             try {
+                 
             listAr.add(df);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
             this.agregarFacturaView.txtIdArticulo.setText("");
