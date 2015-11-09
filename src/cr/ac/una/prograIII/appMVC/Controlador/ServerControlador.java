@@ -181,6 +181,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         writer.println("Desconectado");
                         writer.flush();
                         cliente.HoraFin();
+                        llenarTabla();
                         
                     }
                    
