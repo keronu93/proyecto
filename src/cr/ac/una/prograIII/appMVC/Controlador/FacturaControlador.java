@@ -202,22 +202,19 @@ public class FacturaControlador implements ActionListener, DocumentListener {
 
             int fila = this.agregarFacturaView.jTableDetalleFactura.getSelectedRow();
             int idArticulo = Integer.parseInt(this.agregarFacturaView.jTableDetalleFactura.getValueAt(fila, 0).toString());
-            int cant= Integer.parseInt(this.agregarFacturaView.jTableDetalleFactura.getValueAt(fila, 1).toString());
-            double precio= Double.parseDouble(this.agregarFacturaView.jTableDetalleFactura.getValueAt(fila, 2).toString());
+            
             df.setFK_PK_idArticulo(idArticulo);
-            df.setPrecioUnitario(precio);
-            df.setCantidad(cant);
+            
             
             try {
                 int resp;
                 resp = JOptionPane.showConfirmDialog(agregarFacturaView, "Esta seguro que desea eliminar el detalle de esta factura");
                 if (resp == 0) {
-                    Boolean r;
-                    r=listAr.contains(df.getFK_PK_idArticulo().equals(this.agregarFacturaView.jTableDetalleFactura.getValueAt(fila, 0).toString()));
+                    listAr.remove(fila);
                     llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
                     JOptionPane.showMessageDialog(agregarFacturaView, "El detalle ha sido eliminado correctamente", "Proveedor Eliminado", JOptionPane.INFORMATION_MESSAGE);
                     
-                    System.out.println("ojo los detalles: "+r);
+                    
                 }
                 if (resp == 1) {
                     JOptionPane.showMessageDialog(agregarFacturaView, "El detalle no sera eliminado ",
