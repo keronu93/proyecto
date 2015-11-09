@@ -39,11 +39,7 @@
                               <Component id="btUsuariosEnLinea" alignment="1" pref="160" max="32767" attributes="0"/>
                               <Component id="btLimpiarPantalla" alignment="1" pref="160" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BTDesconectar" min="-2" pref="150" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
-                              <Component id="BtBloquear" min="-2" pref="160" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="BtBloquear" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
@@ -74,7 +70,6 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtBloquear" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="btDesbloquear" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                  <Component id="BTDesconectar" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -242,17 +237,6 @@
           <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/Candado1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Bloquear"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JButton" name="BTDesconectar">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/PCS.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Desconectar PC"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
