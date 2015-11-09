@@ -276,8 +276,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("IP");
         modeloTabla.addColumn("Estado");
-        modeloTabla.addColumn("Hora Inicio");
-        modeloTabla.addColumn("Hora Fin");
+        modeloTabla.addColumn("Hora Conexion");
+        modeloTabla.addColumn("Hora Desconexion");
         TableColumnModel columnModel = serverView.jTPC.getColumnModel();
         columnModel.getColumn(2).setPreferredWidth(80);
 
