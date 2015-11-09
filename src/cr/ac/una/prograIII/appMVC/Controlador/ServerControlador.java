@@ -160,13 +160,13 @@ public class ServerControlador implements ActionListener, DocumentListener {
             serverView.Chat_Servidor.setText("");
 
         }
-        if (e.getSource() == this.serverView.BTDesconectar) {  
-             try {
+        if (e.getSource() == this.serverView.BTDesconectar) {
+            try {
                 int fila = serverView.jTPC.getSelectedRow();
                 String ipSeleccionada = serverView.jTPC.getValueAt(fila, 1).toString();
                 String nombrePCSeleccionado = serverView.jTPC.getValueAt(fila, 0).toString();
 
-            //*****************************************************
+                //*****************************************************
                 //se recorre la lista de clientes y se verifica a cual
                 //sokect se le quiere enviar el mensaja (el seleccionado 
                 //en la tabla)
@@ -175,22 +175,22 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     //se optiene la IP del sokect para compararla con la seleccionada
                     String ipCliente = cliente.getSock().getInetAddress().toString();
                     if (ipCliente.equals(ipSeleccionada) && cliente.getNombrePC().endsWith(nombrePCSeleccionado)) {
-                    //si el sokect es la tiene la ip seleccionada
+                        //si el sokect es la tiene la ip seleccionada
                         //se le envia un mensaje
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         writer.println("Desconectado");
                         writer.flush();
                         cliente.HoraFin();
                         llenarTabla();
-                        
+
                     }
-                   
+
                 }
-                
+
             } catch (Exception ex) {
-                 serverView.Chat_Servidor.append("Error no se puede Desconectar. \n");
+                serverView.Chat_Servidor.append("Error no se puede Desconectar. \n");
             }
-            
+
         }
     }
      
@@ -294,8 +294,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 fila[1] = cliente.getSock().getInetAddress().toString();
                 fila[2] = cliente.getEstadoActivo().toString();
                 fila[3] = cliente.HoraInicio();
-                fila[4] = cliente.getHoFin();
-                
+                if(cliente.getEstadoActivo()==false){
+                fila[4] = cliente.HoraFin();
+                }
                 modeloTabla.addRow(fila); 
                 
                 
@@ -401,7 +402,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         this.nombrePC = mensajeEnPartes[1];
                         llenarTabla();// se llena la tabla de clientes
                     }
-                    llenarTabla();
+                    
                 }
             } catch (Exception ex) {
                 serverView.Chat_Servidor.append("conexion perdida. \n");
