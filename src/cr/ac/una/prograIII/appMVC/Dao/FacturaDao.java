@@ -29,11 +29,12 @@ public class FacturaDao implements IBaseDao<Factura> {
     @Override
     public void insertar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente,Fecha ,ult_Usuario,ult_Fecha) values "
+        CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente, Fecha, total ,ult_Usuario,ult_Fecha) values "
                 + "(?,?,?,curdate())");
         cs.setInt(1, obj.getFk_idCliente());
         cs.setString(2, obj.getFecha());
-        cs.setString(3, obj.getUltUsuario());
+        cs.setDouble(3, obj.getTotal());
+        cs.setString(4, obj.getUltUsuario());
         cs.executeUpdate();
         con.close();
     }

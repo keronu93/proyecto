@@ -73,7 +73,7 @@ public class FacturaBuscarControlador implements  ActionListener {
 
         Object fila[] = new Object[4];
         
-        String Sql = "where PK_idFacturacion like '%"+ this.buscarFacturaView.txtBuscar.getText() +"%'";
+        String Sql = "where FK_idCliente like '%"+ this.buscarFacturaView.txtBuscar.getText() +"%'";
 
         try {
             for (Object oAux : facturablModelo.obtenerConWhere(new Factura(), Sql)) {
@@ -81,7 +81,7 @@ public class FacturaBuscarControlador implements  ActionListener {
                 fila[0] = f.getPk_idfacturacion();
                 fila[1] = f.getFk_idCliente();
                 fila[2] = f.getFecha();
-                
+                fila[3] = f.getTotal();
                 
                 modeloTabla.addRow(fila);
             }
