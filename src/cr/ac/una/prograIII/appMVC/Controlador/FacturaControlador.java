@@ -24,6 +24,8 @@ import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -51,7 +53,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     private DetalleFacturaBL DetalleFacturaBLModelo;
     private Calendar calendario = Calendar.getInstance();
     private Date Fecha;
-    ArrayList<DetalleFactura> listAr=new ArrayList();
+    ArrayList<Articulos> listAr=new ArrayList();
 
     public FacturaControlador(AgregarFactura agregarFacturaView, FacturaBL FacturaBlModelo, ManteCliente mantClienteview, ClienteBL clienteBlModelo, ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, DetalleFacturaBL DetalleFacturaBLModelo) {
         this.agregarFacturaView = agregarFacturaView;
@@ -78,11 +80,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         inicializarPantalla();
     }
 
-    public ArrayList<DetalleFactura> getListAr() {
+    public ArrayList<Articulos> getListAr() {
         return listAr;
     }
 
-    public void setListAr(ArrayList<DetalleFactura> listAr) {
+    public void setListAr(ArrayList<Articulos> listAr) {
         this.listAr = listAr;
     }
 
@@ -185,10 +187,10 @@ public class FacturaControlador implements ActionListener, DocumentListener {
 
         Object fila[] = new Object[3];
         
-        for (DetalleFactura df : listAr) {
-            fila[0] = df.getFK_PK_idArticulo();
-            fila[1] = df.getCantidad();
-            fila[2] = df.getPrecioUnitario();
+        for (Articulos a : listAr) {
+            fila[0] = a.getPK_IDArticulo();
+            fila[1] = a.getCantidadExistencia();
+            fila[2] = a.getPrecioUnitario();
             modeloTabla.addRow(fila);
         }
         tablaArticulos.setModel(modeloTabla);
@@ -294,12 +296,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             if(agregarFacturaView.TxTNombreCliente.getText().equals("")||agregarFacturaView.TxtApellidosCliente.getText().equals("")||agregarFacturaView.txtCantidadArticulos.getText().equals("")||agregarFacturaView.txtCliente.getText().equals("")||agregarFacturaView.txtIdArticulo.getText().equals("")||agregarFacturaView.txtNombreArticulo.getText().equals("")||agregarFacturaView.txtPrecioUnitario.getText().equals("")){
                  JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al agregar detalle", JOptionPane.ERROR_MESSAGE);
             }else{
-            DetalleFactura df = new DetalleFactura();
-//            df.setFK_PK_idFacturacion(Integer.parseInt(this.agregarFacturaView.txtidFactura.getText()));
             
-            df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
-            df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
-            df.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
             int can;
             double precio,subtotal;
             double total=Double.parseDouble(this.agregarFacturaView.jlTotal.getText());
@@ -312,9 +309,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             try {
             a=ArticuloBLModelo.obtenerPorId(a);    
             if(existenciaArticulos(a, can)){
-            a.setCantidadExistencia(a.getCantidadExistencia()-can);
-            ArticuloBLModelo.modificar(a);
-            listAr.add(df);
+            a.setCantidadExistencia(can);
+            listAr.add(a);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
             
             subtotal=this.calcularSubtotal(precio, can);
@@ -344,10 +340,33 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));  
                f.setFecha(calendario.getTime().toString());
                f.setTotal(Double.parseDouble(this.agregarFacturaView.jlTotal.getText()));
+               
+               int idAux=0;
+               MySQLConexion conexion = new MySQLConexion();
+               Connection con;
+               
                try{
+               con = conexion.getConexion();
                this.FacturaBlModelo.insertar(f);
-               MySQLConexion con = new MySQLConexion();
                CallableStatement cs = con.prepareCall("select MAX(PK_idFacturacion) from Facturacion");
+               ResultSet result = cs.executeQuery();
+               if(result.next()){
+                   idAux= result.getInt(1);
+               }
+               con.close();
+               int cantAux;
+                   for (Articulos a : listAr) {
+                       DetalleFactura detalle = new DetalleFactura();
+                       detalle.setFK_PK_idArticulo(a.getPK_IDArticulo());
+                       detalle.setFK_PK_idFacturacion(idAux);
+                       detalle.setPrecioUnitario(a.getPrecioUnitario());
+                       cantAux=a.getCantidadExistencia();
+                       a=ArticuloBLModelo.obtenerPorId(a);
+                       a.setCantidadExistencia(a.getCantidadExistencia()-cantAux);
+                       ArticuloBLModelo.modificar(a);
+                       detalle.setCantidad(cantAux);
+                       DetalleFacturaBLModelo.insertar(detalle);
+                   }
                JOptionPane.showMessageDialog(agregarFacturaView, "La factura ha sido creada correctamente", "Factura", JOptionPane.INFORMATION_MESSAGE);
                this.agregarFacturaView.txtCliente.setText("");
                this.agregarFacturaView.TxTNombreCliente.setText("");
