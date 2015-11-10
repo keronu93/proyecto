@@ -30,7 +30,7 @@ public class FacturaDao implements IBaseDao<Factura> {
     public void insertar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into Facturacion(FK_idCliente, Fecha, total ,ult_Usuario,ult_Fecha) values "
-                + "(?,?,?,curdate())");
+                                                + "(?,?,?,?,curdate())");
         cs.setInt(1, obj.getFk_idCliente());
         cs.setString(2, obj.getFecha());
         cs.setDouble(3, obj.getTotal());
@@ -43,11 +43,11 @@ public class FacturaDao implements IBaseDao<Factura> {
     public void modificar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("update Facturacion set FK_PK_idFacturacion= ?,"
-                + "Fk_idCliente=?,"
-                + "Fecha=?"
-                + "ult_Usuario=?,"
-                + "ult_Fecha = curdate()"
-                + "where Pk_idfacturacion=? ");
+                                               + "Fk_idCliente=?,"
+                                               + "Fecha=?"
+                                               + "ult_Usuario=?,"
+                                               + "ult_Fecha = curdate()"
+                                                + "where Pk_idfacturacion=? ");
         cs.setInt(1, obj.getFk_idCliente());
         cs.setString(2, obj.getFecha());
         cs.setString(3, obj.getUltUsuario());
@@ -82,6 +82,7 @@ public class FacturaDao implements IBaseDao<Factura> {
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
             f.setFecha(result.getString("Fecha"));
+            f.setTotal(result.getDouble("total"));
             f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
@@ -99,6 +100,7 @@ public class FacturaDao implements IBaseDao<Factura> {
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
             f.setFecha(result.getString("Fecha"));
+            f.setTotal(result.getDouble("total"));
             f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
@@ -117,6 +119,7 @@ public class FacturaDao implements IBaseDao<Factura> {
             f.setPk_idfacturacion(result.getInt("Pk_idfacturacion"));
             f.setFk_idCliente(result.getInt("Fk_idCliente"));
             f.setFecha(result.getString("Fecha"));
+            f.setTotal(result.getDouble("total"));
             f.setUltUsuario(result.getString("ult_Usuario"));
         }
         con.close();
