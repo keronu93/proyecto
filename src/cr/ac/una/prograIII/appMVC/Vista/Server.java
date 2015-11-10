@@ -17,10 +17,10 @@ public class Server extends javax.swing.JFrame {
     public Server() {
         initComponents();
         
-        //this.setLocationRelativeTo(null);
-        this.setLocation(750, 50);
+        this.setLocationRelativeTo(null);
+        //this.setLocation(750, 50);
         this.setResizable(false);
-        this.setAlwaysOnTop( true );
+        //this.setAlwaysOnTop( true );
         
         
     }
