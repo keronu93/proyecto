@@ -297,17 +297,30 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             double total=Double.parseDouble(this.agregarFacturaView.jlTotal.getText());
             can=Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText());
             precio=Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText());
+            
+            Articulos a=new Articulos();
+            a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
+            
+            try {
+            a=ArticuloBLModelo.obtenerPorId(a);    
+            if(existenciaArticulos(a, can)){
+            a.setCantidadExistencia(a.getCantidadExistencia()-can);
+            ArticuloBLModelo.modificar(a);
+            listAr.add(df);
+            llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+            
             subtotal=this.calcularSubtotal(precio, can);
             total=this.calcularTotal(total, subtotal);
             this.agregarFacturaView.jlTotal.setText(String.valueOf(total));
-            try {
-                 
-            listAr.add(df);
-            llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+            
             this.agregarFacturaView.txtIdArticulo.setText("");
             this.agregarFacturaView.txtCantidadArticulos.setText("");
             this.agregarFacturaView.txtNombreArticulo.setText("");
             this.agregarFacturaView.txtPrecioUnitario.setText("");
+            }else{
+                JOptionPane.showMessageDialog(agregarFacturaView, "Error no hay suficientes articulos en el inventario:", "Error al agregar detalle", JOptionPane.ERROR_MESSAGE);
+                this.agregarFacturaView.txtCantidadArticulos.setText("");
+            }
             } catch (Exception ex) {
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al agregar el detalle a la factura:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -401,5 +414,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     public double calcularTotal(double total,double subtotal){
         return total=total+subtotal;
     }
-
+    
+    public boolean existenciaArticulos(Articulos a, int cant){
+        if(cant < a.getCantidadExistencia()){
+            return true;
+        }else
+            return false;
+    }
 }
