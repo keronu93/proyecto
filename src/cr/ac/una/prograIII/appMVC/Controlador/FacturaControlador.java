@@ -349,6 +349,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                this.agregarFacturaView.TxtApellidosCliente.setText("");
                listAr.clear();
                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+                   System.out.println("ojo total " + f.getTotal() );
                }catch (SQLException ex) {
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al facturar:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
