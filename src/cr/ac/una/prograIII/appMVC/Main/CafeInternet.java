@@ -42,6 +42,8 @@ public class CafeInternet {
           Server manteServerView = new Server();
           ServerControlador serControlador = new ServerControlador(manteServerView,listaClientes);
           serControlador.getServerView().setVisible(true);
+          System.out.println("prueba");
+               
     }
     
 }
