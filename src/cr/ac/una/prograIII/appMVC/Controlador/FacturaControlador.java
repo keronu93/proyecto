@@ -294,6 +294,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }else{
             DetalleFactura df = new DetalleFactura();
 //            df.setFK_PK_idFacturacion(Integer.parseInt(this.agregarFacturaView.txtidFactura.getText()));
+            
             df.setFK_PK_idArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             df.setCantidad(Integer.parseInt(this.agregarFacturaView.txtCantidadArticulos.getText()));
             df.setPrecioUnitario(Double.parseDouble(this.agregarFacturaView.txtPrecioUnitario.getText()));
