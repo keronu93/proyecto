@@ -5,6 +5,7 @@
  */
 package cr.ac.una.prograIII.appMVC.Controlador;
 
+import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.prograIII.appMVC.Domain.Articulos;
 import cr.ac.una.prograIII.appMVC.Domain.Cliente;
 import cr.ac.una.prograIII.appMVC.Domain.DetalleFactura;
@@ -22,6 +23,7 @@ import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.CallableStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -344,6 +346,8 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                f.setTotal(Double.parseDouble(this.agregarFacturaView.jlTotal.getText()));
                try{
                this.FacturaBlModelo.insertar(f);
+               MySQLConexion con = new MySQLConexion();
+               CallableStatement cs = con.prepareCall("select MAX(PK_idFacturacion) from Facturacion");
                JOptionPane.showMessageDialog(agregarFacturaView, "La factura ha sido creada correctamente", "Factura", JOptionPane.INFORMATION_MESSAGE);
                this.agregarFacturaView.txtCliente.setText("");
                this.agregarFacturaView.TxTNombreCliente.setText("");

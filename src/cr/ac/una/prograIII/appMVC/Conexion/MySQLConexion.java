@@ -95,4 +95,8 @@ public class MySQLConexion {
     public void setPuerto(String puerto) {
         this.puerto = puerto;
     }
+
+    public CallableStatement prepareCall(String select_MAXPK_idFacturacion_from_Facturaci) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
