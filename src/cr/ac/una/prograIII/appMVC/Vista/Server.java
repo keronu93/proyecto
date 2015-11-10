@@ -19,6 +19,8 @@ public class Server extends javax.swing.JFrame {
         
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setAlwaysOnTop( true );
+        
         
     }
 
