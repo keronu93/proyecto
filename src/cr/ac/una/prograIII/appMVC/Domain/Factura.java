@@ -13,18 +13,30 @@ public class Factura extends BaseDomain {
     private Integer Pk_idfacturacion;
     private Integer Fk_idCliente;
     private String Fecha;
+    private double Total;
 
-    public Factura(Integer Pk_idfacturacion, Integer Fk_idCliente, String Fecha, String ultUsuario, String ultFecha) {
+    public Factura(Integer Pk_idfacturacion, Integer Fk_idCliente, String Fecha, String ultUsuario, String ultFecha, Double Total) {
         super(ultUsuario, ultFecha);
         this.Pk_idfacturacion = Pk_idfacturacion;
         this.Fk_idCliente = Fk_idCliente;
         this.Fecha = Fecha;
+        this.Total = Total;
     }
 
 
     public Factura() {
     }
 
+    public double getTotal() {
+        return Total;
+    }
+
+    public void setTotal(double Total) {
+        this.Total = Total;
+    }
+
+    
+    
     public Integer getPk_idfacturacion() {
         return Pk_idfacturacion;
     }

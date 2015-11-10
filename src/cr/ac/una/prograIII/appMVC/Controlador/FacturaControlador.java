@@ -338,10 +338,9 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }else{
                Factura f=new Factura();
                f.setPk_idfacturacion(1);
-               f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
-               
+               f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));  
                f.setFecha(calendario.getTime().toString());
-            
+               f.setTotal(Double.parseDouble(this.agregarFacturaView.jlTotal.getText()));
                try{
                this.FacturaBlModelo.insertar(f);
                JOptionPane.showMessageDialog(agregarFacturaView, "La factura ha sido creada correctamente", "Factura", JOptionPane.INFORMATION_MESSAGE);
