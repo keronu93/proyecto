@@ -33,6 +33,7 @@ public class FacturaBuscarControlador implements  ActionListener {
         this.txtRespuesta = txtRespuesta;
         this.buscarFacturaView.btBuscar1.addActionListener(this);
         this.buscarFacturaView.btSeleccionar.addActionListener(this);
+        llenarTabla(this.buscarFacturaView.tablaFacturas);
     }
 
     public BuscarFactura getBuscarFacturaView() {

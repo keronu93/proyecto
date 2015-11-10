@@ -25,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -47,7 +48,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     private ArticuloBL ArticuloBLModelo;
     private DetalleFacturaBL DetalleFacturaBLModelo;
     private Calendar calendario = Calendar.getInstance();
-    private String Fecha;
+    private Date Fecha;
     ArrayList<DetalleFactura> listAr=new ArrayList();
 
     public FacturaControlador(AgregarFactura agregarFacturaView, FacturaBL FacturaBlModelo, ManteCliente mantClienteview, ClienteBL clienteBlModelo, ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, DetalleFacturaBL DetalleFacturaBLModelo) {
@@ -83,13 +84,11 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.listAr = listAr;
     }
 
-    
-    
-    public String getFecha() {
+    public Date getFecha() {
         return Fecha;
     }
 
-    public void setFecha(String Fecha) {
+    public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
 
@@ -158,6 +157,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     }
 
     private void inicializarPantalla() {
+        
         this.agregarFacturaView.txtidFactura.setEnabled(false);
         this.agregarFacturaView.txtCliente.setEnabled(false);
         this.agregarFacturaView.txtIdArticulo.setEnabled(false);
@@ -321,10 +321,17 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                Factura f=new Factura();
                f.setPk_idfacturacion(1);
                f.setFk_idCliente(Integer.parseInt(this.agregarFacturaView.txtCliente.getText()));
-               f.setFecha(this.agregarFacturaView.etiquetaFecha.getText());
+               
+               f.setFecha(calendario.getTime().toString());
+            
                try{
                this.FacturaBlModelo.insertar(f);
                JOptionPane.showMessageDialog(agregarFacturaView, "La factura ha sido creada correctamente", "Factura", JOptionPane.INFORMATION_MESSAGE);
+               this.agregarFacturaView.txtCliente.setText("");
+               this.agregarFacturaView.TxTNombreCliente.setText("");
+               this.agregarFacturaView.TxtApellidosCliente.setText("");
+               listAr.clear();
+               llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
                }catch (SQLException ex) {
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al facturar:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
