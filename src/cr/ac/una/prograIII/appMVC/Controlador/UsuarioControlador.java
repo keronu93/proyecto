@@ -104,14 +104,14 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == this.mantUsuarioview.btInsertar) {
-            if(this.mantUsuarioview.txtNombre.getText().equals("")||this.mantUsuarioview.txtUsuario.getText().equals("")||this.mantUsuarioview.txtContraseña.getText().equals("")){
+            if(this.mantUsuarioview.txtNombre.getText().equals("")||this.mantUsuarioview.txtUsuario.getText().equals("")||this.mantUsuarioview.txtContraseña.getPassword().equals("")){
                 JOptionPane.showMessageDialog(mantUsuarioview, "Error faltan espacios por rellenar:", "Error en ingresar el Usuario", JOptionPane.ERROR_MESSAGE);
             }else{
             Usuario u = new Usuario();
             u.setPK_idUsuario(1); 
             u.setNombre(this.mantUsuarioview.txtNombre.getText());
             u.setUsuario(this.mantUsuarioview.txtUsuario.getText());
-            u.setContraseña(this.mantUsuarioview.txtContraseña.getText());
+            u.setContraseña(this.mantUsuarioview.txtContraseña.getSelectedText());
             
             try {
                 //se agrega el socio a la base de datos
@@ -137,7 +137,6 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
             Usuario u = new Usuario();
             int fila = this.mantUsuarioview.jTableusuarios.getSelectedRow();
             int idUsuario = Integer.parseInt(this.mantUsuarioview.txtidUsuario.getText());
-           
             u.setPK_idUsuario(idUsuario);
             try {
                 int resp;
@@ -183,7 +182,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
                     this.mantUsuarioview.txtidUsuario.setText(u.getPK_idUsuario().toString());
                     this.mantUsuarioview.txtNombre.setText(u.getNombre().toString());
                     this.mantUsuarioview.txtUsuario.setText(u.getUsuario().toString());
-                    this.mantUsuarioview.txtContraseña.setText(u.getContraseña().toString());
+                    this.mantUsuarioview.txtContraseña.setText(u.getContraseña());
                     this.mantUsuarioview.btEliminar.setEnabled(true);
                     this.mantUsuarioview.btModificar.setEnabled(true);
                  
