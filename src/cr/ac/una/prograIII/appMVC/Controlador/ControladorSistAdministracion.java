@@ -193,7 +193,7 @@ public class ControladorSistAdministracion implements ActionListener {
         if(e.getSource()==this.ManteAdmiView.ReporteCliente){
         InputStream inputStream = null;
         try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\CafeInternet\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ListaClientes.jrxml");
+            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ListaClientes.jrxml");
             Map parameters = new HashMap();
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
@@ -211,7 +211,7 @@ public class ControladorSistAdministracion implements ActionListener {
             }
 
         } catch (FileNotFoundException ex) {
-            System.out.println("ver si entra");
+            
             System.err.println(ex.getMessage());
         }   catch (IOException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
@@ -222,6 +222,39 @@ public class ControladorSistAdministracion implements ActionListener {
             }
         
         }
+        if(e.getSource()==this.ManteAdmiView.ReporteProveedores){
+        InputStream inputStream = null;
+        try {            
+            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteProvedores.jrxml");
+            Map parameters = new HashMap();
+            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+            
+            MySQLConexion Con = new MySQLConexion();
+            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteProvedores.pdf");
+            
+            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteProvedores.pdf");
+            if (file.toString().endsWith(".pdf")) 
+                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+            else {
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(file);
+            }
+
+        } catch (FileNotFoundException ex) {
+            
+            System.err.println(ex.getMessage());
+        }   catch (IOException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+        }
+        }
     }
     
-}
+

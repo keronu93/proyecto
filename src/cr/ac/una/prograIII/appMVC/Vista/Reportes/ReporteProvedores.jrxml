@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92cd15d4-0aaf-4b4b-8b4c-aec1e9b0bf9f">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null"  pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" >
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -26,22 +26,22 @@ FROM
 	<title>
 		<band height="128" splitType="Stretch">
 			<staticText>
-				<reportElement x="128" y="0" width="348" height="46" uuid="a5dbbbde-213c-405d-acd6-2579f6437937"/>
+				<reportElement x="128" y="0" width="348" height="46" />
 				<textElement>
 					<font fontName="Arial" size="36"/>
 				</textElement>
 				<text><![CDATA[Reporte Proveedores]]></text>
 			</staticText>
 			<image>
-				<reportElement x="0" y="0" width="128" height="128" uuid="754b1a2e-b347-4164-8385-06210292af2f"/>
-				<imageExpression><![CDATA["C:\\Users\\Gustavo\\Desktop\\repositorio\\CafeInternet\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Images\\Proovedor.png"]]></imageExpression>
+				<reportElement x="0" y="0" width="128" height="128" />
+				<imageExpression><![CDATA["C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Images\\Proovedor.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
 	<pageHeader>
 		<band height="35" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="451" y="0" width="100" height="20" uuid="dd5e02b3-d541-48f3-b809-471abd745322"/>
+				<reportElement x="451" y="0" width="100" height="20" />
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 		</band>
@@ -49,51 +49,51 @@ FROM
 	<columnHeader>
 		<band height="43" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="74" height="20" uuid="1234cd8d-29b4-4347-b289-546fdd9e4f85"/>
+				<reportElement x="0" y="0" width="74" height="20" />
 				<text><![CDATA[ Proveedor ID]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="100" y="0" width="60" height="20" uuid="5598ed3e-a544-40ec-ac5a-c8fc17659d83"/>
+				<reportElement x="100" y="0" width="60" height="20" />
 				<text><![CDATA[Nombre]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="185" y="0" width="147" height="20" uuid="10e5173d-242d-4710-b2cb-b140f6775f88"/>
+				<reportElement x="185" y="0" width="147" height="20" />
 				<text><![CDATA[Direccion]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="353" y="0" width="100" height="20" uuid="d60a333e-2c73-4de5-98c8-47f5ab4a6af0"/>
+				<reportElement x="353" y="0" width="100" height="20" />
 				<text><![CDATA[CorreoElectronico]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="487" y="0" width="68" height="20" uuid="d0e9634d-3947-4854-99f2-89e6002f4b18"/>
+				<reportElement x="487" y="0" width="68" height="20" />
 				<text><![CDATA[Telefono]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="31" width="555" height="1" uuid="5486147e-d992-4cfd-baad-00e9c1f3ab2b"/>
+				<reportElement x="0" y="31" width="555" height="1" />
 			</line>
 		</band>
 	</columnHeader>
 	<detail>
 		<band height="31" splitType="Stretch">
 			<textField>
-				<reportElement x="0" y="0" width="74" height="20" uuid="06b42742-fa13-4826-a925-8a43183ce538"/>
-				<textFieldExpression><![CDATA[$F{proveedores_PK_IDProvedor}]]></textFieldExpression>
+				<reportElement x="0" y="0" width="74" height="20" />
+				<textFieldExpression><![CDATA[$F{proveedores_PK_IDProvedor}.toString()]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="100" y="0" width="60" height="20" uuid="ef06f806-a81f-4f8b-b88c-f286df2d0b15"/>
+				<reportElement x="100" y="0" width="60" height="20" />
 				<textFieldExpression><![CDATA[$F{proveedores_Nombre}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="185" y="0" width="147" height="20" uuid="6229a449-7c77-4b90-b282-fba1a74e0eb7"/>
+				<reportElement x="185" y="0" width="147" height="20" />
 				<textFieldExpression><![CDATA[$F{proveedores_Direccion}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="353" y="0" width="100" height="20" uuid="c9d2e565-e83a-46c4-901f-a62582ae24f5"/>
+				<reportElement x="353" y="0" width="100" height="20" />
 				<textFieldExpression><![CDATA[$F{proveedores_CorreoElectronico}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="487" y="0" width="64" height="20" uuid="17137363-aba5-47f4-aa73-e4ac110bea73"/>
-				<textFieldExpression><![CDATA[$F{proveedores_Telefono}]]></textFieldExpression>
+				<reportElement x="487" y="0" width="64" height="20" />
+				<textFieldExpression><![CDATA[$F{proveedores_Telefono}.toString()]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

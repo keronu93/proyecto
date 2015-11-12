@@ -36,7 +36,7 @@ FROM
 			</staticText>
 			<image>
 				<reportElement x="0" y="0" width="117" height="98"/>
-				<imageExpression><![CDATA["C:\\Users\\Gustavo\\Desktop\\repositorio\\CafeInternet\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Images\\Cliente.png"]]></imageExpression>
+				<imageExpression><![CDATA["C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Images\\Cliente.png"]]></imageExpression>
 			</image>
 		</band>
 	</title>
