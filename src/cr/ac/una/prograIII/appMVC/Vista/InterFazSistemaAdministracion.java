@@ -59,6 +59,7 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         ReporteCliente = new javax.swing.JMenuItem();
         ReporteProveedores = new javax.swing.JMenuItem();
         ReporteUsuarios = new javax.swing.JMenuItem();
+        ReporteTelefono = new javax.swing.JMenuItem();
         jMFacturacion = new javax.swing.JMenu();
         jMFactura = new javax.swing.JMenuItem();
         jMInformacion = new javax.swing.JMenu();
@@ -182,6 +183,16 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         ReporteUsuarios.setText("Reporte Usuarios");
         jMenuEstadisticas.add(ReporteUsuarios);
 
+        ReporteTelefono.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/phone.png"))); // NOI18N
+        ReporteTelefono.setText("Reporte Telefonos");
+        ReporteTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ReporteTelefonoActionPerformed(evt);
+            }
+        });
+        jMenuEstadisticas.add(ReporteTelefono);
+
         jMenuBar1.add(jMenuEstadisticas);
 
         jMFacturacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Facturacion.png"))); // NOI18N
@@ -232,6 +243,10 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReporteProveedoresActionPerformed
 
+    private void ReporteTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReporteTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ReporteTelefonoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -271,10 +286,11 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     public javax.swing.JMenuItem MenuPC;
     public javax.swing.JMenu MenuPcMantenimiento;
     public javax.swing.JMenuItem MenuServer;
-    private javax.swing.JMenuItem ReporteArticulos;
+    public javax.swing.JMenuItem ReporteArticulos;
     public javax.swing.JMenuItem ReporteCliente;
     public javax.swing.JMenuItem ReporteProveedores;
-    private javax.swing.JMenuItem ReporteUsuarios;
+    public javax.swing.JMenuItem ReporteTelefono;
+    public javax.swing.JMenuItem ReporteUsuarios;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JMenuItem jMFactura;
     public javax.swing.JMenu jMFacturacion;
