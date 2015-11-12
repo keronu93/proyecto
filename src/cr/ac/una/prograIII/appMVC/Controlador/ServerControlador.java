@@ -116,7 +116,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
                         String HoraInicio = hoIn+" : " + miIn+" : "+ seIn;
                         cliente.setHoInicio(HoraInicio);
-                        Integer tiempototal = Integer.parseInt(seIn)/60;
                         llenarTabla();
                         writer.flush();
                     }
@@ -150,8 +149,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
                         String HoraFin = hoFn+" : " + miFn+" : "+ seFn;
                         cliente.setHoFin(HoraFin);
+                        //cliente.setTiempo(String.valueOf(cliente.TiempoTotal()));
                         llenarTabla();
-                        
                         writer.flush();
                     }
                 }
@@ -324,7 +323,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private String hoInicio = "";
         private String hoFin = "";
         private Calendar calendario = Calendar.getInstance();
-        private Integer tiempo=0;
+        private String tiempo="";
         private Boolean estadoActivo;
         private String nombrePC;
 
@@ -432,12 +431,17 @@ public class ServerControlador implements ActionListener, DocumentListener {
             this.nombrePC = nombrePC;
         }
 
-        public Integer getTiempo() {
+        public String getTiempo() {
             return tiempo;
         }
 
-        public void setTiempo(Integer tiempo) {
+        public void setTiempo(String tiempo) {
             this.tiempo = tiempo;
+        }
+        public Integer TiempoTotal(){
+            Integer tiempo=0;
+            return tiempo= Integer.parseInt(getHoInicio())-Integer.parseInt(getHoFin());
+        
         }
         
         
