@@ -33,13 +33,17 @@
                           <Component id="btDesbloquear" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="btDetenerServidor" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btUsuariosEnLinea" alignment="1" pref="160" max="32767" attributes="0"/>
                               <Component id="btLimpiarPantalla" alignment="1" pref="160" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="BtBloquear" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="BtAgregarFactura" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="BtBloquear" min="-2" pref="160" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
@@ -70,6 +74,7 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="BtBloquear" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="btDesbloquear" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Component id="BtAgregarFactura" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="31" max="32767" attributes="0"/>
           </Group>
@@ -184,16 +189,22 @@
         <Component class="javax.swing.JTable" name="jTPC">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="1">
+              <Table columnCount="6" rowCount="1">
                 <Column editable="true" title="Nombre" type="java.lang.Object"/>
                 <Column editable="true" title="IP" type="java.lang.Object"/>
                 <Column editable="true" title="Estado" type="java.lang.Object"/>
                 <Column editable="true" title="Hora Conexion" type="java.lang.Object"/>
                 <Column editable="true" title="Hora Desconexion" type="java.lang.Object"/>
+                <Column editable="true" title="Tiempo Total" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -237,6 +248,17 @@
           <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/Candado1.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Bloquear"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtAgregarFactura">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/agregarFactura.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Agregar a Factura"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

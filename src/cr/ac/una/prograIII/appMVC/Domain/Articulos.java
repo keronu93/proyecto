@@ -19,11 +19,12 @@ public class Articulos extends BaseDomain {
     private String Descripcion;
     private Integer CantidadExistencia;
     private double PrecioUnitario;
+    private double tiempoconexion;
 
     public Articulos() {
     }
 
-    public Articulos(Integer PK_IDArticulo, Integer FK_idProveedor, String Nombre, String Descripcion, Integer CantidadExistencia, double PrecioUnitario, String ultUsuario, String ultFecha) {
+    public Articulos(Integer PK_IDArticulo, Integer FK_idProveedor, String Nombre, String Descripcion, Integer CantidadExistencia, double PrecioUnitario,double tiempoconexion, String ultUsuario, String ultFecha) {
         super(ultUsuario, ultFecha);
         this.PK_IDArticulo = PK_IDArticulo;
         this.FK_idProveedor = FK_idProveedor;
@@ -31,8 +32,18 @@ public class Articulos extends BaseDomain {
         this.Descripcion = Descripcion;
         this.CantidadExistencia = CantidadExistencia;
         this.PrecioUnitario = PrecioUnitario;
+        this.tiempoconexion = tiempoconexion;
     }
 
+    public double getTiempoconexion() {
+        return tiempoconexion;
+    }
+
+    public void setTiempoconexion(double tiempoconexion) {
+        this.tiempoconexion = tiempoconexion;
+    }
+
+    
     public Integer getPK_IDArticulo() {
         return PK_IDArticulo;
     }

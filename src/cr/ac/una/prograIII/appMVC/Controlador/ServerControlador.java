@@ -6,6 +6,7 @@
 package cr.ac.una.prograIII.appMVC.Controlador;
 
 
+import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
 import cr.ac.una.prograIII.appMVC.Vista.Server;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ import javax.swing.table.TableColumnModel;
 public class ServerControlador implements ActionListener, DocumentListener {
 
     private Server serverView;
+    private AgregarFactura agregarFacturaView;
     ArrayList<ClienteHilo> listaClientes;
     
     
@@ -45,6 +47,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
         this.serverView.btLimpiarPantalla.addActionListener(this);
         this.serverView.btUsuariosEnLinea.addActionListener(this);
         this.serverView.BtBloquear.addActionListener(this);
+        this.serverView.BtAgregarFactura.addActionListener(this);
        
                 
 
@@ -108,6 +111,12 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         
                         writer.println("Desbloqueado");
                         cliente.setEstadoActivo(true);
+                        String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
+                        String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
+                        String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
+                        String HoraInicio = hoIn+" : " + miIn+" : "+ seIn;
+                        cliente.setHoInicio(HoraInicio);
+                        cliente.setTiempo(Integer.parseInt(totaltiempo()));
                         llenarTabla();
                         writer.flush();
                     }
@@ -136,6 +145,11 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         writer.println("Bloqueado");
                         cliente.setEstadoActivo(false);
+                        String hoFn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
+                        String miFn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
+                        String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
+                        String HoraFin = hoFn+" : " + miFn+" : "+ seFn;
+                        cliente.setHoFin(HoraFin);
                         llenarTabla();
                         
                         writer.flush();
@@ -163,8 +177,29 @@ public class ServerControlador implements ActionListener, DocumentListener {
             serverView.Chat_Servidor.setText("");
 
         }
-       
+        if (e.getSource() == this.serverView.BtAgregarFactura) {
+            
+        }
     }
+    public String totaltiempo() {
+        int minutos = 0;
+        int segundos = 0;
+        String totaltiempo = " ";
+        for (minutos = 0; minutos < 60; minutos++) {
+            for (segundos = 0; segundos < 60; segundos++) {
+                RetrasoSegundos();
+            }
+        }
+        return totaltiempo = (minutos + " : " + segundos);
+    }
+
+     public void RetrasoSegundos() {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+            }
+
+        }
      
    
     public class ServerStart implements Runnable {
@@ -244,12 +279,13 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
         DefaultTableModel modeloTabla = new DefaultTableModel();
         serverView.jTPC.setModel(modeloTabla);
-        String fila[] = new String[5];
+        String fila[] = new String[6];
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("IP");
         modeloTabla.addColumn("Estado");
         modeloTabla.addColumn("Hora Conexion");
         modeloTabla.addColumn("Hora Desconexion");
+        modeloTabla.addColumn("Tiempo total");
         TableColumnModel columnModel = serverView.jTPC.getColumnModel();
         columnModel.getColumn(2).setPreferredWidth(80);
 
@@ -265,10 +301,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
                 fila[0] = cliente.getNombrePC();
                 fila[1] = cliente.getSock().getInetAddress().toString();
                 fila[2] = cliente.getEstadoActivo().toString();
-                fila[3] = cliente.HoraInicio();
-                if(cliente.getEstadoActivo()==false){
-                fila[4] = cliente.HoraFin();
-                }
+                fila[3] = cliente.getHoInicio();
+                fila[4] = cliente.getHoFin();
+                fila[5] = String.valueOf(cliente.getTiempo());
                 modeloTabla.addRow(fila); 
                 
                 
@@ -289,57 +324,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private String hoInicio = "";
         private String hoFin = "";
         private Calendar calendario = Calendar.getInstance();
-        private Integer hora, minutos, segundos;
-        private Integer horafin, minutosfin, segundosfin;
-
-        public Integer getHorafin() {
-            return horafin=calendario.get(Calendar.HOUR);
-        }
-
-        public void setHorafin(Integer horafin) {
-            this.horafin = horafin;
-        }
-
-        public Integer getMinutosfin() {
-            return minutosfin= calendario.get(Calendar.MINUTE);
-        }
-
-        public void setMinutosfin(Integer minutosfin) {
-            this.minutosfin = minutosfin;
-        }
-
-        public Integer getSegundosfin() {
-            return segundosfin= calendario.get(Calendar.SECOND);
-        }
-
-        public void setSegundosfin(Integer segundosfin) {
-            this.segundosfin = segundosfin;
-        }
-        
-        
-        public Integer getHora() {
-            return hora =calendario.get(Calendar.HOUR);
-        }
-
-        public void setHora(Integer hora) {
-            this.hora = hora;
-        }
-
-        public Integer getMinutos() {
-            return minutos = calendario.get(Calendar.MINUTE);
-        }
-
-        public void setMinutos(Integer minutos) {
-            this.minutos = minutos;
-        }
-
-        public Integer getSegundos() {
-            return segundos = calendario.get(Calendar.SECOND);
-        }
-        
-        public void setSegundos(Integer segundos) {
-            this.segundos = segundos;
-        }
+        private Integer tiempo=0;
         private Boolean estadoActivo;
         private String nombrePC;
 
@@ -355,6 +340,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
             }
 
         }
+        
         
       
         @Override
@@ -414,12 +400,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
         public void setHoInicio(String hoInicio) {
             this.hoInicio = hoInicio;
         }
-        public String HoraInicio(){
-             return  getHora() + ":" + getMinutos() + ":" + getSegundos();
-        }
-        public String HoraFin(){
-             return getHorafin()+ ":" + getMinutosfin()+ ":" + getSegundosfin();
-        }
         public String getHoFin() {
             return hoFin;
         }
@@ -451,6 +431,15 @@ public class ServerControlador implements ActionListener, DocumentListener {
         public void setNombrePC(String nombrePC) {
             this.nombrePC = nombrePC;
         }
+
+        public Integer getTiempo() {
+            return tiempo;
+        }
+
+        public void setTiempo(Integer tiempo) {
+            this.tiempo = tiempo;
+        }
+        
         
 
     }
