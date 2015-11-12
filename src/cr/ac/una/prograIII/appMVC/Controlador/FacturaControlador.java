@@ -183,7 +183,6 @@ public class FacturaControlador implements ActionListener, DocumentListener {
        
         modeloTabla.addColumn("Id Articulo");
         modeloTabla.addColumn("Cantidad");
-        modeloTabla.addColumn("Tiempo pc");
         modeloTabla.addColumn("Precio Unitario");
 
         Object fila[] = new Object[3];
@@ -191,8 +190,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         for (Articulos a : listAr) {
             fila[0] = a.getPK_IDArticulo();
             fila[1] = a.getCantidadExistencia();
-            fila[2] = a.getTiempoconexion();
-            fila[3] = a.getPrecioUnitario();
+            fila[2] = a.getPrecioUnitario();
             modeloTabla.addRow(fila);
         }
         tablaArticulos.setModel(modeloTabla);

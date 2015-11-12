@@ -116,7 +116,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
                         String HoraInicio = hoIn+" : " + miIn+" : "+ seIn;
                         cliente.setHoInicio(HoraInicio);
-                        cliente.setTiempo(Integer.parseInt(totaltiempo()));
+                        Integer tiempototal = Integer.parseInt(seIn)/60;
                         llenarTabla();
                         writer.flush();
                     }
@@ -181,17 +181,17 @@ public class ServerControlador implements ActionListener, DocumentListener {
             
         }
     }
-    public String totaltiempo() {
-        int minutos = 0;
-        int segundos = 0;
-        String totaltiempo = " ";
-        for (minutos = 0; minutos < 60; minutos++) {
-            for (segundos = 0; segundos < 60; segundos++) {
-                RetrasoSegundos();
-            }
-        }
-        return totaltiempo = (minutos + " : " + segundos);
-    }
+//    public String totaltiempo() {
+//        int minutos = 0;
+//        int segundos = 0;
+//        String totaltiempo = " ";
+//        for (minutos = 0; minutos < 60; minutos++) {
+//            for (segundos = 0; segundos < 60; segundos++) {
+//                RetrasoSegundos();
+//            }
+//        }
+//        return totaltiempo = (minutos + " : " + segundos);
+//    }
 
      public void RetrasoSegundos() {
             try {
