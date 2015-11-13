@@ -30,9 +30,9 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public void insertar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("insert into Detalle(FK_PK_idArticulo,"
-                + "precioUnitario,Cantidad"
-                + ",ultUsuario,ultFecha) values "
-                + "(?,?,?,?,curdate())");
+                                               + "precioUnitario,Cantidad"
+                                               + ",ultUsuario,ultFecha) values "
+                                               + "(?,?,?,?,curdate())");
         cs.setInt(1, obj.getFK_PK_idArticulo());
         cs.setDouble(2, obj.getPrecioUnitario());
         cs.setInt(3, obj.getCantidad());
@@ -45,9 +45,9 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
     public void modificar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
         CallableStatement cs = con.prepareCall("update Detalle set FK_PK_idFacturacion= ?,"
-                + "precioUnitario=?,Cantidad=?"
-                + ",ultUsuario=?,ultFecha=curdate()) values "
-                + "where  FK_PK_idArticulo=?");
+                                                + "precioUnitario=?,Cantidad=?"
+                                                + ",ultUsuario=?,ultFecha=curdate()) values "
+                                                + "where  FK_PK_idArticulo=?");
         cs.setInt(1, obj.getFK_PK_idFacturacion());
         cs.setDouble(2, obj.getPrecioUnitario());
         cs.setInt(3, obj.getCantidad());

@@ -30,6 +30,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,6 +44,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 /**
@@ -228,10 +230,13 @@ public class ControladorSistAdministracion implements ActionListener {
         }
         if(e.getSource()==this.ManteAdmiView.ReporteProveedores){
         InputStream inputStream = null;
+        //JasperReport jr = null; 
         try {            
             inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteProvedores.jrxml");
+            //URL in=this.getClass().getResource("\\Reportes\\ReporteProvedores.jrxml");
             Map parameters = new HashMap();
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+            //jr= (JasperReport) JRLoader.loadObject(in); 
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             
             MySQLConexion Con = new MySQLConexion();
