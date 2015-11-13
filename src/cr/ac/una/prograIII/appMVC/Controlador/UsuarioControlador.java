@@ -111,7 +111,7 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
             u.setPK_idUsuario(1); 
             u.setNombre(this.mantUsuarioview.txtNombre.getText());
             u.setUsuario(this.mantUsuarioview.txtUsuario.getText());
-            u.setContraseña(this.mantUsuarioview.txtContraseña.getSelectedText());
+            u.setContraseña(String.valueOf(this.mantUsuarioview.txtContraseña.getPassword()));
             
             try {
                 //se agrega el socio a la base de datos

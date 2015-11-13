@@ -42,7 +42,7 @@ public class FacturaDao implements IBaseDao<Factura> {
     @Override
     public void modificar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
-        CallableStatement cs = con.prepareCall("update Facturacion set FK_PK_idFacturacion= ?,"
+        CallableStatement cs = con.prepareCall("update Facturacion set PK_idFacturacion= ?,"
                                                + "Fk_idCliente=?,"
                                                + "Fecha=?"
                                                + "ult_Usuario=?,"
