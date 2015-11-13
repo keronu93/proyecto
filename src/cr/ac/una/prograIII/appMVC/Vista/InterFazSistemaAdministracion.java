@@ -55,11 +55,14 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         MenuServer = new javax.swing.JMenuItem();
         MenuPC = new javax.swing.JMenuItem();
         jMenuEstadisticas = new javax.swing.JMenu();
+        ReportesArticulos = new javax.swing.JMenu();
         ReporteArticulos = new javax.swing.JMenuItem();
+        Articulos5 = new javax.swing.JMenuItem();
         ReporteCliente = new javax.swing.JMenuItem();
+        ReporteFactura = new javax.swing.JMenuItem();
         ReporteProveedores = new javax.swing.JMenuItem();
-        ReporteUsuarios = new javax.swing.JMenuItem();
         ReporteTelefono = new javax.swing.JMenuItem();
+        ReporteUsuarios = new javax.swing.JMenuItem();
         jMFacturacion = new javax.swing.JMenu();
         jMFactura = new javax.swing.JMenuItem();
         jMInformacion = new javax.swing.JMenu();
@@ -153,10 +156,25 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         jMenuEstadisticas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Reportes.png"))); // NOI18N
         jMenuEstadisticas.setText("Reportes");
 
+        ReportesArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Agregar Articulos.png"))); // NOI18N
+        ReportesArticulos.setText("Reportes de Articulos");
+
         ReporteArticulos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.SHIFT_MASK));
         ReporteArticulos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Agregar Articulos.png"))); // NOI18N
         ReporteArticulos.setText("Reporte Articulos");
-        jMenuEstadisticas.add(ReporteArticulos);
+        ReportesArticulos.add(ReporteArticulos);
+
+        Articulos5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_5, java.awt.event.InputEvent.SHIFT_MASK));
+        Articulos5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/amenor5.png"))); // NOI18N
+        Articulos5.setText("Reportes con menos de 5 Articulos");
+        Articulos5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Articulos5ActionPerformed(evt);
+            }
+        });
+        ReportesArticulos.add(Articulos5);
+
+        jMenuEstadisticas.add(ReportesArticulos);
 
         ReporteCliente.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.SHIFT_MASK));
         ReporteCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/usuarioPequeño_1.png"))); // NOI18N
@@ -168,6 +186,11 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         });
         jMenuEstadisticas.add(ReporteCliente);
 
+        ReporteFactura.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteFactura.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/agregarFactura.png"))); // NOI18N
+        ReporteFactura.setText("Reporte de Facturas");
+        jMenuEstadisticas.add(ReporteFactura);
+
         ReporteProveedores.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.SHIFT_MASK));
         ReporteProveedores.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/ProvedorPequeño.png"))); // NOI18N
         ReporteProveedores.setText("Reporte Proveedores");
@@ -178,11 +201,6 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         });
         jMenuEstadisticas.add(ReporteProveedores);
 
-        ReporteUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK));
-        ReporteUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/usuariope.png"))); // NOI18N
-        ReporteUsuarios.setText("Reporte Usuarios");
-        jMenuEstadisticas.add(ReporteUsuarios);
-
         ReporteTelefono.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK));
         ReporteTelefono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/phone.png"))); // NOI18N
         ReporteTelefono.setText("Reporte Telefonos");
@@ -192,6 +210,11 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
             }
         });
         jMenuEstadisticas.add(ReporteTelefono);
+
+        ReporteUsuarios.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_U, java.awt.event.InputEvent.SHIFT_MASK));
+        ReporteUsuarios.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/usuariope.png"))); // NOI18N
+        ReporteUsuarios.setText("Reporte Usuarios");
+        jMenuEstadisticas.add(ReporteUsuarios);
 
         jMenuBar1.add(jMenuEstadisticas);
 
@@ -247,6 +270,10 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ReporteTelefonoActionPerformed
 
+    private void Articulos5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Articulos5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Articulos5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -283,14 +310,17 @@ public class InterFazSistemaAdministracion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JMenuItem Articulos5;
     public javax.swing.JMenuItem MenuPC;
     public javax.swing.JMenu MenuPcMantenimiento;
     public javax.swing.JMenuItem MenuServer;
     public javax.swing.JMenuItem ReporteArticulos;
     public javax.swing.JMenuItem ReporteCliente;
+    public javax.swing.JMenuItem ReporteFactura;
     public javax.swing.JMenuItem ReporteProveedores;
     public javax.swing.JMenuItem ReporteTelefono;
     public javax.swing.JMenuItem ReporteUsuarios;
+    private javax.swing.JMenu ReportesArticulos;
     private javax.swing.JLabel jLabel2;
     public javax.swing.JMenuItem jMFactura;
     public javax.swing.JMenu jMFacturacion;
