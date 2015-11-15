@@ -48,6 +48,7 @@ public class Server extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Servidor");
+        setUndecorated(true);
 
         btDesbloquear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/Candado.png"))); // NOI18N
         btDesbloquear.setText("Desbloquear");
