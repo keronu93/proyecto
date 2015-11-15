@@ -75,7 +75,7 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
             if(validadIngreso()==1){
                 this.solUsePa.dispose();
                 JOptionPane.showMessageDialog(null, "Bienbenido has ingresado"
-                                                +"Satisfactoriamente al Sistema de Admoinstracion Cafe Internet","Mensaje de Bienvenida", 
+                                                +"Satisfactoriamente al Sistema de Administracion Cafe Internet","Mensaje de Bienvenida", 
                                                 JOptionPane.INFORMATION_MESSAGE);
                 InterFazSistemaAdministracion ManteAdmiView = new InterFazSistemaAdministracion();
                 ArticuloBL articuloBlModelo = new ArticuloBL();

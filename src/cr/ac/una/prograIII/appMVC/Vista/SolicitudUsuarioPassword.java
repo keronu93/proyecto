@@ -38,7 +38,6 @@ public class SolicitudUsuarioPassword extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Solicitud de Usuario y contrasena");
-        setAlwaysOnTop(true);
         setUndecorated(true);
 
         Usuario.setText("Nombre de Usuario:");
