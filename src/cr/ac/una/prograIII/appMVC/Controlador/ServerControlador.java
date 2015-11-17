@@ -173,6 +173,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         writer.println("Desconectado");
                         cliente.setEstadoActivo(false);
                         cliente.setHoFin(cliente.horaFinal());
+                        cliente.setTiempo(cliente.tiempoTotal());
                         llenarTabla();
                         writer.flush();
                     }
@@ -347,7 +348,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private String hoFin = "";
         private String tiempo="";
         private Boolean estadoActivo;
-        private String nombrePC;        
+        private String nombrePC; 
+        private Integer minuInicial;
+        private Integer minuFinal;
         //Integer  MILLSECS_PER_DAY = 24*60;
         
     
@@ -455,14 +458,34 @@ public class ServerControlador implements ActionListener, DocumentListener {
         public void setTiempo(String tiempo) {
             this.tiempo = tiempo;
         }
-        
+
+        public Integer getMinuInicial() {
+            return minuInicial;
+        }
+
+        public void setMinuInicial(Integer minuInicial) {
+            this.minuInicial = minuInicial;
+        }
+
+        public Integer getMinuFinal() {
+            return minuFinal;
+        }
+
+        public void setMinuFinal(Integer minuFinal) {
+            this.minuFinal = minuFinal;
+        }
+       
+                
         public String horaInicio(){
             String hora;
             Calendar calendario = Calendar.getInstance();
             String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
             String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
             hora= hoIn+" : " + miIn;
-            return hora;
+            int x=Integer.parseInt(hoIn);
+            int y=Integer.parseInt(miIn);
+            this.setMinuInicial((x*60)+y);
+            return hora;    
         }
         
         public String horaFinal(){
@@ -471,7 +494,16 @@ public class ServerControlador implements ActionListener, DocumentListener {
             String hofin = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
             String mifin = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
             hora= hofin+" : " + mifin;
+            int x=Integer.parseInt(hofin);
+            int y=Integer.parseInt(mifin);
+            this.setMinuFinal((x*60)+y);
             return hora;
+        }
+        
+        public String tiempoTotal(){
+            String minutos;
+            minutos=String.valueOf(this.getMinuFinal()-this.getMinuInicial());
+            return minutos;
         }
         
 
