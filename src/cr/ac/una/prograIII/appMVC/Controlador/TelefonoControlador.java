@@ -99,7 +99,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
      public void llenarTabla(JTable tablaTelefonos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaTelefonos.setModel(modeloTabla);
-         modeloTabla.addColumn("Id Telefono");
+        modeloTabla.addColumn("Id Telefono");
         modeloTabla.addColumn("Id Cliente");
         modeloTabla.addColumn("Tipo");
         modeloTabla.addColumn("Num. Telefono");
@@ -234,13 +234,6 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                     if(mantTelfonoView.jTableTelfono.getValueAt(fila, 2).equals("Oficina")){
                         this.mantTelfonoView.chckOficina.setSelected(true);
                     }
-//                     if(t.getCodtipo()==1){
-//                        this.mantTelfonoView.chckCasa.setSelected(true);
-//                    }if(t.getCodtipo()==2){
-//                        this.mantTelfonoView.chckCelular.setSelected(true);
-//                    }if(t.getCodtipo()==3){
-//                        this.mantTelfonoView.chckOficina.setSelected(true);
-//                    }
                     
                     this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
                     this.mantTelfonoView.btEliminar.setEnabled(true);
@@ -324,7 +317,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
             TelefonoBuscarControlador telefonoBControlador ;
             telefonoBControlador = new TelefonoBuscarControlador(mantTelBuscarView, 
                     telefonoBLModelo, 
-                    this.mantTelfonoView.txtIdCliente);
+                    this.mantTelfonoView.txtidTelefono);
             telefonoBControlador.getTelefonoBuscarView().setVisible(true);
             this.mantTelfonoView.btEliminar.setEnabled(true);
              
@@ -366,16 +359,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
                 t = telefonoBLModelo.obtenerPorId(t);
                 this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
                 this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
-//                System.out.println("ojo:en el cargar "+t.getNumeroTelefono());
-//                if(t.getCodtipo()==1){
-//                    mantTelfonoView.chckCasa.setSelected(true);
-//                }
-//                if(t.getCodtipo()==2){
-//                    mantTelfonoView.chckCelular.setSelected(true);
-//                }
-//                if(t.getCodtipo()==3){
-//                    mantTelfonoView.chckOficina.setSelected(true);
-//                }
+
                 String tipo="";
                 int x=0;
                 if(mantTelfonoView.chckCasa.isSelected()){
