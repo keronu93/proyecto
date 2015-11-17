@@ -350,12 +350,12 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private String nombrePC;
         String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
         String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-        String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-        String HoraInicio = hoIn+" : " + miIn+" : "+ seIn;
+        //String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
+        String HoraInicio = hoIn+" : " + miIn;
         String hoFn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
         String miFn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-        String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-        String HoraFin = hoFn+" : " + miFn+" : "+ seFn;
+        //String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
+        String HoraFin = hoFn+" : " + miFn;
         Integer  MILLSECS_PER_DAY = 24*60;
         
     
@@ -470,11 +470,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
         public void setTiempo(String tiempo) {
             this.tiempo = tiempo;
         }
-        public Integer TiempoTotal(){
-            Integer tiempo=0;
-            return tiempo= Integer.parseInt(getHoInicio())-Integer.parseInt(getHoFin());
         
-        }
         
         
 
