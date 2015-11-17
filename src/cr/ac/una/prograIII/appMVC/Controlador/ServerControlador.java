@@ -47,6 +47,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
         this.serverView.btLimpiarPantalla.addActionListener(this);
         this.serverView.btUsuariosEnLinea.addActionListener(this);
         this.serverView.BtBloquear.addActionListener(this);
+        this.serverView.BtDesconectarPC.addActionListener(this);
         this.serverView.BtAgregarFactura.addActionListener(this);
        
                 
@@ -111,11 +112,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         
                         writer.println("Desbloqueado");
                         cliente.setEstadoActivo(true);
-                        String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
-                        String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-                        String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-                        String HoraInicio = hoIn+" : " + miIn+" : "+ seIn;
-                        cliente.setHoInicio(HoraInicio);
+                        cliente.setHoInicio(cliente.HoraInicio);
                         llenarTabla();
                         writer.flush();
                     }
@@ -144,12 +141,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         writer.println("Bloqueado");
                         cliente.setEstadoActivo(false);
-                        String hoFn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
-                        String miFn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-                        String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-                        String HoraFin = hoFn+" : " + miFn+" : "+ seFn;
-                        cliente.setHoFin(HoraFin);
-                        //cliente.setTiempo(String.valueOf(cliente.TiempoTotal()));
+                        cliente.setHoFin(cliente.HoraFin);
+                        
                         llenarTabla();
                         writer.flush();
                     }
@@ -158,6 +151,35 @@ public class ServerControlador implements ActionListener, DocumentListener {
                  serverView.Chat_Servidor.append("Error no se puede bloquear. \n");
             }
         
+        }if (e.getSource() == this.serverView.BtDesconectarPC) {
+            try {
+                int fila = serverView.jTPC.getSelectedRow();
+                String ipSeleccionada = serverView.jTPC.getValueAt(fila, 1).toString();
+                String nombrePCSeleccionado = serverView.jTPC.getValueAt(fila, 0).toString();
+
+            //*****************************************************
+                //se recorre la lista de clientes y se verifica a cual
+                //sokect se le quiere enviar el mensaja (el seleccionado 
+                //en la tabla)
+                //*****************************************************
+                for (ClienteHilo cliente : listaClientes) {
+                    //se optiene la IP del sokect para compararla con la seleccionada
+                    String ipCliente = cliente.getSock().getInetAddress().toString();
+                    if (ipCliente.equals(ipSeleccionada) && cliente.getNombrePC().endsWith(nombrePCSeleccionado)) {
+                    //si el sokect es la tiene la ip seleccionada
+                        //se le envia un mensaje
+                        PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
+                        
+                        writer.println("Desconectado");
+                        cliente.setEstadoActivo(false);
+                        llenarTabla();
+                        writer.flush();
+                    }
+                }
+            } catch (Exception ex) {
+                 serverView.Chat_Servidor.append("Error no se puede desbloquear. \n");
+            }
+
         }
         if (e.getSource() == this.serverView.btUsuariosEnLinea) {
              serverView.Chat_Servidor.append("\n Usuarios en Linea : \n");
@@ -326,6 +348,15 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private String tiempo="";
         private Boolean estadoActivo;
         private String nombrePC;
+        String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
+        String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
+        String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
+        String HoraInicio = hoIn+" : " + miIn+" : "+ seIn;
+        String hoFn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
+        String miFn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
+        String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
+        String HoraFin = hoFn+" : " + miFn+" : "+ seFn;
+                        
 
         public ClienteHilo(Socket clientSocket, PrintWriter printWriter) {
             this.printWriter = printWriter;

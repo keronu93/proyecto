@@ -34,21 +34,22 @@
                           <Component id="btDesbloquear" alignment="0" min="-2" pref="150" max="-2" attributes="0"/>
                           <Component id="btDetenerServidor" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="48" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="BtAgregarFactura" max="32767" attributes="0"/>
+                          <Component id="BtDesconectarPC" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="28" pref="45" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="BtBloquear" alignment="1" min="-2" pref="160" max="-2" attributes="0"/>
                           <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
                               <Component id="btUsuariosEnLinea" alignment="1" pref="160" max="32767" attributes="0"/>
                               <Component id="btLimpiarPantalla" alignment="1" pref="160" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="BtAgregarFactura" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="BtBloquear" min="-2" pref="160" max="-2" attributes="0"/>
-                          </Group>
                       </Group>
                   </Group>
                   <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-                  <Component id="jScrollPane2" alignment="1" pref="542" max="32767" attributes="0"/>
+                  <Component id="jScrollPane2" alignment="1" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -64,11 +65,17 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="btIniciarServidor" min="-2" pref="31" max="-2" attributes="0"/>
-                  <Component id="btUsuariosEnLinea" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btUsuariosEnLinea" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="BtDesconectarPC" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="btLimpiarPantalla" pref="30" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="btLimpiarPantalla" min="-2" pref="30" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                  </Group>
                   <Component id="btDetenerServidor" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -77,7 +84,7 @@
                   <Component id="btDesbloquear" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   <Component id="BtAgregarFactura" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="31" max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -260,6 +267,17 @@
           <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/agregarFactura.png"/>
         </Property>
         <Property name="text" type="java.lang.String" value="Agregar a Factura"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtDesconectarPC">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/PCS.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Desconectar Pc"/>
       </Properties>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
