@@ -82,7 +82,7 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
         this.mantTelfonoView.btInsertar.addActionListener(this);
         this.mantTelfonoView.btModificar.addActionListener(this);
         this.mantTelfonoView.txtidTelefono.getDocument().addDocumentListener(this);
-        //this.mantTelfonoView.txtIdCliente.getDocument().addDocumentListener(this);
+        this.mantTelfonoView.txtIdCliente.setEnabled(false);
         this.mantTelfonoView.btBuscar.addActionListener(this);
         this.mantTelfonoView.btEliminar.setEnabled(false);
         this.mantTelfonoView.btModificar.setEnabled(false);
@@ -364,19 +364,35 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
             t.setPk_idTelefono(Integer.parseInt(this.mantTelfonoView.txtidTelefono.getText()));
             try {
                 t = telefonoBLModelo.obtenerPorId(t);
-                //this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
-                //this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
+                this.mantTelfonoView.txtIdCliente.setText(String.valueOf(t.getFK_idCliente().toString()));
+                this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
+//                System.out.println("ojo:en el cargar "+t.getNumeroTelefono());
+//                if(t.getCodtipo()==1){
+//                    mantTelfonoView.chckCasa.setSelected(true);
+//                }
+//                if(t.getCodtipo()==2){
+//                    mantTelfonoView.chckCelular.setSelected(true);
+//                }
+//                if(t.getCodtipo()==3){
+//                    mantTelfonoView.chckOficina.setSelected(true);
+//                }
+                String tipo="";
+                int x=0;
+                if(mantTelfonoView.chckCasa.isSelected()){
+                    tipo= "Casa";
+                    x=1;
+                }
+                if(mantTelfonoView.chckCelular.isSelected()){
+                    tipo="Celular";
+                    x=2;
+                }
+                if(mantTelfonoView.chckOficina.isSelected()){
+                    tipo="Oficina";
+                    x=3;
+                }
                 
-                //System.out.println("ojo:en el cargar "+t.getNumeroTelefono());
-                if(t.getCodtipo()==1){
-                    mantTelfonoView.chckCasa.setSelected(true);
-                }
-                if(t.getCodtipo()==2){
-                    mantTelfonoView.chckCelular.setSelected(true);
-                }
-                if(t.getCodtipo()==3){
-                    mantTelfonoView.chckOficina.setSelected(true);
-                }
+                t.setTipoTelfono(tipo);
+                t.setCodtipo(x);
                 this.mantTelfonoView.txtNumero.setText(String.valueOf(t.getNumeroTelefono().toString()));
 
             } catch (SQLException ex) {
