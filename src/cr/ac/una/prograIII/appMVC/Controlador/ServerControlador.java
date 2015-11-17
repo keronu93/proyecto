@@ -111,8 +111,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         
                         writer.println("Desbloqueado");
-                        cliente.setEstadoActivo(true);
-                        cliente.setHoInicio(cliente.HoraInicio);
+                        cliente.setEstadoActivo(false);
+                        cliente.setHoInicio(cliente.horaInicio());
                         llenarTabla();
                         writer.flush();
                     }
@@ -141,7 +141,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         writer.println("Bloqueado");
                         cliente.setEstadoActivo(false);
-                        cliente.setHoFin(cliente.HoraFin);
+                        cliente.setHoFin(cliente.horaFinal());
                        
                         llenarTabla();
                         writer.flush();
@@ -172,6 +172,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         
                         writer.println("Desconectado");
                         cliente.setEstadoActivo(false);
+                        cliente.setHoFin(cliente.horaFinal());
                         llenarTabla();
                         writer.flush();
                     }
@@ -344,24 +345,17 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private PrintWriter printWriter;
         private String hoInicio = "";
         private String hoFin = "";
-        private Calendar calendario = Calendar.getInstance();
         private String tiempo="";
         private Boolean estadoActivo;
-        private String nombrePC;
-        String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
-        String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-        //String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-        String HoraInicio = hoIn+" : " + miIn;
-        String hoFn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
-        String miFn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-        //String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-        String HoraFin = hoFn+" : " + miFn;
-        Integer  MILLSECS_PER_DAY = 24*60;
+        private String nombrePC;        
+        //Integer  MILLSECS_PER_DAY = 24*60;
         
     
         public ClienteHilo(Socket clientSocket, PrintWriter printWriter) {
+            
             this.printWriter = printWriter;
             this.estadoActivo = true;
+            this.hoInicio=horaInicio();
             try {
                 sock = clientSocket;
                 InputStreamReader isReader = new InputStreamReader(sock.getInputStream());
@@ -438,15 +432,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
         public void setHoFin(String hoFin) {
             this.hoFin = hoFin;
         }
-
-        public Calendar getCalendario() {
-            return calendario;
-        }
-
-        public void setCalendario(Calendar calendario) {
-            this.calendario = calendario;
-        }
-
         public Boolean getEstadoActivo() {
             return estadoActivo;
         }
@@ -471,7 +456,23 @@ public class ServerControlador implements ActionListener, DocumentListener {
             this.tiempo = tiempo;
         }
         
+        public String horaInicio(){
+            String hora;
+            Calendar calendario = Calendar.getInstance();
+            String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
+            String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
+            hora= hoIn+" : " + miIn;
+            return hora;
+        }
         
+        public String horaFinal(){
+            String hora;
+            Calendar calendario = Calendar.getInstance();
+            String hofin = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
+            String mifin = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
+            hora= hofin+" : " + mifin;
+            return hora;
+        }
         
 
     }
