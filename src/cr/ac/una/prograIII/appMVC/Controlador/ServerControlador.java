@@ -142,8 +142,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         writer.println("Bloqueado");
                         cliente.setEstadoActivo(false);
                         cliente.setHoFin(cliente.HoraFin);
-                       
                         llenarTabla();
+                        
                         writer.flush();
                     }
                 }
@@ -356,7 +356,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
         String miFn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
         //String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
         String HoraFin = hoFn+" : " + miFn;
-        Integer  MILLSECS_PER_DAY = 24*60;
+       
         
     
         public ClienteHilo(Socket clientSocket, PrintWriter printWriter) {
