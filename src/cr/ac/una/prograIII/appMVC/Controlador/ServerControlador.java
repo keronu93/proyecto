@@ -142,7 +142,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         writer.println("Bloqueado");
                         cliente.setEstadoActivo(false);
                         cliente.setHoFin(cliente.horaFinal());
-                       
+                        cliente.setTiempo(cliente.tiempoTotal());
                         llenarTabla();
                         
                         writer.flush();
@@ -173,8 +173,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         
                         writer.println("Desconectado");
                         cliente.setEstadoActivo(false);
-                        cliente.setHoFin(cliente.horaFinal());
-                        cliente.setTiempo(cliente.tiempoTotal());
+                        cliente.setHoInicio(cliente.horaInicio());
+                        cliente.setHoFin("");
+                        cliente.setTiempo("");
                         llenarTabla();
                         writer.flush();
                     }
@@ -205,17 +206,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
             
         }
     }
-//    public String totaltiempo() {
-//        int minutos = 0;
-//        int segundos = 0;
-//        String totaltiempo = " ";
-//        for (minutos = 0; minutos < 60; minutos++) {
-//            for (segundos = 0; segundos < 60; segundos++) {
-//                RetrasoSegundos();
-//            }
-//        }
-//        return totaltiempo = (minutos + " : " + segundos);
-//    }
 
      public void RetrasoSegundos() {
             try {
