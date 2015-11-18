@@ -113,6 +113,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         writer.println("Desbloqueado");
                         cliente.setEstadoActivo(false);
                         cliente.setHoInicio(cliente.horaInicio());
+                        cliente.setHoFin("Sin definir");
+                        cliente.setTiempo("Sin definir");
                         llenarTabla();
                         writer.flush();
                     }
@@ -174,8 +176,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         writer.println("Desconectado");
                         cliente.setEstadoActivo(false);
                         cliente.setHoInicio(cliente.horaInicio());
-                        cliente.setHoFin("");
-                        cliente.setTiempo("");
+                        cliente.setHoFin("Sin definir");
+                        cliente.setTiempo("Sin definir");
                         llenarTabla();
                         writer.flush();
                     }
