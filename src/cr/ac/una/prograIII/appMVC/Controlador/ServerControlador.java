@@ -349,23 +349,10 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private String hoFin = "";
         private String tiempo="";
         private Boolean estadoActivo;
-
-        private String nombrePC;
-        String hoIn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
-        String miIn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-        //String seIn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-        String HoraInicio = hoIn+" : " + miIn;
-        String hoFn = String.valueOf(Calendar.getInstance().get(Calendar.HOUR));
-        String miFn = String.valueOf(Calendar.getInstance().get(Calendar.MINUTE));
-        //String seFn = String.valueOf(Calendar.getInstance().get(Calendar.SECOND));
-        String HoraFin = hoFn+" : " + miFn;
-       
-
-        //private String nombrePC; 
+        private String nombrePC; 
         private Integer minuInicial;
         private Integer minuFinal;
         //Integer  MILLSECS_PER_DAY = 24*60;
-
         
     
         public ClienteHilo(Socket clientSocket, PrintWriter printWriter) {
