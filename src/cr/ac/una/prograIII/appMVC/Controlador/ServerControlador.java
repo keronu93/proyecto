@@ -7,7 +7,13 @@ package cr.ac.una.prograIII.appMVC.Controlador;
 
 
 import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
+import cr.ac.una.prograIII.appMVC.Vista.ManteArticulos;
+import cr.ac.una.prograIII.appMVC.Vista.ManteCliente;
 import cr.ac.una.prograIII.appMVC.Vista.Server;
+import cr.ac.una.prograIII.appMVC.bl.ArticuloBL;
+import cr.ac.una.prograIII.appMVC.bl.ClienteBL;
+import cr.ac.una.prograIII.appMVC.bl.DetalleFacturaBL;
+import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -208,7 +214,21 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
         }
         if (e.getSource() == this.serverView.BtAgregarFactura) {
-            
+            int fila =this.serverView.jTPC.getSelectedRow();
+            if (fila != -1) {  
+            String nombrepc=this.serverView.jTPC.getValueAt(fila, 0).toString();    
+            AgregarFactura manteFacturaView= new AgregarFactura();
+            FacturaBL facturaBLModelo= new FacturaBL();
+            DetalleFacturaBL detalleBLModelo= new DetalleFacturaBL();
+            ManteCliente manteClienteView = new ManteCliente();
+            ClienteBL clienteBLModelo= new ClienteBL();
+            ManteArticulos manteArticuloView= new ManteArticulos();
+            ArticuloBL articuloBLModelo= new ArticuloBL();
+            FacturaControlador fControlador= new FacturaControlador(manteFacturaView,facturaBLModelo,manteClienteView,clienteBLModelo,manteArticuloView,articuloBLModelo,detalleBLModelo); 
+            fControlador.getAgregarFacturaView().setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(serverView, "Error debe seleccionar una pc:", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
