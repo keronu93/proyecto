@@ -131,6 +131,7 @@ public class ControladorSistAdministracion implements ActionListener {
         this.ManteAdmiView.ReporteUsuarios.addActionListener(this);
         this.ManteAdmiView.ReporteArticulos.addActionListener(this);
         this.ManteAdmiView.ReporteTelefono.addActionListener(this);
+        this.ManteAdmiView.ReporteFactura.addActionListener(this);
         this.ManteAdmiView.jMFactura.addActionListener(this);
         inicializarPantalla();
     }
@@ -360,16 +361,16 @@ public class ControladorSistAdministracion implements ActionListener {
         }if(e.getSource()==this.ManteAdmiView.ReporteFactura){
         InputStream inputStream = null;
         try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteFacturas.jrxml");
+            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteFactura.jrxml");
             Map parameters = new HashMap();
             JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
             
             MySQLConexion Con = new MySQLConexion();
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteFacturas.pdf");
+            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteFactura.pdf");
             
-            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteFacturas.pdf");
+            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteFactura.pdf");
             if (file.toString().endsWith(".pdf")) 
                 Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
             else {
