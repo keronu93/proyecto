@@ -120,7 +120,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     }
                 }
             } catch (Exception ex) {
-                 serverView.Chat_Servidor.append("Error no se puede desbloquear. \n");
+                 //serverView.Chat_Servidor.append("Error no se puede desbloquear. \n");
+                  JOptionPane.showMessageDialog(serverView, "Error no se puede desbloquear" , "Error Desbloqueando", JOptionPane.ERROR_MESSAGE);
             }
 
         }if (e.getSource() == this.serverView.BtBloquear) {
@@ -151,7 +152,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     }
                 }
             } catch (Exception ex) {
-                 serverView.Chat_Servidor.append("Error no se puede bloquear. \n");
+                 //serverView.Chat_Servidor.append("Error no se puede bloquear. \n");
+                  JOptionPane.showMessageDialog(serverView, "Error no se puede bloquear" , "Error Bloqueando", JOptionPane.ERROR_MESSAGE);
             }
         
         }if (e.getSource() == this.serverView.BtDesconectarPC) {
@@ -183,7 +185,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                     }
                 }
             } catch (Exception ex) {
-                 serverView.Chat_Servidor.append("Error no se puede desbloquear. \n");
+                 //serverView.Chat_Servidor.append("Error no se puede desbloquear. \n");
+                JOptionPane.showMessageDialog(serverView, "Error no se puede desbloquear" , "Error Desbloqueando", JOptionPane.ERROR_MESSAGE);
             }
 
         }
@@ -245,7 +248,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
                    
                 }
             } catch (Exception ex) {
-                serverView.Chat_Servidor.append("Error al realizar la conexión. \n");
+                //serverView.Chat_Servidor.append("Error al realizar la conexión. \n");
+                JOptionPane.showMessageDialog(serverView, "Error al realizar la conexión" , "Error realizando la conexión", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -271,6 +275,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
             } catch (Exception ex) {
                 serverView.Chat_Servidor.append("Error al enviar mensaje a todos. \n");
+                JOptionPane.showMessageDialog(serverView, "Error al enviar mensaje a todos" , "Error enviando mensajes", JOptionPane.ERROR_MESSAGE);
+  
             }
         }
     }
