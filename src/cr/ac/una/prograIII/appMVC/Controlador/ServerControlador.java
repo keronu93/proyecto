@@ -227,8 +227,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
             int fila =this.serverView.jTPC.getSelectedRow();
             //Boolean estado=Boolean.parseBoolean(this.serverView.jTPC.getValueAt(fila, 2).toString());
             if (fila != -1) {  
-            Integer tiempo=Integer.parseInt(this.serverView.jTPC.getValueAt(fila, 5).toString());
-            //this.txtRespuesta.setText(String.valueOf(tiempo));
+            String tiempo=this.serverView.jTPC.getValueAt(fila, 5).toString();
             AgregarFactura manteFacturaView= new AgregarFactura();
             FacturaBL facturaBLModelo= new FacturaBL();
             DetalleFacturaBL detalleBLModelo= new DetalleFacturaBL();
@@ -237,6 +236,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
             ManteArticulos manteArticuloView= new ManteArticulos();
             ArticuloBL articuloBLModelo= new ArticuloBL();
             FacturaControlador fControlador= new FacturaControlador(manteFacturaView,facturaBLModelo,manteClienteView,clienteBLModelo,manteArticuloView,articuloBLModelo,detalleBLModelo); 
+            manteFacturaView.txtCantidadArticulos.setText(tiempo);
             fControlador.getAgregarFacturaView().setVisible(true);
            
             }else{
