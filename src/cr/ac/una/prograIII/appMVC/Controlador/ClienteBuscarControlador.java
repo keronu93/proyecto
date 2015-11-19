@@ -5,22 +5,41 @@
  */
 package cr.ac.una.prograIII.appMVC.Controlador;
 
+import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.prograIII.appMVC.Domain.Cliente;
 import cr.ac.una.prograIII.appMVC.Vista.MantClienteBuscar;
 import cr.ac.una.prograIII.appMVC.bl.ClienteBL;
+import java.awt.Desktop;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 /**
  *
  * @author Gustavo
  */
-public class ClienteBuscarControlador implements  ActionListener{
+public class ClienteBuscarControlador implements ActionListener {
 
     private MantClienteBuscar clienteBuscarView;
     private ClienteBL clienteBLModelo;
@@ -35,6 +54,7 @@ public class ClienteBuscarControlador implements  ActionListener{
         this.txtRespuesta = txtRespuesta;
         this.clienteBuscarView.btBuscar.addActionListener(this);
         this.clienteBuscarView.btSeleccionar.addActionListener(this);
+        this.clienteBuscarView.BtVerFacturasCliente.addActionListener(this);
         llenarTabla(this.clienteBuscarView.jTBuscarCliente);
     }
 
@@ -61,28 +81,69 @@ public class ClienteBuscarControlador implements  ActionListener{
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
-    
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-       if(e.getSource() == this.clienteBuscarView.btBuscar){
+        if (e.getSource() == this.clienteBuscarView.btBuscar) {
             llenarTabla(this.clienteBuscarView.jTBuscarCliente);
         }
-        
-        if(e.getSource() == this.clienteBuscarView.btSeleccionar){
+
+        if (e.getSource() == this.clienteBuscarView.btSeleccionar) {
             int fila = this.clienteBuscarView.jTBuscarCliente.getSelectedRow();
             if (fila != -1) {
-            Integer idCliente = Integer.parseInt(this.clienteBuscarView.jTBuscarCliente.getValueAt(fila, 0).toString());
-            
-            txtRespuesta.setText(String.valueOf(idCliente));
-            
-            this.clienteBuscarView.setVisible(false);
-            }else{
+                Integer idCliente = Integer.parseInt(this.clienteBuscarView.jTBuscarCliente.getValueAt(fila, 0).toString());
+                txtRespuesta.setText(String.valueOf(idCliente));
+                this.clienteBuscarView.setVisible(false);
+
+            } else {
                 JOptionPane.showMessageDialog(clienteBuscarView, "Error debe seleccionar un cliente:", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
+
+        if (e.getSource() == this.clienteBuscarView.BtVerFacturasCliente) {
+            int fila = this.clienteBuscarView.jTBuscarCliente.getSelectedRow();
+            if (fila != -1) {
+                Integer idCliente = Integer.parseInt(this.clienteBuscarView.jTBuscarCliente.getValueAt(fila, 0).toString());
+                txtRespuesta.setText(String.valueOf(idCliente));
+                this.clienteBuscarView.setVisible(false);
+                InputStream inputStream = null;
+                try {
+                    inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\FacturasCliente.jrxml");
+                    Map parameters = new HashMap();
+                    parameters.put("IdCliente", idCliente);
+                    JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                    JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+                    MySQLConexion Con = new MySQLConexion();
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\FacturasCliente.pdf");
+
+                    File file = new File("C:\\Users\\Gustavo\\Desktop\\FacturasCliente.pdf");
+                    if (file.toString().endsWith(".pdf")) {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                    } else {
+                        Desktop desktop = Desktop.getDesktop();
+                        desktop.open(file);
+                    }
+
+                } catch (FileNotFoundException ex) {
+
+                    System.err.println(ex.getMessage());
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JRException ex) {
+                    Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(clienteBuscarView, "Error debe seleccionar un cliente:", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
     }
-     public void llenarTabla(JTable tablaCliente) {
+
+    public void llenarTabla(JTable tablaCliente) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaCliente.setModel(modeloTabla);
 
@@ -90,11 +151,10 @@ public class ClienteBuscarControlador implements  ActionListener{
         modeloTabla.addColumn("Nombre");
         modeloTabla.addColumn("Apellidos");
         modeloTabla.addColumn("Fecha Nacimiento");
-        
 
         Object fila[] = new Object[4];
-        
-        String Sql = "where apellidos like '%"+ this.clienteBuscarView.txtBuscar.getText() +"%'";
+
+        String Sql = "where apellidos like '%" + this.clienteBuscarView.txtBuscar.getText() + "%'";
 
         try {
             for (Object oAux : clienteBLModelo.obtenerConWhere(new Cliente(), Sql)) {
@@ -109,5 +169,5 @@ public class ClienteBuscarControlador implements  ActionListener{
             JOptionPane.showMessageDialog(null, "Error (llenarTabla):" + ex.getMessage(), "Error en llenarTabla", JOptionPane.ERROR_MESSAGE);
         }
     }
-    
+
 }

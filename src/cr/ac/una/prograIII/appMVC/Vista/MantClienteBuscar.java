@@ -36,6 +36,7 @@ public class MantClienteBuscar extends javax.swing.JFrame {
         jTBuscarCliente = new javax.swing.JTable();
         LbApellidos = new javax.swing.JLabel();
         txtBuscar = new javax.swing.JTextField();
+        BtVerFacturasCliente = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(" Buscar Clientes");
@@ -77,6 +78,9 @@ public class MantClienteBuscar extends javax.swing.JFrame {
             }
         });
 
+        BtVerFacturasCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/ClientePequeno.png"))); // NOI18N
+        BtVerFacturasCliente.setText("Monstrar Facturas por Cliente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -93,6 +97,8 @@ public class MantClienteBuscar extends javax.swing.JFrame {
                         .addComponent(btBuscar))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(BtVerFacturasCliente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btSeleccionar)))
                 .addContainerGap())
         );
@@ -106,8 +112,10 @@ public class MantClienteBuscar extends javax.swing.JFrame {
                     .addComponent(btBuscar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSeleccionar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btSeleccionar)
+                    .addComponent(BtVerFacturasCliente))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -165,6 +173,7 @@ public class MantClienteBuscar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton BtVerFacturasCliente;
     private javax.swing.JLabel LbApellidos;
     public javax.swing.JButton btBuscar;
     public javax.swing.JButton btSeleccionar;
