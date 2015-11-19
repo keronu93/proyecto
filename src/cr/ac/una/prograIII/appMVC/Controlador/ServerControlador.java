@@ -43,8 +43,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
     private Server serverView;
     private AgregarFactura agregarFacturaView;
     ArrayList<ClienteHilo> listaClientes;
-    private JTextField txtRespuesta;
-    
+        
     
     public ServerControlador(Server serverView, ArrayList<ClienteHilo> listaClientes) {
         this.serverView = serverView;
@@ -70,15 +69,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView = agregarFacturaView;
     }
 
-    public JTextField getTxtRespuesta() {
-        return txtRespuesta;
-    }
-
-    public void setTxtRespuesta(JTextField txtRespuesta) {
-        this.txtRespuesta = txtRespuesta;
-    }
-
-    
     
     public Server getServerView() {
         return serverView;
@@ -135,7 +125,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         
                         writer.println("Desbloqueado");
-                        cliente.setEstadoActivo(false);
+                        cliente.setEstadoActivo(true);
                         cliente.setHoInicio(cliente.horaInicio());
                         cliente.setHoFin("Sin definir");
                         cliente.setTiempo("Sin definir");
@@ -200,10 +190,11 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         
                         writer.println("Desconectado");
-                        cliente.setEstadoActivo(true);
-                        cliente.setHoInicio(cliente.horaInicio());
-                        cliente.setHoFin("Sin definir");
-                        cliente.setTiempo("Sin definir");
+                        listaClientes.remove(cliente);
+//                        cliente.setEstadoActivo(true);
+//                        cliente.setHoInicio(cliente.horaInicio());
+//                        cliente.setHoFin("Sin definir");
+//                        cliente.setTiempo("Sin definir");
                         llenarTabla();
                         writer.flush();
                     }
@@ -232,10 +223,12 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
         }
         if (e.getSource() == this.serverView.BtAgregarFactura) {
+            
             int fila =this.serverView.jTPC.getSelectedRow();
+            //Boolean estado=Boolean.parseBoolean(this.serverView.jTPC.getValueAt(fila, 2).toString());
             if (fila != -1) {  
             Integer tiempo=Integer.parseInt(this.serverView.jTPC.getValueAt(fila, 5).toString());
-            this.txtRespuesta.setText(String.valueOf(tiempo));
+            //this.txtRespuesta.setText(String.valueOf(tiempo));
             AgregarFactura manteFacturaView= new AgregarFactura();
             FacturaBL facturaBLModelo= new FacturaBL();
             DetalleFacturaBL detalleBLModelo= new DetalleFacturaBL();
@@ -247,7 +240,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
             fControlador.getAgregarFacturaView().setVisible(true);
            
             }else{
-                JOptionPane.showMessageDialog(serverView, "Error debe seleccionar una pc:", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(serverView, "Error debe seleccionar una pc inactiva:", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
