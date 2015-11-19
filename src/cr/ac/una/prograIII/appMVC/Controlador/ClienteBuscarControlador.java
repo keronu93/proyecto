@@ -104,7 +104,6 @@ public class ClienteBuscarControlador implements ActionListener {
             int fila = this.clienteBuscarView.jTBuscarCliente.getSelectedRow();
             if (fila != -1) {
                 Integer idCliente = Integer.parseInt(this.clienteBuscarView.jTBuscarCliente.getValueAt(fila, 0).toString());
-                txtRespuesta.setText(String.valueOf(idCliente));
                 this.clienteBuscarView.setVisible(false);
                 InputStream inputStream = null;
                 try {
