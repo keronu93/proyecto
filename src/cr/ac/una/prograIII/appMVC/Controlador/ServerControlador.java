@@ -182,7 +182,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
                         PrintWriter writer = new PrintWriter(cliente.getSock().getOutputStream());
                         
                         writer.println("Desconectado");
-                        cliente.setEstadoActivo(false);
+                        cliente.setEstadoActivo(true);
                         cliente.setHoInicio(cliente.horaInicio());
                         cliente.setHoFin("Sin definir");
                         cliente.setTiempo("Sin definir");
