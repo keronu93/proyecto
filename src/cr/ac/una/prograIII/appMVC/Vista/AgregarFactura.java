@@ -34,10 +34,6 @@ public class AgregarFactura extends javax.swing.JFrame {
         Fecha = new javax.swing.JLabel();
         etiquetaFecha = new javax.swing.JLabel();
         Cliente = new javax.swing.JLabel();
-        Tiempo = new javax.swing.JLabel();
-        EtiquetaTiempo = new javax.swing.JLabel();
-        ValorHora = new javax.swing.JLabel();
-        EtiquetaValorHora = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableDetalleFactura = new javax.swing.JTable();
         TotalEtiqueta = new javax.swing.JLabel();
@@ -48,11 +44,8 @@ public class AgregarFactura extends javax.swing.JFrame {
         txtidFactura = new javax.swing.JTextField();
         txtCliente = new javax.swing.JTextField();
         btBuscarCliente = new javax.swing.JButton();
-        btAnulaFac = new javax.swing.JButton();
-        btInsertarPC = new javax.swing.JButton();
         btEliminar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        btBuscarId = new javax.swing.JButton();
         JPrecioUnitario = new javax.swing.JLabel();
         txtPrecioUnitario = new javax.swing.JTextField();
         NombreArticulo = new javax.swing.JLabel();
@@ -67,8 +60,6 @@ public class AgregarFactura extends javax.swing.JFrame {
         TxtApellidosCliente = new javax.swing.JTextField();
         BtAgregarArticulo = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        JNombrePC = new javax.swing.JLabel();
-        TxtNombreEquipo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear Factura");
@@ -80,14 +71,6 @@ public class AgregarFactura extends javax.swing.JFrame {
         etiquetaFecha.setText("sin definir");
 
         Cliente.setText("Id Cliente:");
-
-        Tiempo.setText("Tiempo:");
-
-        EtiquetaTiempo.setText("0.0");
-
-        ValorHora.setText("Valor hora:");
-
-        EtiquetaValorHora.setText("500");
 
         jTableDetalleFactura.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -137,22 +120,6 @@ public class AgregarFactura extends javax.swing.JFrame {
             }
         });
 
-        btAnulaFac.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/elimiar.png"))); // NOI18N
-        btAnulaFac.setText("Anular Factura");
-        btAnulaFac.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btAnulaFacActionPerformed(evt);
-            }
-        });
-
-        btInsertarPC.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/PCS.png"))); // NOI18N
-        btInsertarPC.setText("Buscar PC");
-        btInsertarPC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btInsertarPCActionPerformed(evt);
-            }
-        });
-
         btEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/elimiar.png"))); // NOI18N
         btEliminar.setText("Eliminar Detalle");
 
@@ -161,14 +128,6 @@ public class AgregarFactura extends javax.swing.JFrame {
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelarActionPerformed(evt);
-            }
-        });
-
-        btBuscarId.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
-        btBuscarId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/vista/images/buscar.png"))); // NOI18N
-        btBuscarId.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btBuscarIdActionPerformed(evt);
             }
         });
 
@@ -189,8 +148,6 @@ public class AgregarFactura extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/cr/ac/una/prograIII/appMVC/Vista/Images/user.png"))); // NOI18N
 
-        JNombrePC.setText("Equipo :");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -206,68 +163,48 @@ public class AgregarFactura extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlTotal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(Cantidad, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(NombreArticulo)
+                            .addComponent(JPrecioUnitario)
+                            .addComponent(IDArticulo)
+                            .addComponent(JApellidosCliente)
+                            .addComponent(jNombreCliente)
+                            .addComponent(Cliente)
+                            .addComponent(jLabelNumerodeFactura))
+                        .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(JNombrePC)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(Cantidad, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(NombreArticulo)
-                                        .addComponent(JPrecioUnitario)
-                                        .addComponent(IDArticulo)
-                                        .addComponent(JApellidosCliente)
-                                        .addComponent(jNombreCliente)
-                                        .addComponent(Cliente)
-                                        .addComponent(jLabelNumerodeFactura)))
-                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(TxTNombreCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtidFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(116, 116, 116))
+                                    .addComponent(txtIdArticulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(TxtApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(TxTNombreCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(txtidFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(67, 67, 67)
-                                                .addComponent(btBuscarId))
-                                            .addComponent(txtIdArticulo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(TxtApellidosCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(Fecha)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(etiquetaFecha))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(btBuscarCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(btBuscarArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(jLabel1))))
-                                    .addComponent(txtPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtNombreArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(Fecha)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(etiquetaFecha))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(TxtNombreEquipo, javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtCantidadArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE))
-                                        .addGap(19, 19, 19)
-                                        .addComponent(btInsertarPC))))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(66, 66, 66)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(ValorHora)
-                                    .addComponent(Tiempo))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(EtiquetaValorHora)
-                                    .addComponent(EtiquetaTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btAnulaFac, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(BtAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(btBuscarCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(btBuscarArticulos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel1))))
+                            .addComponent(txtPrecioUnitario, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNombreArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCantidadArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 38, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
+                        .addComponent(BtAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -280,11 +217,9 @@ public class AgregarFactura extends javax.swing.JFrame {
                         .addComponent(Fecha)
                         .addComponent(etiquetaFecha))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(txtidFactura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btBuscarId)
-                                .addGap(4, 4, 4))
                             .addComponent(jLabelNumerodeFactura))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
@@ -319,23 +254,9 @@ public class AgregarFactura extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Cantidad)
                     .addComponent(txtCantidadArticulos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(JNombrePC)
-                    .addComponent(TxtNombreEquipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btInsertarPC))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Tiempo)
-                    .addComponent(EtiquetaTiempo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(ValorHora)
-                    .addComponent(EtiquetaValorHora))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btAnulaFac, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(BtAgregarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -348,7 +269,7 @@ public class AgregarFactura extends javax.swing.JFrame {
                             .addComponent(jlTotal)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(13, 13, 13)
-                        .addComponent(btCrearFac, javax.swing.GroupLayout.DEFAULT_SIZE, 41, Short.MAX_VALUE)))
+                        .addComponent(btCrearFac, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -362,18 +283,6 @@ public class AgregarFactura extends javax.swing.JFrame {
     private void btBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarClienteActionPerformed
 
     }//GEN-LAST:event_btBuscarClienteActionPerformed
-
-    private void btAnulaFacActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAnulaFacActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btAnulaFacActionPerformed
-
-    private void btInsertarPCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInsertarPCActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btInsertarPCActionPerformed
-
-    private void btBuscarIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btBuscarIdActionPerformed
-
-    }//GEN-LAST:event_btBuscarIdActionPerformed
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         // TODO add your handling code here:
@@ -421,28 +330,19 @@ public class AgregarFactura extends javax.swing.JFrame {
     public javax.swing.JButton BtAgregarArticulo;
     private javax.swing.JLabel Cantidad;
     private javax.swing.JLabel Cliente;
-    public javax.swing.JLabel EtiquetaTiempo;
-    public javax.swing.JLabel EtiquetaValorHora;
     private javax.swing.JLabel Fecha;
     private javax.swing.JLabel IDArticulo;
     private javax.swing.JLabel JApellidosCliente;
-    private javax.swing.JLabel JNombrePC;
     private javax.swing.JLabel JPrecioUnitario;
     private javax.swing.JLabel NombreArticulo;
-    private javax.swing.JLabel Tiempo;
     private javax.swing.JLabel TotalEtiqueta;
     public javax.swing.JTextField TxTNombreCliente;
     public javax.swing.JTextField TxtApellidosCliente;
-    private javax.swing.JTextField TxtNombreEquipo;
-    private javax.swing.JLabel ValorHora;
-    public javax.swing.JButton btAnulaFac;
     public javax.swing.JButton btBuscarArticulos;
     public javax.swing.JButton btBuscarCliente;
-    public javax.swing.JButton btBuscarId;
     public javax.swing.JButton btCancelar;
     public javax.swing.JButton btCrearFac;
     public javax.swing.JButton btEliminar;
-    public javax.swing.JButton btInsertarPC;
     public javax.swing.JLabel etiquetaFecha;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelNumerodeFactura;

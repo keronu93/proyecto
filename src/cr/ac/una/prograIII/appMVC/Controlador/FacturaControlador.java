@@ -62,12 +62,9 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.clienteBlModelo = clienteBlModelo;
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
-        this.DetalleFacturaBLModelo = DetalleFacturaBLModelo;
-        this.agregarFacturaView.btInsertarPC.addActionListener(this);
+        this.DetalleFacturaBLModelo = DetalleFacturaBLModelo; 
         this.agregarFacturaView.btBuscarCliente.addActionListener(this);
-        this.agregarFacturaView.btBuscarId.addActionListener(this);
         this.agregarFacturaView.btCancelar.addActionListener(this);
-        this.agregarFacturaView.btAnulaFac.addActionListener(this);
         this.agregarFacturaView.btCrearFac.addActionListener(this);
         this.agregarFacturaView.btEliminar.addActionListener(this);
         this.agregarFacturaView.BtAgregarArticulo.addActionListener(this);
@@ -164,16 +161,13 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         
         this.agregarFacturaView.txtidFactura.setEnabled(false);
         this.agregarFacturaView.txtCliente.setEnabled(false);
-        this.agregarFacturaView.txtIdArticulo.setEnabled(false);
-        this.agregarFacturaView.EtiquetaTiempo.setEnabled(false);
+        this.agregarFacturaView.txtIdArticulo.setEnabled(false);  
         this.agregarFacturaView.etiquetaFecha.setText(calendario.getTime().toString());
-        this.agregarFacturaView.EtiquetaValorHora.setEnabled(false);
         this.agregarFacturaView.txtNombreArticulo.setEnabled(false);
         this.agregarFacturaView.txtPrecioUnitario.setEnabled(false);
         this.agregarFacturaView.jlTotal.setEnabled(false);
         this.agregarFacturaView.TxTNombreCliente.setEnabled(false);
         this.agregarFacturaView.TxtApellidosCliente.setEnabled(false);
-        this.agregarFacturaView.btInsertarPC.setEnabled(false);
         llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
     }
 
@@ -198,9 +192,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == this.agregarFacturaView.btInsertarPC) {
-            
-        }
+        
         if (e.getSource() == this.agregarFacturaView.btEliminar) {
             DetalleFactura df= new DetalleFactura();
 
@@ -235,27 +227,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }
 
         }
-        if (e.getSource() == this.agregarFacturaView.btAnulaFac) {
-            Factura f = new Factura();
-            DetalleFactura df = new DetalleFactura();
-            int fila = this.agregarFacturaView.jTableDetalleFactura.getSelectedRow();
-            f.setPk_idfacturacion( Integer.parseInt(this.agregarFacturaView.jTableDetalleFactura.getValueAt(fila, 1).toString()));
-            try {                    
-                    f = FacturaBlModelo.obtenerPorId(f);
-                    df= DetalleFacturaBLModelo.obtenerPorId(df);
-                    this.agregarFacturaView.txtidFactura.setText(String.valueOf(f.getPk_idfacturacion().toString()));
-                    this.agregarFacturaView.txtIdArticulo.setText(String.valueOf(df.getFK_PK_idArticulo().toString()));
-                    this.agregarFacturaView.txtCliente.setText(String.valueOf(f.getFk_idCliente().toString()));
-                    
-                    this.agregarFacturaView.txtPrecioUnitario.setText(String.valueOf(df.getPrecioUnitario()));
-                    this.agregarFacturaView.txtCantidadArticulos.setText(String.valueOf(df.getCantidad().toString()));
-                    this.mantArticuloView.btEliminar.setEnabled(true);
-                                
-                } catch (SQLException ex) {
-                    Logger.getLogger(ArticuloControlador.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        
+               
         if (e.getSource() == this.agregarFacturaView.btBuscarArticulos) {
 
             MantArticuloBuscar mantArticuloBuscarView = new MantArticuloBuscar();
@@ -282,17 +254,10 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             this.agregarFacturaView.txtNombreArticulo.setText(null);
             this.agregarFacturaView.txtPrecioUnitario.setText(null);
             this.agregarFacturaView.txtidFactura.setText(null);
-            this.agregarFacturaView.EtiquetaTiempo.setText("0.0");
+            
             
         }
-        if (e.getSource() == this.agregarFacturaView.btBuscarId) {
-            BuscarFactura BuscarView = new BuscarFactura();
-            FacturaBuscarControlador FacturaBControlador;
-            FacturaBControlador = new FacturaBuscarControlador(BuscarView,
-                    FacturaBlModelo, this.agregarFacturaView.txtidFactura);
-            FacturaBControlador.getBuscarFacturaView().setVisible(true);
-
-        }if(e.getSource() == this.agregarFacturaView.BtAgregarArticulo){
+        if(e.getSource() == this.agregarFacturaView.BtAgregarArticulo){
             if(agregarFacturaView.TxTNombreCliente.getText().equals("")||agregarFacturaView.TxtApellidosCliente.getText().equals("")||agregarFacturaView.txtCantidadArticulos.getText().equals("")||agregarFacturaView.txtCliente.getText().equals("")||agregarFacturaView.txtIdArticulo.getText().equals("")||agregarFacturaView.txtNombreArticulo.getText().equals("")||agregarFacturaView.txtPrecioUnitario.getText().equals("")){
                  JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan espacios por rellenar:", "Error al agregar detalle", JOptionPane.ERROR_MESSAGE);
             }else{
@@ -307,12 +272,12 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             
             try {
-            a=ArticuloBLModelo.obtenerPorId(a);    
+            a=ArticuloBLModelo.obtenerPorId(a);
+            existenciaPoca(a);
             if(existenciaArticulos(a, can)){
             a.setCantidadExistencia(can);
             listAr.add(a);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-            
             subtotal=this.calcularSubtotal(precio, can);
             total=this.calcularTotal(total, subtotal);
             this.agregarFacturaView.jlTotal.setText(String.valueOf(total));
@@ -371,6 +336,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                this.agregarFacturaView.txtCliente.setText("");
                this.agregarFacturaView.TxTNombreCliente.setText("");
                this.agregarFacturaView.TxtApellidosCliente.setText("");
+               this.agregarFacturaView.jlTotal.setText("0.0");
                listAr.clear();
                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
                    System.out.println("ojo total " + f.getTotal() );
@@ -440,14 +406,27 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         double total=0.0;
         return total=precio*cantidad;
     }
+    public double calculaSubtotalAlquiler(double precio, int cantidad){
+        double total=0.0;
+        precio= precio/60;
+        return total=precio*cantidad;
+    }
+            
     public double calcularTotal(double total,double subtotal){
         return total=total+subtotal;
     }
     
     public boolean existenciaArticulos(Articulos a, int cant){
-        if(cant < a.getCantidadExistencia()){
+        if(cant <= a.getCantidadExistencia()){
             return true;
         }else
             return false;
     }
+    public void existenciaPoca(Articulos a){
+        if(a.getCantidadExistencia()<=5){
+            JOptionPane.showMessageDialog(mantArticuloView, "Hay 5 o menos articulos como este en inventario", "Alerta poca existencia de este Articulo", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+   
+        
 }
