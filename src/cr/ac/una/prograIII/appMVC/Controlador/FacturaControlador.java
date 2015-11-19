@@ -312,6 +312,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             a.setCantidadExistencia(can);
             listAr.add(a);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
+            existenciaPoca(a);
             
             subtotal=this.calcularSubtotal(precio, can);
             total=this.calcularTotal(total, subtotal);
@@ -445,9 +446,16 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     }
     
     public boolean existenciaArticulos(Articulos a, int cant){
-        if(cant < a.getCantidadExistencia()){
+        if(cant <= a.getCantidadExistencia()){
             return true;
         }else
             return false;
     }
+    public void existenciaPoca(Articulos a){
+        if(a.getCantidadExistencia()<=5&&0<a.getCantidadExistencia()){
+            JOptionPane.showMessageDialog(mantArticuloView, "Hay 5 o menos articulos como este en inventario", "Alerta poca existencia de este Articulo", JOptionPane.INFORMATION_MESSAGE);
+        }
+    }
+   
+        
 }
