@@ -20,9 +20,15 @@ import cr.ac.una.prograIII.appMVC.bl.ArticuloBL;
 import cr.ac.una.prograIII.appMVC.bl.ClienteBL;
 import cr.ac.una.prograIII.appMVC.bl.DetalleFacturaBL;
 import cr.ac.una.prograIII.appMVC.bl.FacturaBL;
+import java.awt.Desktop;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -30,6 +36,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -37,6 +45,14 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
 
 /**
  *
@@ -71,7 +87,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         this.agregarFacturaView.btBuscarArticulos.addActionListener(this);
         this.agregarFacturaView.txtIdArticulo.getDocument().addDocumentListener(this);
         this.agregarFacturaView.txtCliente.getDocument().addDocumentListener(this);
-        
+        this.agregarFacturaView.BtImprimirFactura.addActionListener(this);
         
 
         inicializarPantalla();
@@ -349,7 +365,46 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }
             }
         }
+        if(e.getSource() == this.agregarFacturaView.BtImprimirFactura){
+            Factura f = new Factura();
+            Integer idFacturacion = f.getPk_idfacturacion();
+            InputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\Factura.jrxml");
+                Map parameters = new HashMap();
+                parameters.put("IdFactura", idFacturacion);
+                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+                MySQLConexion Con = new MySQLConexion();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+
+                File file = new File("C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+                if (file.toString().endsWith(".pdf")) {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+                System.err.println(ex.getMessage());
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } else {
+            JOptionPane.showMessageDialog(agregarFacturaView, "Error debe seleccionar un cliente:", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
+
+
+    
 
     @Override
     public void insertUpdate(DocumentEvent e) {

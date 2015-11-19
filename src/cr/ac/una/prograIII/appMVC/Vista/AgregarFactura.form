@@ -80,15 +80,16 @@
                           <Component id="txtNombreArticulo" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
                           <Component id="txtCantidadArticulos" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="39" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="btEliminar" min="-2" pref="165" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btEliminar" min="-2" pref="153" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btCancelar" min="-2" pref="165" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="BtImprimirFactura" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="BtAgregarArticulo" min="-2" pref="166" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -155,26 +156,24 @@
                   <Component id="Cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCantidadArticulos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btEliminar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="BtAgregarArticulo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="btEliminar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="btCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="BtAgregarArticulo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="BtImprimirFactura" max="32767" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="105" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="TotalEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jlTotal" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
+              <EmptySpace type="separate" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" alignment="1" groupAlignment="3" attributes="0">
+                      <Component id="TotalEtiqueta" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jlTotal" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Component id="btCrearFac" pref="52" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="btCrearFac" alignment="1" min="-2" pref="45" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -432,6 +431,17 @@
           <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/user.png"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="BtImprimirFactura">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+          <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/agregarFactura.png"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Imprimir Factura"/>
+      </Properties>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
