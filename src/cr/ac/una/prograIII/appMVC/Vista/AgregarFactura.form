@@ -36,86 +36,58 @@
                       <Component id="jlTotal" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="Cantidad" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="NombreArticulo" min="-2" max="-2" attributes="0"/>
+                          <Component id="JPrecioUnitario" min="-2" max="-2" attributes="0"/>
+                          <Component id="IDArticulo" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="JApellidosCliente" alignment="1" min="-2" max="-2" attributes="0"/>
+                          <Component id="jNombreCliente" min="-2" max="-2" attributes="0"/>
+                          <Component id="Cliente" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelNumerodeFactura" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="JNombrePC" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="Cantidad" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="NombreArticulo" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JPrecioUnitario" min="-2" max="-2" attributes="0"/>
-                                      <Component id="IDArticulo" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="JApellidosCliente" alignment="1" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jNombreCliente" min="-2" max="-2" attributes="0"/>
-                                      <Component id="Cliente" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jLabelNumerodeFactura" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="TxTNombreCliente" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="TxTNombreCliente" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="txtidFactura" min="-2" pref="104" max="-2" attributes="0"/>
-                                              <EmptySpace min="-2" pref="67" max="-2" attributes="0"/>
-                                              <Component id="btBuscarId" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="txtIdArticulo" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
-                                          <Component id="txtCliente" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
-                                          <Component id="TxtApellidosCliente" min="-2" pref="221" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="Fecha" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="etiquetaFecha" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                                  <Component id="btBuscarCliente" alignment="0" max="32767" attributes="0"/>
-                                                  <Component id="btBuscarArticulos" alignment="0" max="32767" attributes="0"/>
-                                              </Group>
-                                              <EmptySpace max="-2" attributes="0"/>
-                                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
+                                      <Component id="txtidFactura" min="-2" pref="104" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="116" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="txtPrecioUnitario" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
-                                  <Component id="txtNombreArticulo" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="txtIdArticulo" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="txtCliente" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
+                                  <Component id="TxtApellidosCliente" min="-2" pref="221" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="Fecha" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="etiquetaFecha" min="-2" max="-2" attributes="0"/>
+                                  </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                          <Component id="TxtNombreEquipo" alignment="0" max="32767" attributes="0"/>
-                                          <Component id="txtCantidadArticulos" alignment="0" pref="221" max="32767" attributes="0"/>
+                                          <Component id="btBuscarCliente" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="btBuscarArticulos" alignment="0" max="32767" attributes="0"/>
                                       </Group>
-                                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                      <Component id="btInsertarPC" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="ValorHora" min="-2" max="-2" attributes="0"/>
-                                  <Component id="Tiempo" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="EtiquetaValorHora" min="-2" max="-2" attributes="0"/>
-                                  <Component id="EtiquetaTiempo" min="-2" pref="220" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" attributes="0">
-                              <Component id="btEliminar" min="-2" pref="161" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btAnulaFac" min="-2" pref="136" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="btCancelar" min="-2" pref="136" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="BtAgregarArticulo" min="-2" pref="172" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="txtPrecioUnitario" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
+                          <Component id="txtNombreArticulo" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
+                          <Component id="txtCantidadArticulos" alignment="0" min="-2" pref="221" max="-2" attributes="0"/>
                       </Group>
+                      <EmptySpace min="0" pref="38" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btEliminar" min="-2" pref="165" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btCancelar" min="-2" pref="165" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="BtAgregarArticulo" min="-2" pref="166" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -133,12 +105,9 @@
                       <Component id="etiquetaFecha" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Component id="txtidFactura" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btBuscarId" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
-                          </Group>
                           <Component id="jLabelNumerodeFactura" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="103" groupAlignment="1" attributes="0">
@@ -186,26 +155,9 @@
                   <Component id="Cantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="txtCantidadArticulos" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="JNombrePC" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="TxtNombreEquipo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btInsertarPC" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="Tiempo" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="EtiquetaTiempo" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="ValorHora" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="EtiquetaValorHora" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="66" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="btEliminar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
-                  <Component id="btAnulaFac" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="btCancelar" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
                   <Component id="BtAgregarArticulo" alignment="3" min="-2" pref="40" max="-2" attributes="0"/>
               </Group>
@@ -221,7 +173,7 @@
                   </Group>
                   <Group type="102" attributes="0">
                       <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
-                      <Component id="btCrearFac" pref="41" max="32767" attributes="0"/>
+                      <Component id="btCrearFac" pref="52" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -253,32 +205,6 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Id Cliente:"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="Tiempo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Tiempo:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="EtiquetaTiempo">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="0.0"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JLabel" name="ValorHora">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Valor hora:"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="EtiquetaValorHora">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="500"/>
-      </Properties>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -404,34 +330,6 @@
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
       </AuxValues>
     </Component>
-    <Component class="javax.swing.JButton" name="btAnulaFac">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/elimiar.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Anular Factura"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAnulaFacActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JButton" name="btInsertarPC">
-      <Properties>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/vista/images/PCS.png"/>
-        </Property>
-        <Property name="text" type="java.lang.String" value="Buscar PC"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btInsertarPCActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
     <Component class="javax.swing.JButton" name="btEliminar">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
@@ -452,22 +350,6 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btCancelarActionPerformed"/>
-      </Events>
-      <AuxValues>
-        <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
-      </AuxValues>
-    </Component>
-    <Component class="javax.swing.JButton" name="btBuscarId">
-      <Properties>
-        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="10" style="0"/>
-        </Property>
-        <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/vista/images/buscar.png"/>
-        </Property>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btBuscarIdActionPerformed"/>
       </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -550,13 +432,6 @@
           <Image iconType="3" name="/cr/ac/una/prograIII/appMVC/Vista/Images/user.png"/>
         </Property>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="JNombrePC">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Equipo :"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="TxtNombreEquipo">
     </Component>
   </SubComponents>
 </Form>
