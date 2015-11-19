@@ -27,6 +27,7 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.UIManager;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -42,6 +43,7 @@ public class ServerControlador implements ActionListener, DocumentListener {
     private Server serverView;
     private AgregarFactura agregarFacturaView;
     ArrayList<ClienteHilo> listaClientes;
+    private JTextField txtRespuesta;
     
     
     public ServerControlador(Server serverView, ArrayList<ClienteHilo> listaClientes) {
@@ -60,8 +62,24 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
     }
 
-    
+    public AgregarFactura getAgregarFacturaView() {
+        return agregarFacturaView;
+    }
 
+    public void setAgregarFacturaView(AgregarFactura agregarFacturaView) {
+        this.agregarFacturaView = agregarFacturaView;
+    }
+
+    public JTextField getTxtRespuesta() {
+        return txtRespuesta;
+    }
+
+    public void setTxtRespuesta(JTextField txtRespuesta) {
+        this.txtRespuesta = txtRespuesta;
+    }
+
+    
+    
     public Server getServerView() {
         return serverView;
     }
@@ -216,7 +234,8 @@ public class ServerControlador implements ActionListener, DocumentListener {
         if (e.getSource() == this.serverView.BtAgregarFactura) {
             int fila =this.serverView.jTPC.getSelectedRow();
             if (fila != -1) {  
-            Integer tiempo=Integer.parseInt(this.serverView.jTPC.getValueAt(fila, 5).toString());    
+            Integer tiempo=Integer.parseInt(this.serverView.jTPC.getValueAt(fila, 5).toString());
+            this.txtRespuesta.setText(String.valueOf(tiempo));
             AgregarFactura manteFacturaView= new AgregarFactura();
             FacturaBL facturaBLModelo= new FacturaBL();
             DetalleFacturaBL detalleBLModelo= new DetalleFacturaBL();
@@ -225,7 +244,6 @@ public class ServerControlador implements ActionListener, DocumentListener {
             ManteArticulos manteArticuloView= new ManteArticulos();
             ArticuloBL articuloBLModelo= new ArticuloBL();
             FacturaControlador fControlador= new FacturaControlador(manteFacturaView,facturaBLModelo,manteClienteView,clienteBLModelo,manteArticuloView,articuloBLModelo,detalleBLModelo); 
-            System.out.println("tiempo: "+tiempo);
             fControlador.getAgregarFacturaView().setVisible(true);
            
             }else{
