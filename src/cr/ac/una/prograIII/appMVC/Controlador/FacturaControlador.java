@@ -278,8 +278,6 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             a.setCantidadExistencia(can);
             listAr.add(a);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-            
-            
             subtotal=this.calcularSubtotal(precio, can);
             total=this.calcularTotal(total, subtotal);
             this.agregarFacturaView.jlTotal.setText(String.valueOf(total));
@@ -408,6 +406,12 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         double total=0.0;
         return total=precio*cantidad;
     }
+    public double calculaSubtotalAlquiler(double precio, int cantidad){
+        double total=0.0;
+        precio= precio/60;
+        return total=precio*cantidad;
+    }
+            
     public double calcularTotal(double total,double subtotal){
         return total=total+subtotal;
     }

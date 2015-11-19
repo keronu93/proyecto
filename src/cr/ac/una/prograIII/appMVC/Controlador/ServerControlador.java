@@ -236,6 +236,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
             ManteArticulos manteArticuloView= new ManteArticulos();
             ArticuloBL articuloBLModelo= new ArticuloBL();
             FacturaControlador fControlador= new FacturaControlador(manteFacturaView,facturaBLModelo,manteClienteView,clienteBLModelo,manteArticuloView,articuloBLModelo,detalleBLModelo); 
+            //Double t=Double.parseDouble(tiempo);
+            //t=t/60;
+            //tiempo=String.valueOf(t);
             manteFacturaView.txtCantidadArticulos.setText(tiempo);
             fControlador.getAgregarFacturaView().setVisible(true);
            
