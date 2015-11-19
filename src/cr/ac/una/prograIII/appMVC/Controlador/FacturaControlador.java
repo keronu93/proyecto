@@ -307,12 +307,13 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             a.setPK_IDArticulo(Integer.parseInt(this.agregarFacturaView.txtIdArticulo.getText()));
             
             try {
-            a=ArticuloBLModelo.obtenerPorId(a);    
+            a=ArticuloBLModelo.obtenerPorId(a);
+            existenciaPoca(a);
             if(existenciaArticulos(a, can)){
             a.setCantidadExistencia(can);
             listAr.add(a);
             llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-            existenciaPoca(a);
+            
             
             subtotal=this.calcularSubtotal(precio, can);
             total=this.calcularTotal(total, subtotal);
@@ -372,6 +373,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                this.agregarFacturaView.txtCliente.setText("");
                this.agregarFacturaView.TxTNombreCliente.setText("");
                this.agregarFacturaView.TxtApellidosCliente.setText("");
+               this.agregarFacturaView.jlTotal.setText("0.0");
                listAr.clear();
                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
                    System.out.println("ojo total " + f.getTotal() );
@@ -452,7 +454,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             return false;
     }
     public void existenciaPoca(Articulos a){
-        if(a.getCantidadExistencia()<=5&&0<a.getCantidadExistencia()){
+        if(a.getCantidadExistencia()<=5){
             JOptionPane.showMessageDialog(mantArticuloView, "Hay 5 o menos articulos como este en inventario", "Alerta poca existencia de este Articulo", JOptionPane.INFORMATION_MESSAGE);
         }
     }
