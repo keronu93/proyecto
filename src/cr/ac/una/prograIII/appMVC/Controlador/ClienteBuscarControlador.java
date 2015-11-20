@@ -40,7 +40,7 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
  * @author Gustavo
  */
 public class ClienteBuscarControlador implements ActionListener {
-
+    int contador=0;
     private MantClienteBuscar clienteBuscarView;
     private ClienteBL clienteBLModelo;
     private JTextField txtRespuesta;
@@ -140,6 +140,7 @@ public class ClienteBuscarControlador implements ActionListener {
                 this.clienteBuscarView.setVisible(false);
                 InputStream inputStream = null;
                 try {
+                    contador++;
                     inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\FacturasCliente.jrxml");
                     Map parameters = new HashMap();
                     parameters.put("IdCliente", idCliente);
@@ -148,9 +149,10 @@ public class ClienteBuscarControlador implements ActionListener {
 
                     MySQLConexion Con = new MySQLConexion();
                     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
-                    JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\FacturasCliente.pdf");
+                    String cont= String.valueOf(contador);
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\FacturasCliente"+cont+".pdf");
 
-                    File file = new File("C:\\Users\\Gustavo\\Desktop\\FacturasCliente.pdf");
+                    File file = new File("C:\\Users\\Gustavo\\Desktop\\FacturasCliente"+cont+".pdf");
                     if (file.toString().endsWith(".pdf")) {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
                     } else {

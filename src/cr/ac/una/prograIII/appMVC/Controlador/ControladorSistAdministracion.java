@@ -7,6 +7,7 @@ package cr.ac.una.prograIII.appMVC.Controlador;
 
 import cr.ac.una.prograIII.appMVC.Conexion.MySQLConexion;
 import cr.ac.una.prograIII.appMVC.Controlador.ServerControlador.ClienteHilo;
+import cr.ac.una.prograIII.appMVC.Domain.Articulos;
 import cr.ac.una.prograIII.appMVC.Vista.AgregarFactura;
 import cr.ac.una.prograIII.appMVC.Vista.InterFazSistemaAdministracion;
 import cr.ac.una.prograIII.appMVC.Vista.MantUsuario;
@@ -59,7 +60,7 @@ public class ControladorSistAdministracion implements ActionListener {
     private ProveedorBL proveedorBlModelo;
     private TelefonoBL telefonoBlModelo;
     private UsuarioBL usuarioBLModelo;
-    
+
     /**
      *
      * @return
@@ -139,7 +140,7 @@ public class ControladorSistAdministracion implements ActionListener {
     public void setTelefonoBlModelo(TelefonoBL telefonoBlModelo) {
         this.telefonoBlModelo = telefonoBlModelo;
     }
-    
+
     /**
      *
      * @return
@@ -165,14 +166,14 @@ public class ControladorSistAdministracion implements ActionListener {
      * @param telefonoBlModelo
      * @param usuarioBL
      */
-    public ControladorSistAdministracion(InterFazSistemaAdministracion ManteAdmiView, ArticuloBL articuloBlModelo, 
-        ClienteBL clienteBlModelo, ProveedorBL proveedorBlModelo, TelefonoBL telefonoBlModelo,UsuarioBL usuarioBL) {
+    public ControladorSistAdministracion(InterFazSistemaAdministracion ManteAdmiView, ArticuloBL articuloBlModelo,
+            ClienteBL clienteBlModelo, ProveedorBL proveedorBlModelo, TelefonoBL telefonoBlModelo, UsuarioBL usuarioBL) {
         this.ManteAdmiView = ManteAdmiView;
         this.articuloBlModelo = articuloBlModelo;
         this.clienteBlModelo = clienteBlModelo;
         this.proveedorBlModelo = proveedorBlModelo;
         this.telefonoBlModelo = telefonoBlModelo;
-        this.usuarioBLModelo= usuarioBL;
+        this.usuarioBLModelo = usuarioBL;
         this.ManteAdmiView.jMenuArticulo.addActionListener(this);
         this.ManteAdmiView.jMenuCliente.addActionListener(this);
         this.ManteAdmiView.jMenuProveedores.addActionListener(this);
@@ -187,264 +188,302 @@ public class ControladorSistAdministracion implements ActionListener {
         this.ManteAdmiView.ReporteTelefono.addActionListener(this);
         this.ManteAdmiView.ReporteFactura.addActionListener(this);
         this.ManteAdmiView.jMFactura.addActionListener(this);
+        this.ManteAdmiView.Articulos5.addActionListener(this);
         inicializarPantalla();
     }
 
-    
-    
     private void inicializarPantalla() {
         this.ManteAdmiView.setEnabled(true);
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource()==this.ManteAdmiView.jMenuProveedores){
+        if (e.getSource() == this.ManteAdmiView.jMenuProveedores) {
             ManteProveedores mantProveedoresView = new ManteProveedores();
-            ProveedorControlador provControlador ;
-            provControlador  = new ProveedorControlador (mantProveedoresView, proveedorBlModelo );
+            ProveedorControlador provControlador;
+            provControlador = new ProveedorControlador(mantProveedoresView, proveedorBlModelo);
             provControlador.getMantProveedorView().setVisible(true);
         }
-        if(e.getSource()==this.ManteAdmiView.jMenuCliente){
+        if (e.getSource() == this.ManteAdmiView.jMenuCliente) {
             ManteCliente mantClienteView = new ManteCliente();
             ClienteControlador clientControlador;
             clientControlador = new ClienteControlador(mantClienteView, clienteBlModelo);
             clientControlador.getMantClienteview().setVisible(true);
         }
-        
-        if(e.getSource()==this.ManteAdmiView.jMenuUsuario){
-            MantUsuario mantClienteView = new  MantUsuario();
-            UsuarioControlador  usuControlador;
-            usuControlador = new UsuarioControlador(mantClienteView,usuarioBLModelo);
+
+        if (e.getSource() == this.ManteAdmiView.jMenuUsuario) {
+            MantUsuario mantClienteView = new MantUsuario();
+            UsuarioControlador usuControlador;
+            usuControlador = new UsuarioControlador(mantClienteView, usuarioBLModelo);
             usuControlador.getMantUsuarioview().setVisible(true);
         }
-        if(e.getSource()==this.ManteAdmiView.jMenuArticulo){
-            ManteArticulos mantArticuloView= new ManteArticulos();
-            ManteProveedores mantProveedoresView=new ManteProveedores();
+        if (e.getSource() == this.ManteAdmiView.jMenuArticulo) {
+            ManteArticulos mantArticuloView = new ManteArticulos();
+            ManteProveedores mantProveedoresView = new ManteProveedores();
             ArticuloControlador artControlador;
-            artControlador = new ArticuloControlador(mantArticuloView,articuloBlModelo,proveedorBlModelo,mantProveedoresView);
+            artControlador = new ArticuloControlador(mantArticuloView, articuloBlModelo, proveedorBlModelo, mantProveedoresView);
             artControlador.getMantArticuloView().setVisible(true);
         }
-        if(e.getSource()==this.ManteAdmiView.jMenuTelefono){
+        if (e.getSource() == this.ManteAdmiView.jMenuTelefono) {
             ManteTelefono mantetelefonoView = new ManteTelefono();
             ManteCliente manteClienteView = new ManteCliente();
-            TelefonoBL telefonoBLModelo = new  TelefonoBL();
-            ClienteBL clienteBLModelo = new  ClienteBL();
-            TelefonoControlador tControlador = new TelefonoControlador(mantetelefonoView,telefonoBLModelo,manteClienteView,clienteBLModelo); 
+            TelefonoBL telefonoBLModelo = new TelefonoBL();
+            ClienteBL clienteBLModelo = new ClienteBL();
+            TelefonoControlador tControlador = new TelefonoControlador(mantetelefonoView, telefonoBLModelo, manteClienteView, clienteBLModelo);
             tControlador.getMantTelfonoView().setVisible(true);
         }
-        if(e.getSource()==this.ManteAdmiView.MenuServer){
-             ArrayList<ClienteHilo> listaClientes =new ArrayList<>();
-             Server serverView =new Server();
-             ServerControlador serControlador = new ServerControlador(serverView,listaClientes);
-             serControlador.getServerView().setVisible(true);
-        
+        if (e.getSource() == this.ManteAdmiView.MenuServer) {
+            ArrayList<ClienteHilo> listaClientes = new ArrayList<>();
+            Server serverView = new Server();
+            ServerControlador serControlador = new ServerControlador(serverView, listaClientes);
+            serControlador.getServerView().setVisible(true);
+
         }
-        if(e.getSource()==this.ManteAdmiView.jMFactura){
-            AgregarFactura manteFacturaView= new AgregarFactura();
-            FacturaBL facturaBLModelo= new FacturaBL();
-            DetalleFacturaBL detalleBLModelo= new DetalleFacturaBL();
+        if (e.getSource() == this.ManteAdmiView.jMFactura) {
+            AgregarFactura manteFacturaView = new AgregarFactura();
+            FacturaBL facturaBLModelo = new FacturaBL();
+            DetalleFacturaBL detalleBLModelo = new DetalleFacturaBL();
             ManteCliente manteClienteView = new ManteCliente();
-            ClienteBL clienteBLModelo= new ClienteBL();
-            ManteArticulos manteArticuloView= new ManteArticulos();
-            ArticuloBL articuloBLModelo= new ArticuloBL();
-            FacturaControlador fControlador= new FacturaControlador(manteFacturaView,facturaBLModelo,manteClienteView,clienteBLModelo,manteArticuloView,articuloBLModelo,detalleBLModelo); 
+            ClienteBL clienteBLModelo = new ClienteBL();
+            ManteArticulos manteArticuloView = new ManteArticulos();
+            ArticuloBL articuloBLModelo = new ArticuloBL();
+            FacturaControlador fControlador = new FacturaControlador(manteFacturaView, facturaBLModelo, manteClienteView, clienteBLModelo, manteArticuloView, articuloBLModelo, detalleBLModelo);
             fControlador.getAgregarFacturaView().setVisible(true);
         }
-        
-        if(e.getSource()==this.ManteAdmiView.ReporteCliente){
-        InputStream inputStream = null;
-        try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ListaClientes.jrxml");
-            Map parameters = new HashMap();
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            
-            MySQLConexion Con = new MySQLConexion();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ListaClientes.pdf");
-            
-            File file = new File("C:\\Users\\Gustavo\\Desktop\\ListaClientes.pdf");
-            if (file.toString().endsWith(".pdf")) 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
 
-        } catch (FileNotFoundException ex) {
-            
-            System.err.println(ex.getMessage());
-        }   catch (IOException ex) {
+        if (e.getSource() == this.ManteAdmiView.ReporteCliente) {
+            InputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ListaClientes.jrxml");
+                Map parameters = new HashMap();
+                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+                MySQLConexion Con = new MySQLConexion();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ListaClientes.pdf");
+
+                File file = new File("C:\\Users\\Gustavo\\Desktop\\ListaClientes.pdf");
+                if (file.toString().endsWith(".pdf")) {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+                System.err.println(ex.getMessage());
+            } catch (IOException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JRException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
         }
-        if(e.getSource()==this.ManteAdmiView.ReporteProveedores){
-        InputStream inputStream = null;
-        //JasperReport jr = null; 
-        try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteProvedores.jrxml");
-            //URL in=this.getClass().getResource("\\Reportes\\ReporteProvedores.jrxml");
-            Map parameters = new HashMap();
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            //jr= (JasperReport) JRLoader.loadObject(in); 
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            
-            MySQLConexion Con = new MySQLConexion();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteProvedores.pdf");
-            
-            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteProvedores.pdf");
-            if (file.toString().endsWith(".pdf")) 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
+        if (e.getSource() == this.ManteAdmiView.ReporteProveedores) {
+            InputStream inputStream = null;
+            //JasperReport jr = null; 
+            try {
+                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteProvedores.jrxml");
+                //URL in=this.getClass().getResource("\\Reportes\\ReporteProvedores.jrxml");
+                Map parameters = new HashMap();
+                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                //jr= (JasperReport) JRLoader.loadObject(in); 
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-        } catch (FileNotFoundException ex) {
-            
-            System.err.println(ex.getMessage());
-        }   catch (IOException ex) {
+                MySQLConexion Con = new MySQLConexion();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteProvedores.pdf");
+
+                File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteProvedores.pdf");
+                if (file.toString().endsWith(".pdf")) {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+                System.err.println(ex.getMessage());
+            } catch (IOException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JRException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
         }
-        if(e.getSource()==this.ManteAdmiView.ReporteUsuarios){
-        InputStream inputStream = null;
-        try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteUsuarios.jrxml");
-            Map parameters = new HashMap();
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            
-            MySQLConexion Con = new MySQLConexion();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
-            
-            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
-            if (file.toString().endsWith(".pdf")) 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
+        if (e.getSource() == this.ManteAdmiView.ReporteUsuarios) {
+            InputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteUsuarios.jrxml");
+                Map parameters = new HashMap();
+                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-        } catch (FileNotFoundException ex) {
-            
-            System.err.println(ex.getMessage());
-        }   catch (IOException ex) {
+                MySQLConexion Con = new MySQLConexion();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
+
+                File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteUsuarios.pdf");
+                if (file.toString().endsWith(".pdf")) {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+                System.err.println(ex.getMessage());
+            } catch (IOException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JRException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+
         }
-         if(e.getSource()==this.ManteAdmiView.ReporteTelefono){
-        InputStream inputStream = null;
-        try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteTelefono.jrxml");
-            Map parameters = new HashMap();
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            
-            MySQLConexion Con = new MySQLConexion();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteTelefonos.pdf");
-            
-            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteTelefonos.pdf");
-            if (file.toString().endsWith(".pdf")) 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
+        if (e.getSource() == this.ManteAdmiView.ReporteTelefono) {
+            InputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteTelefono.jrxml");
+                Map parameters = new HashMap();
+                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
 
-        } catch (FileNotFoundException ex) {
-            
-            System.err.println(ex.getMessage());
-        }   catch (IOException ex) {
+                MySQLConexion Con = new MySQLConexion();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteTelefonos.pdf");
+
+                File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteTelefonos.pdf");
+                if (file.toString().endsWith(".pdf")) {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+                System.err.println(ex.getMessage());
+            } catch (IOException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (JRException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             } catch (SQLException ex) {
                 Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
-        }if(e.getSource()==this.ManteAdmiView.ReporteArticulos){
-        InputStream inputStream = null;
-        try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteArticulos.jrxml");
-            Map parameters = new HashMap();
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            
-            MySQLConexion Con = new MySQLConexion();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteArticulos.pdf");
-            
-            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteArticulos.pdf");
-            if (file.toString().endsWith(".pdf")) 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
 
-        } catch (FileNotFoundException ex) {
-            
-            System.err.println(ex.getMessage());
-        }   catch (IOException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JRException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
-        }if(e.getSource()==this.ManteAdmiView.ReporteFactura){
-        InputStream inputStream = null;
-        try {            
-            inputStream = new FileInputStream ("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteFactura.jrxml");
-            Map parameters = new HashMap();
-            JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-            JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-            
-            MySQLConexion Con = new MySQLConexion();
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,Con.getConexion());
-            JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteFactura.pdf");
-            
-            File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteFactura.pdf");
-            if (file.toString().endsWith(".pdf")) 
-                Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-            else {
-                Desktop desktop = Desktop.getDesktop();
-                desktop.open(file);
-            }
-
-        } catch (FileNotFoundException ex) {
-            
-            System.err.println(ex.getMessage());
-        }   catch (IOException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JRException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
         }
+        if (e.getSource() == this.ManteAdmiView.ReporteArticulos) {
+            InputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteArticulos.jrxml");
+                Map parameters = new HashMap();
+                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+                MySQLConexion Con = new MySQLConexion();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteArticulos.pdf");
+
+                File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteArticulos.pdf");
+                if (file.toString().endsWith(".pdf")) {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+                System.err.println(ex.getMessage());
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (e.getSource() == this.ManteAdmiView.ReporteFactura) {
+            InputStream inputStream = null;
+            try {
+                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\ReporteFactura.jrxml");
+                Map parameters = new HashMap();
+                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+                MySQLConexion Con = new MySQLConexion();
+                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ReporteFactura.pdf");
+
+                File file = new File("C:\\Users\\Gustavo\\Desktop\\ReporteFactura.pdf");
+                if (file.toString().endsWith(".pdf")) {
+                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                } else {
+                    Desktop desktop = Desktop.getDesktop();
+                    desktop.open(file);
+                }
+
+            } catch (FileNotFoundException ex) {
+
+                System.err.println(ex.getMessage());
+            } catch (IOException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (JRException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SQLException ex) {
+                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (e.getSource() == this.ManteAdmiView.Articulos5) {
+         InputStream inputStream = null;
+         Articulos a = new Articulos();
+         //if(a.getCantidadExistencia()<5){
+             //Integer Cantidad= a.getCantidadExistencia();
+                try {
+                    inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\Aritculos.jrxml");
+                    Map parameters = new HashMap();
+                    //parameters.put("IdCliente", Cantidad);
+                    JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                    JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+
+                    MySQLConexion Con = new MySQLConexion();
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\ArticulosFaltantes.pdf");
+
+                    File file = new File("C:\\Users\\Gustavo\\Desktop\\ArticulosFaltantes.pdf");
+                    if (file.toString().endsWith(".pdf")) {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                    } else {
+                        Desktop desktop = Desktop.getDesktop();
+                        desktop.open(file);
+                    }
+
+                } catch (FileNotFoundException ex) {
+
+                    System.err.println(ex.getMessage());
+                } catch (IOException ex) {
+                    Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (JRException ex) {
+                    Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                }
+         //}
+        
         }
     }
+}
     
 

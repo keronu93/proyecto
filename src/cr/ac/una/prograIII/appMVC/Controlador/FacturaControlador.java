@@ -59,7 +59,7 @@ import net.sf.jasperreports.engine.xml.JRXmlLoader;
  * @author Gustavo
  */
 public class FacturaControlador implements ActionListener, DocumentListener {
-
+    int contador = 0;
     private AgregarFactura agregarFacturaView;
     private FacturaBL FacturaBlModelo;
     private ManteCliente mantClienteview;
@@ -407,6 +407,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }
         }
         if(e.getSource() == this.agregarFacturaView.btCrearFac){
+            
             if(listAr.isEmpty()){
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error faltan agregar detalles para crear la factura:", "Error al Realizar la factura", JOptionPane.ERROR_MESSAGE);
             }else{
@@ -458,6 +459,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
             }
             }
              int resp;
+             
                resp=JOptionPane.showConfirmDialog(agregarFacturaView, "Desea imprimir la factura");   
                if(resp==0){
                     int idAux=0;
@@ -473,7 +475,9 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                     }
                      con.close();
                      InputStream inputStream = null;
+                     
                      try{
+                        contador++;
                         inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\Factura.jrxml");
                         Map parameters = new HashMap();
                         parameters.put("IdFactura", idAux);
@@ -482,9 +486,10 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                         
                         MySQLConexion Con = new MySQLConexion();
                         JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
-                        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+                        String cont= String.valueOf(contador);
+                        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\Factura"+cont+".pdf");
                         
-                        File file = new File("C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+                        File file = new File("C:\\Users\\Gustavo\\Desktop\\Factura"+cont+".pdf");
                         
                         if (file.toString().endsWith(".pdf")) {
                         Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
