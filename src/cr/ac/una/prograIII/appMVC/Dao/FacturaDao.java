@@ -22,10 +22,18 @@ public class FacturaDao implements IBaseDao<Factura> {
 
     private final MySQLConexion conexion;
 
+    /**
+     *
+     */
     public FacturaDao() {
         conexion = new MySQLConexion();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void insertar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -39,6 +47,11 @@ public class FacturaDao implements IBaseDao<Factura> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void modificar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -57,6 +70,11 @@ public class FacturaDao implements IBaseDao<Factura> {
 
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void eliminar(Factura obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -68,6 +86,12 @@ public class FacturaDao implements IBaseDao<Factura> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Factura obtenerPorId(Factura obj) throws SQLException {
         Factura f = null;
@@ -89,6 +113,11 @@ public class FacturaDao implements IBaseDao<Factura> {
         return f;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Factura> obtenerTodos() throws SQLException {
         Connection con = conexion.getConexion();
@@ -108,6 +137,12 @@ public class FacturaDao implements IBaseDao<Factura> {
 
     }
 
+    /**
+     *
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Factura> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();

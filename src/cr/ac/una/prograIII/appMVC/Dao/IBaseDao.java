@@ -10,14 +10,52 @@ import java.util.ArrayList;
 
 /**
  *
- * @author chgari
+ * @author Gustavo
  * @param <T>
  */
 public interface IBaseDao<T> {
+
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     public void insertar(T obj) throws SQLException;
+
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     public void modificar(T obj) throws SQLException;
+
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     public void eliminar(T obj) throws SQLException;
+
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     public T obtenerPorId(T obj) throws SQLException;
+
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<T> obtenerTodos() throws SQLException;
+
+    /**
+     *
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     public ArrayList<T> obtenerConWhere(String where) throws SQLException;
 }

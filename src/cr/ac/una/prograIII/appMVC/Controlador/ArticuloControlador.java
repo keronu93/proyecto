@@ -40,39 +40,77 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
     private ProveedorBL ProveedorBLModelo;
     private ManteProveedores mantProveedoresView;
 
+    /**
+     *
+     * @return
+     */
     public ProveedorBL getProveedorBLModelo() {
         return ProveedorBLModelo;
     }
 
+    /**
+     *
+     * @param ProveedorBLModelo
+     */
     public void setProveedorBLModelo(ProveedorBL ProveedorBLModelo) {
         this.ProveedorBLModelo = ProveedorBLModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public ManteProveedores getMantProveedoresView() {
         return mantProveedoresView;
     }
 
+    /**
+     *
+     * @param mantProveedoresView
+     */
     public void setMantProveedoresView(ManteProveedores mantProveedoresView) {
         this.mantProveedoresView = mantProveedoresView;
     }
     
-
+    /**
+     *
+     * @return
+     */
     public ManteArticulos getMantArticuloView() {
         return mantArticuloView;
     }
 
+    /**
+     *
+     * @param mantArticuloView
+     */
     public void setMantArticuloView(ManteArticulos mantArticuloView) {
         this.mantArticuloView = mantArticuloView;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArticuloBL getArticuloBLModelo() {
         return ArticuloBLModelo;
     }
 
+    /**
+     *
+     * @param ArticuloBLModelo
+     */
     public void setArticuloBLModelo(ArticuloBL ArticuloBLModelo) {
         this.ArticuloBLModelo = ArticuloBLModelo;
     }
 
+    /**
+     *
+     * @param mantArticuloView
+     * @param ArticuloBLModelo
+     * @param ProveedorBLModelo
+     * @param mantProveedoresView
+     */
     public ArticuloControlador(ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, ProveedorBL ProveedorBLModelo, ManteProveedores mantProveedoresView) {
         this.mantArticuloView = mantArticuloView;
         this.ArticuloBLModelo = ArticuloBLModelo;
@@ -104,6 +142,10 @@ public class ArticuloControlador implements ActionListener, DocumentListener {
         llenarTabla(this.mantArticuloView.jTableArticulos);
     }
     
+    /**
+     *
+     * @param tablaArticulos
+     */
     public void llenarTabla(JTable tablaArticulos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulos.setModel(modeloTabla);

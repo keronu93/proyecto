@@ -33,24 +33,43 @@ public class ClienteControlador implements ActionListener, DocumentListener  {
     private ManteCliente mantClienteview;
     private ClienteBL clienteBlModelo;
 
+    /**
+     *
+     * @return
+     */
     public ManteCliente getMantClienteview() {
         return mantClienteview;
     }
 
+    /**
+     *
+     * @param mantClienteview
+     */
     public void setMantClienteview(ManteCliente mantClienteview) {
         this.mantClienteview = mantClienteview;
     }
 
+    /**
+     *
+     * @return
+     */
     public ClienteBL getClienteBlModelo() {
         return clienteBlModelo;
     }
 
+    /**
+     *
+     * @param clienteBlModelo
+     */
     public void setClienteBlModelo(ClienteBL clienteBlModelo) {
         this.clienteBlModelo = clienteBlModelo;
     }
     
-    
-
+    /**
+     *
+     * @param mantClienteview
+     * @param clienteBlModelo
+     */
     public ClienteControlador(ManteCliente mantClienteview, ClienteBL clienteBlModelo) {
         this.mantClienteview = mantClienteview;
         this.clienteBlModelo = clienteBlModelo;
@@ -72,6 +91,10 @@ public class ClienteControlador implements ActionListener, DocumentListener  {
         //this.mantClienteview.jDCFecNacimiento.setDate(new Date());
     }
     
+    /**
+     *
+     * @param tablaClientes
+     */
     public void llenarTabla(JTable tablaClientes) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaClientes.setModel(modeloTabla);

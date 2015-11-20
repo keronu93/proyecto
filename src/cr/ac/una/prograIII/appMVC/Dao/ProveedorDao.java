@@ -23,10 +23,18 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
 
     private final MySQLConexion conexion;
      
-      public ProveedorDao() {
+    /**
+     *
+     */
+    public ProveedorDao() {
         conexion = new MySQLConexion();
     }
       
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void insertar(Proveedores obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -42,6 +50,11 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void modificar(Proveedores obj) throws SQLException {
        Connection con = conexion.getConexion();
@@ -61,6 +74,11 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void eliminar(Proveedores obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -72,6 +90,12 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Proveedores obtenerPorId(Proveedores obj) throws SQLException {
         Proveedores p = null;
@@ -94,6 +118,11 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         return p;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Proveedores> obtenerTodos() throws SQLException {
         Connection con = conexion.getConexion();
@@ -116,6 +145,12 @@ public class ProveedorDao implements IBaseDao<Proveedores> {
         return l;
     }
 
+    /**
+     *
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Proveedores> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();

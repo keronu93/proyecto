@@ -27,9 +27,18 @@ public class ProveedorBuscarControlador implements  ActionListener {
     private ProveedorBL proveedorBLModelo;
     private JTextField txtRespuesta;
 
+    /**
+     *
+     */
     public ProveedorBuscarControlador() {
     }
 
+    /**
+     *
+     * @param proovedorBuscarView
+     * @param proveedorBLModelo
+     * @param txtRespuesta
+     */
     public ProveedorBuscarControlador(MantProovedorBuscar proovedorBuscarView, ProveedorBL proveedorBLModelo, JTextField txtRespuesta) {
         this.proovedorBuscarView = proovedorBuscarView;
         this.proveedorBLModelo = proveedorBLModelo;
@@ -39,26 +48,50 @@ public class ProveedorBuscarControlador implements  ActionListener {
         llenarTabla(this.proovedorBuscarView.jTableProovedor);
     }
 
+    /**
+     *
+     * @return
+     */
     public MantProovedorBuscar getProovedorBuscarView() {
         return proovedorBuscarView;
     }
 
+    /**
+     *
+     * @param proovedorBuscarView
+     */
     public void setProovedorBuscarView(MantProovedorBuscar proovedorBuscarView) {
         this.proovedorBuscarView = proovedorBuscarView;
     }
 
+    /**
+     *
+     * @return
+     */
     public ProveedorBL getProveedorBLModelo() {
         return proveedorBLModelo;
     }
 
+    /**
+     *
+     * @param proveedorBLModelo
+     */
     public void setProveedorBLModelo(ProveedorBL proveedorBLModelo) {
         this.proveedorBLModelo = proveedorBLModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
 
+    /**
+     *
+     * @param txtRespuesta
+     */
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
@@ -81,6 +114,11 @@ public class ProveedorBuscarControlador implements  ActionListener {
             }
         }
     }
+
+    /**
+     *
+     * @param tablaProoveedor
+     */
     public void llenarTabla(JTable tablaProoveedor) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaProoveedor.setModel(modeloTabla);

@@ -45,9 +45,18 @@ public class ClienteBuscarControlador implements ActionListener {
     private ClienteBL clienteBLModelo;
     private JTextField txtRespuesta;
 
+    /**
+     *
+     */
     public ClienteBuscarControlador() {
     }
 
+    /**
+     *
+     * @param clienteBuscarView
+     * @param clienteBLModelo
+     * @param txtRespuesta
+     */
     public ClienteBuscarControlador(MantClienteBuscar clienteBuscarView, ClienteBL clienteBLModelo, JTextField txtRespuesta) {
         this.clienteBuscarView = clienteBuscarView;
         this.clienteBLModelo = clienteBLModelo;
@@ -58,26 +67,50 @@ public class ClienteBuscarControlador implements ActionListener {
         llenarTabla(this.clienteBuscarView.jTBuscarCliente);
     }
 
+    /**
+     *
+     * @return
+     */
     public MantClienteBuscar getClienteBuscarView() {
         return clienteBuscarView;
     }
 
+    /**
+     *
+     * @param clienteBuscarView
+     */
     public void setClienteBuscarView(MantClienteBuscar clienteBuscarView) {
         this.clienteBuscarView = clienteBuscarView;
     }
 
+    /**
+     *
+     * @return
+     */
     public ClienteBL getClienteBLModelo() {
         return clienteBLModelo;
     }
 
+    /**
+     *
+     * @param clienteBLModelo
+     */
     public void setClienteBLModelo(ClienteBL clienteBLModelo) {
         this.clienteBLModelo = clienteBLModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
 
+    /**
+     *
+     * @param txtRespuesta
+     */
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
@@ -142,6 +175,10 @@ public class ClienteBuscarControlador implements ActionListener {
 
     }
 
+    /**
+     *
+     * @param tablaCliente
+     */
     public void llenarTabla(JTable tablaCliente) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaCliente.setModel(modeloTabla);

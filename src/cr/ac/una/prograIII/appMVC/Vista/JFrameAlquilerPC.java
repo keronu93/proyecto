@@ -12,6 +12,11 @@ package cr.ac.una.prograIII.appMVC.Vista;
  */
 import java.awt.Dimension;
 import java.awt.Toolkit;
+
+/**
+ *
+ * @author Gustavo
+ */
 public class JFrameAlquilerPC extends javax.swing.JFrame {
 
     /**

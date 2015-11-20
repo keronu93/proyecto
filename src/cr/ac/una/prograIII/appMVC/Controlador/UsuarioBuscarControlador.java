@@ -27,9 +27,18 @@ public class UsuarioBuscarControlador implements  ActionListener {
     private UsuarioBL UsuarioBLModelo;
     private JTextField txtRespuesta;
 
+    /**
+     *
+     */
     public UsuarioBuscarControlador() {
     }
 
+    /**
+     *
+     * @param usuarioBuscarView
+     * @param UsuarioBLModelo
+     * @param txtRespuesta
+     */
     public UsuarioBuscarControlador(MantUsuarioBuscar usuarioBuscarView, UsuarioBL UsuarioBLModelo, JTextField txtRespuesta) {
         this.usuarioBuscarView = usuarioBuscarView;
         this.UsuarioBLModelo = UsuarioBLModelo;
@@ -39,31 +48,58 @@ public class UsuarioBuscarControlador implements  ActionListener {
         llenarTabla(this.usuarioBuscarView.jTableusuarios);
     }
 
+    /**
+     *
+     * @return
+     */
     public MantUsuarioBuscar getUsuarioBuscarView() {
         return usuarioBuscarView;
     }
 
+    /**
+     *
+     * @param usuarioBuscarView
+     */
     public void setUsuarioBuscarView(MantUsuarioBuscar usuarioBuscarView) {
         this.usuarioBuscarView = usuarioBuscarView;
     }
 
+    /**
+     *
+     * @return
+     */
     public UsuarioBL getUsuarioBLModelo() {
         return UsuarioBLModelo;
     }
 
+    /**
+     *
+     * @param UsuarioBLModelo
+     */
     public void setUsuarioBLModelo(UsuarioBL UsuarioBLModelo) {
         this.UsuarioBLModelo = UsuarioBLModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
 
+    /**
+     *
+     * @param txtRespuesta
+     */
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
     
-    
+    /**
+     *
+     * @param tablaUsuarios
+     */
     public void llenarTabla(JTable tablaUsuarios) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaUsuarios.setModel(modeloTabla);

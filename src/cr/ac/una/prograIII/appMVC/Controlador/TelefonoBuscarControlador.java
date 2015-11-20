@@ -28,6 +28,12 @@ public class TelefonoBuscarControlador implements  ActionListener {
     private TelefonoBL telefonoBLModelo;
     private JTextField txtRespuesta;
 
+    /**
+     *
+     * @param telefonoBuscarView
+     * @param telefonoBLModelo
+     * @param txtRespuesta
+     */
     public TelefonoBuscarControlador(MantTelefonoBuscar telefonoBuscarView, TelefonoBL telefonoBLModelo, JTextField txtRespuesta) {
         this.telefonoBuscarView = telefonoBuscarView;
         this.telefonoBLModelo = telefonoBLModelo;
@@ -37,26 +43,50 @@ public class TelefonoBuscarControlador implements  ActionListener {
         llenarTabla(this.telefonoBuscarView.jTableBuscarTelefono);
     }
 
+    /**
+     *
+     * @return
+     */
     public MantTelefonoBuscar getTelefonoBuscarView() {
         return telefonoBuscarView;
     }
 
+    /**
+     *
+     * @param telefonoBuscarView
+     */
     public void setTelefonoBuscarView(MantTelefonoBuscar telefonoBuscarView) {
         this.telefonoBuscarView = telefonoBuscarView;
     }
 
+    /**
+     *
+     * @return
+     */
     public TelefonoBL getTelefonoBLModelo() {
         return telefonoBLModelo;
     }
 
+    /**
+     *
+     * @param telefonoBLModelo
+     */
     public void setTelefonoBLModelo(TelefonoBL telefonoBLModelo) {
         this.telefonoBLModelo = telefonoBLModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
 
+    /**
+     *
+     * @param txtRespuesta
+     */
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
@@ -81,6 +111,10 @@ public class TelefonoBuscarControlador implements  ActionListener {
     }
     }
     
+    /**
+     *
+     * @param tablaTelefono
+     */
     public void llenarTabla(JTable tablaTelefono) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaTelefono.setModel(modeloTabla);

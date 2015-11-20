@@ -23,10 +23,18 @@ public class ArticuloDao implements IBaseDao<Articulos> {
     
     private final MySQLConexion conexion;
      
-      public ArticuloDao() {
+    /**
+     *
+     */
+    public ArticuloDao() {
         conexion = new MySQLConexion();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void insertar(Articulos obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -44,6 +52,11 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void modificar(Articulos obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -68,6 +81,11 @@ public class ArticuloDao implements IBaseDao<Articulos> {
          
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void eliminar(Articulos obj) throws SQLException {
        Connection con = conexion.getConexion();
@@ -79,6 +97,12 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Articulos obtenerPorId(Articulos obj) throws SQLException {
        Articulos a = null;
@@ -102,6 +126,11 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         return a;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Articulos> obtenerTodos() throws SQLException {
        Connection con = conexion.getConexion();
@@ -125,6 +154,12 @@ public class ArticuloDao implements IBaseDao<Articulos> {
         return l;
     }
 
+    /**
+     *
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Articulos> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();

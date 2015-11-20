@@ -18,35 +18,72 @@ import java.util.ArrayList;
 public class DetalleFacturaBL implements IBaseBL<DetalleFactura> {
      private GenericDao dfDao;
 
+    /**
+     *
+     */
     public DetalleFacturaBL() {
         this.dfDao = new GenericDao();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void insertar(DetalleFactura obj) throws SQLException {
          this.dfDao.insertar(obj);
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void modificar(DetalleFactura obj) throws SQLException {
         this.dfDao.modificar(obj);
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void eliminar(DetalleFactura obj) throws SQLException {
         this.dfDao.eliminar(obj);
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     @Override
     public DetalleFactura obtenerPorId(DetalleFactura obj) throws SQLException {
          return (DetalleFactura)this.dfDao.obtenerPorId(obj);    
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<DetalleFactura> obtenerTodos() throws SQLException {
          return this.dfDao.obtenerTodos(new DetalleFactura());
     }
-     public ArrayList<DetalleFactura> obtenerConWhere(DetalleFactura obj, String where ) throws SQLException {
+
+    /**
+     *
+     * @param obj
+     * @param where
+     * @return
+     * @throws SQLException
+     */
+    public ArrayList<DetalleFactura> obtenerConWhere(DetalleFactura obj, String where ) throws SQLException {
         return this.dfDao.obtenerConWhere(obj, where);
     } 
  

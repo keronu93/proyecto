@@ -60,57 +60,111 @@ public class ControladorSistAdministracion implements ActionListener {
     private TelefonoBL telefonoBlModelo;
     private UsuarioBL usuarioBLModelo;
     
-    
-
+    /**
+     *
+     * @return
+     */
     public UsuarioBL getUsuarioBLModelo() {
         return usuarioBLModelo;
     }
 
+    /**
+     *
+     * @param usuarioBLModelo
+     */
     public void setUsuarioBLModelo(UsuarioBL usuarioBLModelo) {
         this.usuarioBLModelo = usuarioBLModelo;
     }
 
-    
+    /**
+     *
+     * @return
+     */
     public ArticuloBL getArticuloBlModelo() {
         return articuloBlModelo;
     }
 
+    /**
+     *
+     * @param articuloBlModelo
+     */
     public void setArticuloBlModelo(ArticuloBL articuloBlModelo) {
         this.articuloBlModelo = articuloBlModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public ClienteBL getClienteBlModelo() {
         return clienteBlModelo;
     }
 
+    /**
+     *
+     * @param clienteBlModelo
+     */
     public void setClienteBlModelo(ClienteBL clienteBlModelo) {
         this.clienteBlModelo = clienteBlModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public ProveedorBL getProveedorBlModelo() {
         return proveedorBlModelo;
     }
 
+    /**
+     *
+     * @param proveedorBlModelo
+     */
     public void setProveedorBlModelo(ProveedorBL proveedorBlModelo) {
         this.proveedorBlModelo = proveedorBlModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public TelefonoBL getTelefonoBlModelo() {
         return telefonoBlModelo;
     }
 
+    /**
+     *
+     * @param telefonoBlModelo
+     */
     public void setTelefonoBlModelo(TelefonoBL telefonoBlModelo) {
         this.telefonoBlModelo = telefonoBlModelo;
     }
     
+    /**
+     *
+     * @return
+     */
     public InterFazSistemaAdministracion getManteAdmiView() {
         return ManteAdmiView;
     }
 
+    /**
+     *
+     * @param ManteAdmiView
+     */
     public void setManteAdmiView(InterFazSistemaAdministracion ManteAdmiView) {
         this.ManteAdmiView = ManteAdmiView;
     }
 
+    /**
+     *
+     * @param ManteAdmiView
+     * @param articuloBlModelo
+     * @param clienteBlModelo
+     * @param proveedorBlModelo
+     * @param telefonoBlModelo
+     * @param usuarioBL
+     */
     public ControladorSistAdministracion(InterFazSistemaAdministracion ManteAdmiView, ArticuloBL articuloBlModelo, 
         ClienteBL clienteBlModelo, ProveedorBL proveedorBlModelo, TelefonoBL telefonoBlModelo,UsuarioBL usuarioBL) {
         this.ManteAdmiView = ManteAdmiView;

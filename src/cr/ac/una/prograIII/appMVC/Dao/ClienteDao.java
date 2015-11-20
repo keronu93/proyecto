@@ -22,11 +22,18 @@ public class ClienteDao implements IBaseDao<Cliente>{
     
     private final MySQLConexion conexion;
 
+    /**
+     *
+     */
     public ClienteDao() {
         conexion = new MySQLConexion();
     }
     
-
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void insertar(Cliente obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -46,6 +53,11 @@ public class ClienteDao implements IBaseDao<Cliente>{
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void modificar(Cliente obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -67,6 +79,11 @@ public class ClienteDao implements IBaseDao<Cliente>{
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void eliminar(Cliente obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -78,6 +95,12 @@ public class ClienteDao implements IBaseDao<Cliente>{
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     @Override
     public Cliente obtenerPorId(Cliente obj) throws SQLException {
         Cliente c = null;
@@ -99,6 +122,11 @@ public class ClienteDao implements IBaseDao<Cliente>{
         return c;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Cliente> obtenerTodos() throws SQLException {
         Connection con = conexion.getConexion();
@@ -122,6 +150,12 @@ public class ClienteDao implements IBaseDao<Cliente>{
         return l;
     }
 
+    /**
+     *
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<Cliente> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();

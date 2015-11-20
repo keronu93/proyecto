@@ -35,41 +35,77 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
     private ManteCliente mantClienteview;
     private ClienteBL clienteBlModelo;
 
-
+    /**
+     *
+     * @return
+     */
     public ManteCliente getMantClienteview() {
         return mantClienteview;
     }
 
+    /**
+     *
+     * @param mantClienteview
+     */
     public void setMantClienteview(ManteCliente mantClienteview) {
         this.mantClienteview = mantClienteview;
     }
 
+    /**
+     *
+     * @return
+     */
     public ClienteBL getClienteBlModelo() {
         return clienteBlModelo;
     }
 
+    /**
+     *
+     * @param clienteBlModelo
+     */
     public void setClienteBlModelo(ClienteBL clienteBlModelo) {
         this.clienteBlModelo = clienteBlModelo;
     }
     
-
-
+    /**
+     *
+     * @return
+     */
     public ManteTelefono getMantTelfonoView() {
         return mantTelfonoView;
     }
 
+    /**
+     *
+     * @param mantTelfonoView
+     */
     public void setMantTelfonoView(ManteTelefono mantTelfonoView) {
         this.mantTelfonoView = mantTelfonoView;
     }
 
+    /**
+     *
+     * @return
+     */
     public TelefonoBL getTelefonoBLModelo() {
         return telefonoBLModelo;
     }
 
+    /**
+     *
+     * @param telefonoBLModelo
+     */
     public void setTelefonoBLModelo(TelefonoBL telefonoBLModelo) {
         this.telefonoBLModelo = telefonoBLModelo;
     }
 
+    /**
+     *
+     * @param mantTelfonoView
+     * @param telefonoBLModelo
+     * @param mantClienteview
+     * @param clienteBlModelo
+     */
     public TelefonoControlador(ManteTelefono mantTelfonoView, TelefonoBL telefonoBLModelo,ManteCliente mantClienteview,ClienteBL clienteBlModelo ) {
         this.mantTelfonoView = mantTelfonoView;
         this.telefonoBLModelo = telefonoBLModelo;
@@ -96,7 +132,11 @@ public class TelefonoControlador implements ActionListener, DocumentListener {
         llenarTabla(this.mantTelfonoView.jTableTelfono);
     }
      
-     public void llenarTabla(JTable tablaTelefonos) {
+    /**
+     *
+     * @param tablaTelefonos
+     */
+    public void llenarTabla(JTable tablaTelefonos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaTelefonos.setModel(modeloTabla);
         modeloTabla.addColumn("Id Telefono");

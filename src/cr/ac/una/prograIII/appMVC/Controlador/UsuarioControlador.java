@@ -33,27 +33,49 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
     private MantUsuario mantUsuarioview;
     private UsuarioBL usuarioBlModelo;
 
+    /**
+     *
+     */
     public UsuarioControlador() {
     }
 
+    /**
+     *
+     * @return
+     */
     public MantUsuario getMantUsuarioview() {
         return mantUsuarioview;
     }
 
+    /**
+     *
+     * @param mantUsuarioview
+     */
     public void setMantUsuarioview(MantUsuario mantUsuarioview) {
         this.mantUsuarioview = mantUsuarioview;
     }
 
+    /**
+     *
+     * @return
+     */
     public UsuarioBL getUsuarioBlModelo() {
         return usuarioBlModelo;
     }
 
+    /**
+     *
+     * @param usuarioBlModelo
+     */
     public void setUsuarioBlModelo(UsuarioBL usuarioBlModelo) {
         this.usuarioBlModelo = usuarioBlModelo;
     }
     
-    
-
+    /**
+     *
+     * @param mantUsuarioview
+     * @param usuarioBlModelo
+     */
     public UsuarioControlador(MantUsuario mantUsuarioview, UsuarioBL usuarioBlModelo) {
         this.mantUsuarioview = mantUsuarioview;
         this.usuarioBlModelo = usuarioBlModelo;
@@ -74,6 +96,10 @@ public class UsuarioControlador implements ActionListener, DocumentListener {
         llenarTabla(this.mantUsuarioview.jTableusuarios);
     }
     
+    /**
+     *
+     * @param tablaUsuarios
+     */
     public void llenarTabla(JTable tablaUsuarios) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaUsuarios.setModel(modeloTabla);

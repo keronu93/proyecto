@@ -36,22 +36,43 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
     private ManteProveedores mantProveedorView;
     private ProveedorBL ProveedorBLModelo;
 
+    /**
+     *
+     * @return
+     */
     public ManteProveedores getMantProveedorView() {
         return mantProveedorView;
     }
 
+    /**
+     *
+     * @param mantProveedorView
+     */
     public void setMantProveedorView(ManteProveedores mantProveedorView) {
         this.mantProveedorView = mantProveedorView;
     }
 
+    /**
+     *
+     * @return
+     */
     public ProveedorBL getProveedorBLModelo() {
         return ProveedorBLModelo;
     }
 
+    /**
+     *
+     * @param ProveedorBLModelo
+     */
     public void setProveedorBLModelo(ProveedorBL ProveedorBLModelo) {
         this.ProveedorBLModelo = ProveedorBLModelo;
     }
 
+    /**
+     *
+     * @param mantProveedorView
+     * @param ProveedorBLModelo
+     */
     public ProveedorControlador(ManteProveedores mantProveedorView, ProveedorBL ProveedorBLModelo) {
         this.mantProveedorView = mantProveedorView;
         this.ProveedorBLModelo = ProveedorBLModelo;
@@ -73,7 +94,11 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
         llenarTabla(this.mantProveedorView.jTableProveedor);
     }
      
-     public void llenarTabla(JTable TablaProovedores) {
+    /**
+     *
+     * @param TablaProovedores
+     */
+    public void llenarTabla(JTable TablaProovedores) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         TablaProovedores.setModel(modeloTabla);
         modeloTabla.addColumn("Id Proveedor");
@@ -269,8 +294,12 @@ public class ProveedorControlador implements ActionListener, DocumentListener{
        
     }
 
-    
-public boolean isEmail(String correo) {
+    /**
+     *
+     * @param correo
+     * @return
+     */
+    public boolean isEmail(String correo) {
     Pattern pat = null;
     Matcher mat = null; 
     pat = Pattern.compile("^([0-9a-zA-Z]([_.w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-w]*[0-9a-zA-Z].)+([a-zA-Z]{2,9}.)+[a-zA-Z]{2,3})$");

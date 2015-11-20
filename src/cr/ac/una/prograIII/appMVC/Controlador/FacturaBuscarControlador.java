@@ -27,6 +27,12 @@ public class FacturaBuscarControlador implements  ActionListener {
     private FacturaBL facturablModelo;
     private JTextField txtRespuesta;
 
+    /**
+     *
+     * @param buscarFacturaView
+     * @param facturablModelo
+     * @param txtRespuesta
+     */
     public FacturaBuscarControlador(BuscarFactura buscarFacturaView, FacturaBL facturablModelo, JTextField txtRespuesta) {
         this.buscarFacturaView = buscarFacturaView;
         this.facturablModelo = facturablModelo;
@@ -36,31 +42,59 @@ public class FacturaBuscarControlador implements  ActionListener {
         llenarTabla(this.buscarFacturaView.tablaFacturas);
     }
 
+    /**
+     *
+     * @return
+     */
     public BuscarFactura getBuscarFacturaView() {
         return buscarFacturaView;
     }
 
+    /**
+     *
+     * @param buscarFacturaView
+     */
     public void setBuscarFacturaView(BuscarFactura buscarFacturaView) {
         this.buscarFacturaView = buscarFacturaView;
     }
 
+    /**
+     *
+     * @return
+     */
     public FacturaBL getFacturablModelo() {
         return facturablModelo;
     }
 
+    /**
+     *
+     * @param facturablModelo
+     */
     public void setFacturablModelo(FacturaBL facturablModelo) {
         this.facturablModelo = facturablModelo;
     }
 
-
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
 
+    /**
+     *
+     * @param txtRespuesta
+     */
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
-     public void llenarTabla(JTable tablaFctura) {
+
+    /**
+     *
+     * @param tablaFctura
+     */
+    public void llenarTabla(JTable tablaFctura) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaFctura.setModel(modeloTabla);
 

@@ -37,30 +37,59 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
     private InterFazSistemaAdministracion ManteAdmiView;
     private SolicitudUsuarioPassword solUsePa;
 
+    /**
+     *
+     * @return
+     */
     public InterFazSistemaAdministracion getManteAdmiView() {
         return ManteAdmiView;
     }
 
+    /**
+     *
+     * @param ManteAdmiView
+     */
     public void setManteAdmiView(InterFazSistemaAdministracion ManteAdmiView) {
         this.ManteAdmiView = ManteAdmiView;
     }
 
+    /**
+     *
+     * @return
+     */
     public MySQLConexion getMetodos() {
         return metodos;
     }
 
+    /**
+     *
+     * @param metodos
+     */
     public void setMetodos(MySQLConexion metodos) {
         this.metodos = metodos;
     }
 
+    /**
+     *
+     * @return
+     */
     public SolicitudUsuarioPassword getSolUsePa() {
         return solUsePa;
     }
 
+    /**
+     *
+     * @param solUsePa
+     */
     public void setSolUsePa(SolicitudUsuarioPassword solUsePa) {
         this.solUsePa = solUsePa;
     }
 
+    /**
+     *
+     * @param ManteAdmiView
+     * @param solUsePa
+     */
     public ValidarAcceso(InterFazSistemaAdministracion ManteAdmiView, SolicitudUsuarioPassword solUsePa) {
         this.ManteAdmiView = ManteAdmiView;
         this.solUsePa = solUsePa;
@@ -112,7 +141,12 @@ public class ValidarAcceso implements ActionListener, DocumentListener {
     public void changedUpdate(DocumentEvent e) {
         validadIngreso();
     }
-     public int validadIngreso(){
+
+    /**
+     *
+     * @return
+     */
+    public int validadIngreso(){
         
         String usuario= solUsePa.txtUsuario.getText();
         String password= String.valueOf(solUsePa.TxtPassword.getPassword());

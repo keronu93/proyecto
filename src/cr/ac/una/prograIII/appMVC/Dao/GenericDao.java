@@ -18,15 +18,23 @@ import java.util.ArrayList;
 
 /**
  *
- * @author chgari
+ * @author Gustavo
  */
 public class GenericDao {
 
     private IBaseDao iBaseDato;
 
+    /**
+     *
+     */
     public GenericDao() {
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     public void insertar(Object obj) throws SQLException {
         if (obj instanceof Cliente) {
             iBaseDato = new ClienteDao();
@@ -55,6 +63,11 @@ public class GenericDao {
         iBaseDato.insertar(obj);
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     public void modificar(Object obj) throws SQLException {
         if (obj instanceof Cliente) {
             iBaseDato = new ClienteDao();
@@ -80,6 +93,11 @@ public class GenericDao {
         iBaseDato.modificar(obj);
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     public void eliminar(Object obj) throws SQLException {
         if (obj instanceof Cliente) {
             iBaseDato = new ClienteDao();
@@ -106,6 +124,12 @@ public class GenericDao {
         iBaseDato.eliminar(obj);
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     public Object obtenerPorId(Object obj) throws SQLException {
         if (obj instanceof Cliente) {
             iBaseDato = new ClienteDao();
@@ -130,6 +154,12 @@ public class GenericDao {
         return iBaseDato.obtenerPorId(obj);
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     public ArrayList obtenerTodos(Object obj) throws SQLException {
         if (obj instanceof Cliente) {
             iBaseDato = new ClienteDao();
@@ -155,6 +185,13 @@ public class GenericDao {
         return iBaseDato.obtenerTodos();
     }
 
+    /**
+     *
+     * @param obj
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     public ArrayList obtenerConWhere(Object obj, String where) throws SQLException {
         if (obj instanceof Cliente) {
             iBaseDato = new ClienteDao();

@@ -44,7 +44,11 @@ public class ServerControlador implements ActionListener, DocumentListener {
     private AgregarFactura agregarFacturaView;
     ArrayList<ClienteHilo> listaClientes;
         
-    
+    /**
+     *
+     * @param serverView
+     * @param listaClientes
+     */
     public ServerControlador(Server serverView, ArrayList<ClienteHilo> listaClientes) {
         this.serverView = serverView;
         this.listaClientes = listaClientes;
@@ -61,27 +65,50 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
     }
 
+    /**
+     *
+     * @return
+     */
     public AgregarFactura getAgregarFacturaView() {
         return agregarFacturaView;
     }
 
+    /**
+     *
+     * @param agregarFacturaView
+     */
     public void setAgregarFacturaView(AgregarFactura agregarFacturaView) {
         this.agregarFacturaView = agregarFacturaView;
     }
 
-    
+    /**
+     *
+     * @return
+     */
     public Server getServerView() {
         return serverView;
     }
 
+    /**
+     *
+     * @param serverView
+     */
     public void setServerView(Server serverView) {
         this.serverView = serverView;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<ClienteHilo> getListaClientes() {
         return listaClientes;
     }
 
+    /**
+     *
+     * @param listaClientes
+     */
     public void setListaClientes(ArrayList<ClienteHilo> listaClientes) {
         this.listaClientes = listaClientes;
     }
@@ -248,7 +275,10 @@ public class ServerControlador implements ActionListener, DocumentListener {
         }
     }
 
-     public void RetrasoSegundos() {
+    /**
+     *
+     */
+    public void RetrasoSegundos() {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -256,7 +286,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
 
         }
      
-   
+    /**
+     *
+     */
     public class ServerStart implements Runnable {
         @Override
         public void run() {
@@ -290,6 +322,10 @@ public class ServerControlador implements ActionListener, DocumentListener {
         }
     }
 
+    /**
+     *
+     * @param message
+     */
     public void tellEveryone(String message) {
         
         //*******************************************************
@@ -333,6 +369,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
         llenarTabla();
     }
 
+    /**
+     *
+     */
     public void llenarTabla() {
 
         DefaultTableModel modeloTabla = new DefaultTableModel();
@@ -374,6 +413,9 @@ public class ServerControlador implements ActionListener, DocumentListener {
         }
     }
 
+    /**
+     *
+     */
     public class ClienteHilo implements Runnable {
 
         private BufferedReader reader;
@@ -388,7 +430,11 @@ public class ServerControlador implements ActionListener, DocumentListener {
         private Integer minuFinal;
         //Integer  MILLSECS_PER_DAY = 24*60;
         
-    
+        /**
+         *
+         * @param clientSocket
+         * @param printWriter
+         */
         public ClienteHilo(Socket clientSocket, PrintWriter printWriter) {
             
             this.printWriter = printWriter;
@@ -431,86 +477,171 @@ public class ServerControlador implements ActionListener, DocumentListener {
             }
         }
 
+        /**
+         *
+         * @return
+         */
         public BufferedReader getReader() {
             return reader;
         }
 
+        /**
+         *
+         * @param reader
+         */
         public void setReader(BufferedReader reader) {
             this.reader = reader;
         }
 
+        /**
+         *
+         * @return
+         */
         public Socket getSock() {
             return sock;
         }
 
+        /**
+         *
+         * @param sock
+         */
         public void setSock(Socket sock) {
             this.sock = sock;
         }
 
+        /**
+         *
+         * @return
+         */
         public PrintWriter getPrintWriter() {
             return printWriter;
         }
 
+        /**
+         *
+         * @param printWriter
+         */
         public void setPrintWriter(PrintWriter printWriter) {
             this.printWriter = printWriter;
         }
 
+        /**
+         *
+         * @return
+         */
         public String getHoInicio() {
             return hoInicio ;
            
         }
 
+        /**
+         *
+         * @param hoInicio
+         */
         public void setHoInicio(String hoInicio) {
             this.hoInicio = hoInicio;
         }
+
+        /**
+         *
+         * @return
+         */
         public String getHoFin() {
             return hoFin;
         }
 
+        /**
+         *
+         * @param hoFin
+         */
         public void setHoFin(String hoFin) {
             this.hoFin = hoFin;
         }
+
+        /**
+         *
+         * @return
+         */
         public Boolean getEstadoActivo() {
             return estadoActivo;
         }
 
+        /**
+         *
+         * @param estadoActivo
+         */
         public void setEstadoActivo(Boolean estadoActivo) {
             this.estadoActivo = estadoActivo;
         }
 
+        /**
+         *
+         * @return
+         */
         public String getNombrePC() {
             return nombrePC;
         }
 
+        /**
+         *
+         * @param nombrePC
+         */
         public void setNombrePC(String nombrePC) {
             this.nombrePC = nombrePC;
         }
 
+        /**
+         *
+         * @return
+         */
         public String getTiempo() {
             return tiempo;
         }
 
+        /**
+         *
+         * @param tiempo
+         */
         public void setTiempo(String tiempo) {
             this.tiempo = tiempo;
         }
 
+        /**
+         *
+         * @return
+         */
         public Integer getMinuInicial() {
             return minuInicial;
         }
 
+        /**
+         *
+         * @param minuInicial
+         */
         public void setMinuInicial(Integer minuInicial) {
             this.minuInicial = minuInicial;
         }
 
+        /**
+         *
+         * @return
+         */
         public Integer getMinuFinal() {
             return minuFinal;
         }
 
+        /**
+         *
+         * @param minuFinal
+         */
         public void setMinuFinal(Integer minuFinal) {
             this.minuFinal = minuFinal;
         }
        
-                
+        /**
+         *
+         * @return
+         */
         public String horaInicio(){
             String hora;
             Calendar calendario = Calendar.getInstance();
@@ -523,6 +654,10 @@ public class ServerControlador implements ActionListener, DocumentListener {
             return hora;    
         }
         
+        /**
+         *
+         * @return
+         */
         public String horaFinal(){
             String hora;
             Calendar calendario = Calendar.getInstance();
@@ -535,6 +670,10 @@ public class ServerControlador implements ActionListener, DocumentListener {
             return hora;
         }
         
+        /**
+         *
+         * @return
+         */
         public String tiempoTotal(){
             String minutos;
             minutos=String.valueOf(this.getMinuFinal()-this.getMinuInicial());

@@ -27,7 +27,12 @@ public class ArticuloBuscarControlador implements  ActionListener {
     private ArticuloBL ArticuloBLModelo;
     private JTextField txtRespuesta;
     
-
+    /**
+     *
+     * @param articuloBuscarView
+     * @param ArticuloBLModelo
+     * @param txtRespuesta
+     */
     public ArticuloBuscarControlador(MantArticuloBuscar articuloBuscarView, ArticuloBL ArticuloBLModelo, JTextField txtRespuesta) {
         this.articuloBuscarView = articuloBuscarView;
         this.ArticuloBLModelo = ArticuloBLModelo;
@@ -37,31 +42,50 @@ public class ArticuloBuscarControlador implements  ActionListener {
         llenarTabla(this.articuloBuscarView.jTBuscarArticulo);
     }
 
-   
-
-    
-
-    
+    /**
+     *
+     * @return
+     */
     public MantArticuloBuscar getArticuloBuscarView() {
         return articuloBuscarView;
     }
 
+    /**
+     *
+     * @param articuloBuscarView
+     */
     public void setArticuloBuscarView(MantArticuloBuscar articuloBuscarView) {
         this.articuloBuscarView = articuloBuscarView;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArticuloBL getArticuloBLModelo() {
         return ArticuloBLModelo;
     }
 
+    /**
+     *
+     * @param ArticuloBLModelo
+     */
     public void setArticuloBLModelo(ArticuloBL ArticuloBLModelo) {
         this.ArticuloBLModelo = ArticuloBLModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public JTextField getTxtRespuesta() {
         return txtRespuesta;
     }
 
+    /**
+     *
+     * @param txtRespuesta
+     */
     public void setTxtRespuesta(JTextField txtRespuesta) {
         this.txtRespuesta = txtRespuesta;
     }
@@ -87,6 +111,11 @@ public class ArticuloBuscarControlador implements  ActionListener {
                 
         }
     }
+
+    /**
+     *
+     * @param tablaArticulo
+     */
     public void llenarTabla(JTable tablaArticulo) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulo.setModel(modeloTabla);

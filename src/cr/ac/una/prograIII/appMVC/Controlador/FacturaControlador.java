@@ -71,6 +71,16 @@ public class FacturaControlador implements ActionListener, DocumentListener {
     private Date Fecha;
     ArrayList<Articulos> listAr=new ArrayList();
 
+    /**
+     *
+     * @param agregarFacturaView
+     * @param FacturaBlModelo
+     * @param mantClienteview
+     * @param clienteBlModelo
+     * @param mantArticuloView
+     * @param ArticuloBLModelo
+     * @param DetalleFacturaBLModelo
+     */
     public FacturaControlador(AgregarFactura agregarFacturaView, FacturaBL FacturaBlModelo, ManteCliente mantClienteview, ClienteBL clienteBlModelo, ManteArticulos mantArticuloView, ArticuloBL ArticuloBLModelo, DetalleFacturaBL DetalleFacturaBLModelo) {
         this.agregarFacturaView = agregarFacturaView;
         this.FacturaBlModelo = FacturaBlModelo;
@@ -93,82 +103,162 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         inicializarPantalla();
     }
 
+    /**
+     *
+     * @return
+     */
     public ArrayList<Articulos> getListAr() {
         return listAr;
     }
 
+    /**
+     *
+     * @param listAr
+     */
     public void setListAr(ArrayList<Articulos> listAr) {
         this.listAr = listAr;
     }
 
+    /**
+     *
+     * @return
+     */
     public Date getFecha() {
         return Fecha;
     }
 
+    /**
+     *
+     * @param Fecha
+     */
     public void setFecha(Date Fecha) {
         this.Fecha = Fecha;
     }
 
+    /**
+     *
+     * @param calendario
+     */
     public void setCalendario(Calendar calendario) {
         this.calendario = calendario;
     }
 
+    /**
+     *
+     * @return
+     */
     public Calendar getCalendario() {
         return calendario;
     }
 
+    /**
+     *
+     * @return
+     */
     public AgregarFactura getAgregarFacturaView() {
         return agregarFacturaView;
     }
 
+    /**
+     *
+     * @param agregarFacturaView
+     */
     public void setAgregarFacturaView(AgregarFactura agregarFacturaView) {
         this.agregarFacturaView = agregarFacturaView;
     }
 
+    /**
+     *
+     * @return
+     */
     public FacturaBL getFacturaBlModelo() {
         return FacturaBlModelo;
     }
 
+    /**
+     *
+     * @param FacturaBlModelo
+     */
     public void setFacturaBlModelo(FacturaBL FacturaBlModelo) {
         this.FacturaBlModelo = FacturaBlModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public ManteCliente getMantClienteview() {
         return mantClienteview;
     }
 
+    /**
+     *
+     * @param mantClienteview
+     */
     public void setMantClienteview(ManteCliente mantClienteview) {
         this.mantClienteview = mantClienteview;
     }
 
+    /**
+     *
+     * @return
+     */
     public ClienteBL getClienteBlModelo() {
         return clienteBlModelo;
     }
 
+    /**
+     *
+     * @param clienteBlModelo
+     */
     public void setClienteBlModelo(ClienteBL clienteBlModelo) {
         this.clienteBlModelo = clienteBlModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public ManteArticulos getMantArticuloView() {
         return mantArticuloView;
     }
 
+    /**
+     *
+     * @param mantArticuloView
+     */
     public void setMantArticuloView(ManteArticulos mantArticuloView) {
         this.mantArticuloView = mantArticuloView;
     }
 
+    /**
+     *
+     * @return
+     */
     public ArticuloBL getArticuloBLModelo() {
         return ArticuloBLModelo;
     }
 
+    /**
+     *
+     * @param ArticuloBLModelo
+     */
     public void setArticuloBLModelo(ArticuloBL ArticuloBLModelo) {
         this.ArticuloBLModelo = ArticuloBLModelo;
     }
 
+    /**
+     *
+     * @return
+     */
     public DetalleFacturaBL getDetalleFacturaBLModelo() {
         return DetalleFacturaBLModelo;
     }
 
+    /**
+     *
+     * @param DetalleFacturaBLModelo
+     */
     public void setDetalleFacturaBLModelo(DetalleFacturaBL DetalleFacturaBLModelo) {
         this.DetalleFacturaBLModelo = DetalleFacturaBLModelo;
     }
@@ -187,6 +277,10 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
     }
 
+    /**
+     *
+     * @param tablaArticulos
+     */
     public void llenarTabla(JTable tablaArticulos) {
         DefaultTableModel modeloTabla = new DefaultTableModel();
         tablaArticulos.setModel(modeloTabla);
@@ -457,26 +551,56 @@ public class FacturaControlador implements ActionListener, DocumentListener {
         }
     }
     
+    /**
+     *
+     * @param precio
+     * @param cantidad
+     * @return
+     */
     public double calcularSubtotal(double precio, int cantidad){
         double total=0.0;
         return total=precio*cantidad;
     }
+
+    /**
+     *
+     * @param precio
+     * @param cantidad
+     * @return
+     */
     public double calculaSubtotalAlquiler(double precio, int cantidad){
         double total=0.0;
         precio= precio/60;
         return total=precio*cantidad;
     }
             
+    /**
+     *
+     * @param total
+     * @param subtotal
+     * @return
+     */
     public double calcularTotal(double total,double subtotal){
         return total=total+subtotal;
     }
     
+    /**
+     *
+     * @param a
+     * @param cant
+     * @return
+     */
     public boolean existenciaArticulos(Articulos a, int cant){
         if(cant <= a.getCantidadExistencia()){
             return true;
         }else
             return false;
     }
+
+    /**
+     *
+     * @param a
+     */
     public void existenciaPoca(Articulos a){
         if(a.getCantidadExistencia()<=5){
             JOptionPane.showMessageDialog(mantArticuloView, "Hay 5 o menos articulos como este en inventario", "Alerta poca existencia de este Articulo", JOptionPane.INFORMATION_MESSAGE);

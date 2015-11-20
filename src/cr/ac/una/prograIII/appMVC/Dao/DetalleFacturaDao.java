@@ -22,10 +22,18 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
 
     private final MySQLConexion conexion;
 
+    /**
+     *
+     */
     public DetalleFacturaDao() {
         conexion = new MySQLConexion();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void insertar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -41,6 +49,11 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void modificar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -57,6 +70,11 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @throws SQLException
+     */
     @Override
     public void eliminar(DetalleFactura obj) throws SQLException {
         Connection con = conexion.getConexion();
@@ -67,6 +85,12 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
         con.close();
     }
 
+    /**
+     *
+     * @param obj
+     * @return
+     * @throws SQLException
+     */
     @Override
     public DetalleFactura obtenerPorId(DetalleFactura obj) throws SQLException {
         DetalleFactura df = null;
@@ -88,6 +112,11 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
         return df;
     }
 
+    /**
+     *
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<DetalleFactura> obtenerTodos() throws SQLException {
         Connection con = conexion.getConexion();
@@ -107,6 +136,12 @@ public class DetalleFacturaDao implements IBaseDao<DetalleFactura> {
 
     }
 
+    /**
+     *
+     * @param where
+     * @return
+     * @throws SQLException
+     */
     @Override
     public ArrayList<DetalleFactura> obtenerConWhere(String where) throws SQLException {
         Connection con = conexion.getConexion();
