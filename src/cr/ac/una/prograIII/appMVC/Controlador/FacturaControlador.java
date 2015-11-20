@@ -441,7 +441,7 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                        ArticuloBLModelo.modificar(a);
                        detalle.setCantidad(cantAux);
                        DetalleFacturaBLModelo.insertar(detalle);
-                   }
+                   }                
                JOptionPane.showMessageDialog(agregarFacturaView, "La factura ha sido creada correctamente", "Factura", JOptionPane.INFORMATION_MESSAGE);
                this.agregarFacturaView.txtCliente.setText("");
                this.agregarFacturaView.TxTNombreCliente.setText("");
@@ -449,7 +449,6 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                this.agregarFacturaView.jlTotal.setText("0.0");
                listAr.clear();
                llenarTabla(this.agregarFacturaView.jTableDetalleFactura);
-                   System.out.println("ojo total " + f.getTotal() );
                }catch (SQLException ex) {
                 Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al facturar:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
@@ -458,45 +457,96 @@ public class FacturaControlador implements ActionListener, DocumentListener {
                 JOptionPane.showMessageDialog(agregarFacturaView, "Error al facturar:" + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             }
             }
-        }
-        if(e.getSource() == this.agregarFacturaView.BtImprimirFactura){
-            Factura f = new Factura();
-            Integer idFacturacion = f.getPk_idfacturacion();
-            InputStream inputStream = null;
-            try {
-                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\Factura.jrxml");
-                Map parameters = new HashMap();
-                parameters.put("IdFactura", idFacturacion);
-                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
-                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-
-                MySQLConexion Con = new MySQLConexion();
-                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
-                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
-
-                File file = new File("C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
-                if (file.toString().endsWith(".pdf")) {
-                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
-                } else {
-                    Desktop desktop = Desktop.getDesktop();
-                    desktop.open(file);
-                }
-
-            } catch (FileNotFoundException ex) {
-
-                System.err.println(ex.getMessage());
-            } catch (IOException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (JRException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SQLException ex) {
-                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        } else {
-            JOptionPane.showMessageDialog(agregarFacturaView, "Error debe seleccionar un cliente:", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+             int resp;
+               resp=JOptionPane.showConfirmDialog(agregarFacturaView, "Desea imprimir la factura");   
+               if(resp==0){
+                    int idAux=0;
+                    MySQLConexion conexion = new MySQLConexion();
+                    Connection con;
+               
+                try{
+                    con = conexion.getConexion();
+                    CallableStatement cs = con.prepareCall("select MAX(PK_idFacturacion) from Facturacion");
+                    ResultSet result = cs.executeQuery();
+                    if(result.next()){
+                        idAux= result.getInt(1);
+                    }
+                     con.close();
+                     InputStream inputStream = null;
+                     try{
+                        inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\Factura.jrxml");
+                        Map parameters = new HashMap();
+                        parameters.put("IdFactura", idAux);
+                        JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+                        JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                        
+                        MySQLConexion Con = new MySQLConexion();
+                        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                        JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+                        
+                        File file = new File("C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+                        
+                        if (file.toString().endsWith(".pdf")) {
+                        Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+                        } else {
+                        Desktop desktop = Desktop.getDesktop();
+                        desktop.open(file);
+                        }
+                     }catch (FileNotFoundException ex) {
+                        System.err.println(ex.getMessage());
+                     } catch (IOException ex) {
+                        Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                     } catch (JRException ex) {
+                        Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                     } catch (SQLException ex) {
+                        Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } catch (SQLException ex) {
+                        Logger.getLogger(FacturaControlador.class.getName()).log(Level.SEVERE, null, ex);
+                      }
+                }else
+                   if(resp==1){
+                       JOptionPane.showMessageDialog(agregarFacturaView, "La factura no sera impresa",
+                        "Factura Impresa", JOptionPane.INFORMATION_MESSAGE);
+                   }
+//        if(e.getSource() == this.agregarFacturaView.BtImprimirFactura){
+//            Factura f = new Factura();
+//            Integer idFacturacion = f.getPk_idfacturacion();
+//            InputStream inputStream = null;
+//            try {
+//                inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\Factura.jrxml");
+//                Map parameters = new HashMap();
+//                parameters.put("IdFactura", idFacturacion);
+//                JasperDesign jasperDesign = JRXmlLoader.load(inputStream);
+//                JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+//
+//                MySQLConexion Con = new MySQLConexion();
+//                JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+//                JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+//
+//                File file = new File("C:\\Users\\Gustavo\\Desktop\\Factura.pdf");
+//                if (file.toString().endsWith(".pdf")) {
+//                    Runtime.getRuntime().exec("rundll32 url.dll,FileProtocolHandler " + file);
+//                } else {
+//                    Desktop desktop = Desktop.getDesktop();
+//                    desktop.open(file);
+//                }
+//
+//            } catch (FileNotFoundException ex) {
+//
+//                System.err.println(ex.getMessage());
+//            } catch (IOException ex) {
+//                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (JRException ex) {
+//                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SQLException ex) {
+//                Logger.getLogger(ControladorSistAdministracion.class.getName()).log(Level.SEVERE, null, ex);
+//            }
+//        } else {
+//            JOptionPane.showMessageDialog(agregarFacturaView, "Error debe seleccionar un cliente:", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }
-
+    }
 
     
 
