@@ -134,13 +134,14 @@ public class ClienteBuscarControlador implements ActionListener {
         }
 
         if (e.getSource() == this.clienteBuscarView.BtVerFacturasCliente) {
+            
             int fila = this.clienteBuscarView.jTBuscarCliente.getSelectedRow();
             if (fila != -1) {
                 Integer idCliente = Integer.parseInt(this.clienteBuscarView.jTBuscarCliente.getValueAt(fila, 0).toString());
-                this.clienteBuscarView.setVisible(false);
+                //this.clienteBuscarView.setVisible(false);
                 InputStream inputStream = null;
                 try {
-                    contador++;
+                    
                     inputStream = new FileInputStream("C:\\Users\\Gustavo\\Desktop\\repositorio\\proyecto\\src\\cr\\ac\\una\\prograIII\\appMVC\\Vista\\Reportes\\FacturasCliente.jrxml");
                     Map parameters = new HashMap();
                     parameters.put("IdCliente", idCliente);
@@ -149,6 +150,7 @@ public class ClienteBuscarControlador implements ActionListener {
 
                     MySQLConexion Con = new MySQLConexion();
                     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, Con.getConexion());
+                    contador++;
                     String cont= String.valueOf(contador);
                     JasperExportManager.exportReportToPdfFile(jasperPrint, "C:\\Users\\Gustavo\\Desktop\\FacturasCliente"+cont+".pdf");
 
