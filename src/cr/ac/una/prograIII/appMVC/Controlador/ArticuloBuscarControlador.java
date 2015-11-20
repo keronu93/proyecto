@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * Articulo Buscar Controlador
  * @author kevin
  */
 public class ArticuloBuscarControlador implements  ActionListener {

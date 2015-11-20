@@ -31,7 +31,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ *Articulo Controlador
  * @author kevin
  */
 public class ArticuloControlador implements ActionListener, DocumentListener {

@@ -6,7 +6,7 @@
 package cr.ac.una.prograIII.appMVC.Domain;
 
 /**
- *
+ * Detalle Factura
  * @author Gustavo
  */
 public class DetalleFactura extends BaseDomain {
